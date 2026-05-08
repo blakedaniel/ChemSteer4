@@ -14,6 +14,13 @@ from pydantic import BaseModel
 from chemsteer.calc.base import CalcInput, ExposureOutput, ReleaseOutput
 from chemsteer.calc.dispatch import EXPOSURE_MODELS, RELEASE_MODELS
 from chemsteer.calc.exposure.dermal import DermalInput
+from chemsteer.calc.exposure.inhalation import (
+    KCkInhalationInput,
+    KCkOnlyInput,
+    MassBalanceInput,
+    OshaPelParticulatesInput,
+    UserDefinedInhalationInput,
+)
 from chemsteer.calc.release.electroplating import RinseWaterInput, SpentBathInput
 from chemsteer.calc.release.residual import ResidualInput
 from chemsteer.calc.release.vapor_generation import (
@@ -82,12 +89,21 @@ def run_release_model(model_id: int, body: dict[str, object]) -> ReleaseOutput:
 
 
 _EXPOSURE_INPUT_CLASSES: dict[int, type[CalcInput]] = {
+    18: KCkInhalationInput,
+    22: MassBalanceInput,
+    23: OshaPelParticulatesInput,
+    24: KCkInhalationInput,
     25: DermalInput,
     26: DermalInput,
     27: DermalInput,
     28: DermalInput,
     29: DermalInput,
+    40: KCkOnlyInput,
     44: DermalInput,
+    46: UserDefinedInhalationInput,
+    47: KCkInhalationInput,
+    49: KCkInhalationInput,
+    50: KCkInhalationInput,
 }
 
 assert all(issubclass(cls, BaseModel) for cls in _EXPOSURE_INPUT_CLASSES.values())

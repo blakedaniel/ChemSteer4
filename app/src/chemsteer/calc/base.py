@@ -214,6 +214,31 @@ SquareCmPerEvent = Annotated[
     BeforeValidator(_make_coercer("centimeter ** 2 / event")),
     _ToJson,
 ]
+MgPerCubicMeter = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("milligram / meter ** 3")),
+    _ToJson,
+]
+CubicMetersPerHour = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("meter ** 3 / hour")),
+    _ToJson,
+]
+HoursPerDay = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("hour / day")),
+    _ToJson,
+]
+LitersPerMole = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("liter / mole")),
+    _ToJson,
+]
+Ppm = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("dimensionless")),
+    _ToJson,
+]
 
 
 class CalcInput(BaseModel):

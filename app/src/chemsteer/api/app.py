@@ -11,9 +11,11 @@ from chemsteer.api.routers import (
     activities,
     assessments,
     calc,
+    imports,
     models,
     operations,
     parameters,
+    reports,
     scenarios,
 )
 
@@ -61,6 +63,8 @@ def create_app() -> FastAPI:
     api.include_router(scenarios.router)
     api.include_router(calc.router)
     api.include_router(assessments.router)
+    api.include_router(reports.router)
+    api.include_router(imports.router)
 
     return api
 

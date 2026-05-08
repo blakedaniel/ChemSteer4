@@ -65,6 +65,32 @@ export function AssessmentDetailPage() {
           )}
         </div>
 
+        <div style={{ marginBottom: 16, display: "flex", gap: 8, flexWrap: "wrap" }}>
+          <span className="muted" style={{ alignSelf: "center" }}>
+            Export:
+          </span>
+          {(["html", "pdf", "csv", "json"] as const).map((fmt) => (
+            <a
+              key={fmt}
+              href={`/api/assessments/${aid}/report.${fmt}`}
+              target={fmt === "html" ? "_blank" : undefined}
+              rel="noreferrer"
+              style={{
+                padding: "4px 12px",
+                background: "#27272a",
+                color: "#fff",
+                borderRadius: 4,
+                fontSize: 12,
+                fontWeight: 600,
+                textTransform: "uppercase",
+                textDecoration: "none",
+              }}
+            >
+              {fmt}
+            </a>
+          ))}
+        </div>
+
         <h3>Operations</h3>
         {data.operations.length === 0 && (
           <p className="muted">No operations attached. Add one below.</p>

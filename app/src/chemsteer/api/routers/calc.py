@@ -11,8 +11,9 @@ from __future__ import annotations
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
-from chemsteer.calc.base import CalcInput, ReleaseOutput
-from chemsteer.calc.dispatch import RELEASE_MODELS
+from chemsteer.calc.base import CalcInput, ExposureOutput, ReleaseOutput
+from chemsteer.calc.dispatch import EXPOSURE_MODELS, RELEASE_MODELS
+from chemsteer.calc.exposure.dermal import DermalInput
 from chemsteer.calc.release.electroplating import RinseWaterInput, SpentBathInput
 from chemsteer.calc.release.residual import ResidualInput
 from chemsteer.calc.release.vapor_generation import (
@@ -76,5 +77,41 @@ def run_release_model(model_id: int, body: dict[str, object]) -> ReleaseOutput:
     # heterogeneous dispatch type is widened on purpose, so narrow here.
     assert isinstance(out, ReleaseOutput), (
         f"model {model_id} returned {type(out).__name__}, expected ReleaseOutput"
+    )
+    return out
+
+
+_EXPOSURE_INPUT_CLASSES: dict[int, type[CalcInput]] = {
+    25: DermalInput,
+    26: DermalInput,
+    27: DermalInput,
+    28: DermalInput,
+    29: DermalInput,
+    44: DermalInput,
+}
+
+assert all(issubclass(cls, BaseModel) for cls in _EXPOSURE_INPUT_CLASSES.values())
+
+
+@router.post("/exposure/{model_id}", response_model=ExposureOutput)
+def run_exposure_model(model_id: int, body: dict[str, object]) -> ExposureOutput:
+    """Run exposure model ``model_id`` (inhalation or dermal)."""
+    fn = EXPOSURE_MODELS.get(model_id)
+    if fn is None:
+        raise HTTPException(
+            404,
+            f"exposure model {model_id} not implemented yet "
+            f"(implemented: {sorted(EXPOSURE_MODELS.keys())})",
+        )
+    input_cls = _EXPOSURE_INPUT_CLASSES.get(model_id)
+    if input_cls is None:
+        raise HTTPException(500, f"no input schema registered for model {model_id}")
+    try:
+        inp = input_cls.model_validate(body)
+    except Exception as exc:
+        raise HTTPException(422, f"invalid input: {exc}") from exc
+    out = fn(inp)
+    assert isinstance(out, ExposureOutput), (
+        f"model {model_id} returned {type(out).__name__}, expected ExposureOutput"
     )
     return out

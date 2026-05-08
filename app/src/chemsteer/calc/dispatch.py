@@ -8,6 +8,7 @@ Cross-checked against ``mdb/ChmSteer/tables/ListOfModels.csv``.
 from __future__ import annotations
 
 from chemsteer.calc.base import ModelFn
+from chemsteer.calc.exposure import dermal
 from chemsteer.calc.release import (
     electroplating,
     residual,
@@ -39,7 +40,13 @@ RELEASE_MODELS: dict[int, ModelFn] = {
 }
 
 EXPOSURE_MODELS: dict[int, ModelFn] = {
-    # Phase 3.
+    25: dermal.dermal_1hand_liquid,
+    26: dermal.dermal_2hand_liquid,
+    27: dermal.dermal_2hand_immersion,
+    28: dermal.dermal_2hand_solids,
+    29: dermal.dermal_2hand_container_solids,
+    44: dermal.user_defined_dermal,
+    # Inhalation models 18/21/22/23/24/40/45/46/47/49/50/54: ported next.
 }
 
 

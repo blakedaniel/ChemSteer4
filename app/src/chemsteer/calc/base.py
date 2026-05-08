@@ -159,6 +159,61 @@ GallonsPerSiteDay = Annotated[
     BeforeValidator(_make_coercer("gallon / (site * day)")),
     _ToJson,
 ]
+MgPerCmSquaredEvent = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("milligram / centimeter ** 2 / event")),
+    _ToJson,
+]
+EventsPerDay = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("event / day")),
+    _ToJson,
+]
+DaysPerSiteYear = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("day / (site * year)")),
+    _ToJson,
+]
+Years = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("year")),
+    _ToJson,
+]
+Kilograms = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("kilogram")),
+    _ToJson,
+]
+Workers = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("worker")),
+    _ToJson,
+]
+WorkersPerSite = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("worker / site")),
+    _ToJson,
+]
+MgPerDay = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("milligram / day")),
+    _ToJson,
+]
+MgPerKgPerDay = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("milligram / kilogram / day")),
+    _ToJson,
+]
+MgPerEvent = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("milligram / event")),
+    _ToJson,
+]
+SquareCmPerEvent = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("centimeter ** 2 / event")),
+    _ToJson,
+]
 
 
 class CalcInput(BaseModel):
@@ -186,3 +241,24 @@ class ReleaseOutput(CalcOutput):
     DR: KgPerSiteDay
     AR: KgPerYear
     NS: Sites
+
+
+class ExposureOutput(CalcOutput):
+    """Standard ChemSTEER exposure outputs.
+
+    Either ``I`` (inhalation intake, mg/day) or ``Dexp`` (dermal exposure,
+    mg/day) is populated depending on the model's route. The
+    derived dose metrics roll up from whichever is present:
+
+    - ``LADD`` = Lifetime Average Daily Dose (mg/kg/day, cancer)
+    - ``ADD``  = Average Daily Dose (mg/kg/day, non-cancer)
+    - ``APDR`` = Acute Potential Dose Rate (mg/kg/day)
+    - ``NW``   = total number of workers exposed (NWexp × NS)
+    """
+
+    I: MgPerDay | None = None  # noqa: E741 — canonical ChemSTEER output name (intake)
+    Dexp: MgPerDay | None = None
+    LADD: MgPerKgPerDay
+    ADD: MgPerKgPerDay
+    APDR: MgPerKgPerDay
+    NW: Workers

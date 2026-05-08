@@ -13,6 +13,7 @@ from pydantic import BaseModel
 
 from chemsteer.calc.base import CalcInput, ReleaseOutput
 from chemsteer.calc.dispatch import RELEASE_MODELS
+from chemsteer.calc.release.electroplating import RinseWaterInput, SpentBathInput
 from chemsteer.calc.release.residual import ResidualInput
 from chemsteer.calc.release.vapor_generation import (
     Ap42LoadingInput,
@@ -20,6 +21,7 @@ from chemsteer.calc.release.vapor_generation import (
     PenetrationInput,
     UserDefinedGInput,
 )
+from chemsteer.calc.release.water_saturation import WaterSaturationInput
 
 router = APIRouter(prefix="/api/calc", tags=["calc"])
 
@@ -40,7 +42,13 @@ _RELEASE_INPUT_CLASSES: dict[int, type[CalcInput]] = {
     13: ResidualInput,
     14: ResidualInput,
     39: ResidualInput,
+    41: ResidualInput,
+    42: WaterSaturationInput,
     43: UserDefinedGInput,
+    48: ResidualInput,
+    51: SpentBathInput,
+    52: RinseWaterInput,
+    53: ResidualInput,
 }
 
 assert all(issubclass(cls, BaseModel) for cls in _RELEASE_INPUT_CLASSES.values())

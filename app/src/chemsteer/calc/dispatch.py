@@ -8,7 +8,12 @@ Cross-checked against ``mdb/ChmSteer/tables/ListOfModels.csv``.
 from __future__ import annotations
 
 from chemsteer.calc.base import ModelFn
-from chemsteer.calc.release import residual, vapor_generation
+from chemsteer.calc.release import (
+    electroplating,
+    residual,
+    vapor_generation,
+    water_saturation,
+)
 
 RELEASE_MODELS: dict[int, ModelFn] = {
     1: residual.bulk_transport_residual,
@@ -24,8 +29,13 @@ RELEASE_MODELS: dict[int, ModelFn] = {
     13: residual.cooling_tower_windage,
     14: residual.cooling_tower_evaporative,
     39: residual.user_defined_loss_rate,
+    41: residual.auto_refinish_overspray,
+    42: water_saturation.water_saturation,
     43: vapor_generation.user_defined_vapor_generation,
-    # Models 41/42/48/51/52/53: ported in subsequent commits.
+    48: residual.auto_oem_overspray,
+    51: electroplating.spent_bath_disposal,
+    52: electroplating.rinse_water_loss,
+    53: residual.solids_transfer_dust,
 }
 
 EXPOSURE_MODELS: dict[int, ModelFn] = {

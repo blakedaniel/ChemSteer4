@@ -166,3 +166,38 @@ def user_defined_loss_rate(inp: ResidualInput) -> ReleaseOutput:
     (no canonical default). Used when none of the named models fits.
     """
     return _residual(inp)
+
+
+# --- Spray-coating overspray (residual-shaped) ----------------------------
+
+
+def auto_refinish_overspray(inp: ResidualInput) -> ReleaseOutput:
+    """ModelID 41 — EPA/OPPT Automobile Refinish Coating Overspray Loss Model.
+
+    Equation: DR (kg/site-day) = LF × Amt; AR = DR × Freq × NS.
+    Default LF: 0.35–0.50 (Pennsylvania DEP roll/spray coating study; see
+    Common Engineering Defaults Table 1). Conventional spray gun TE ≈ 0.20
+    (loss fraction ≈ 0.80); HVLP gun TE ≈ 0.65 (loss fraction ≈ 0.35).
+    """
+    return _residual(inp)
+
+
+def auto_oem_overspray(inp: ResidualInput) -> ReleaseOutput:
+    """ModelID 48 — EPA/OPPT Automobile OEM Coating Overspray Loss Model.
+
+    Same DR = LF × Amt shape as #41; default LF reflects OEM-specific
+    automated spray booth efficiency (typically lower loss than
+    refinish).
+    """
+    return _residual(inp)
+
+
+def solids_transfer_dust(inp: ResidualInput) -> ReleaseOutput:
+    """ModelID 53 — EPA/OPPT Solids Transfer Dust Loss Model.
+
+    Equation: DR (kg/site-day) = LF × Amt; AR = DR × Freq × NS.
+    Default LF: 0.005 (CEB Table 1; Generic Model to Estimate Dust
+    Releases, EPA 2020). Combined with capture efficiency (32–95%) and
+    control efficiency (26–99%) at the operation layer.
+    """
+    return _residual(inp)

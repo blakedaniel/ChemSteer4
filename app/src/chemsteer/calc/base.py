@@ -144,6 +144,21 @@ GramsPerSecond = Annotated[
     BeforeValidator(_make_coercer("gram / second")),
     _ToJson,
 ]
+GramsPerLiter = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("gram / liter")),
+    _ToJson,
+]
+KgPerLiter = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("kilogram / liter")),
+    _ToJson,
+]
+GallonsPerSiteDay = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("gallon / (site * day)")),
+    _ToJson,
+]
 
 
 class CalcInput(BaseModel):

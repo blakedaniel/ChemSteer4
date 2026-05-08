@@ -5,6 +5,7 @@ from logging.config import fileConfig
 from alembic import context
 from sqlalchemy import engine_from_config, pool
 
+from chemsteer.db.user import UserBase
 from chemsteer.settings import get_settings
 
 config = context.config
@@ -17,8 +18,8 @@ settings = get_settings()
 settings.user_data_dir.mkdir(parents=True, exist_ok=True)
 config.set_main_option("sqlalchemy.url", f"sqlite:///{settings.assessments_db_path}")
 
-# Phase 0 has no models yet; Phase 4 will populate this.
-target_metadata = None
+# Phase 4 wires the user-DB models in.
+target_metadata = UserBase.metadata
 
 
 def run_migrations_offline() -> None:

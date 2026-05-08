@@ -139,6 +139,11 @@ GasConstant = Annotated[
     BeforeValidator(_make_coercer("atm * centimeter ** 3 / mole / kelvin")),
     _ToJson,
 ]
+GramsPerSecond = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("gram / second")),
+    _ToJson,
+]
 
 
 class CalcInput(BaseModel):

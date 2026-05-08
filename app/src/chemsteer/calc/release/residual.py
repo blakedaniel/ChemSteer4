@@ -124,3 +124,45 @@ def solid_transport_container_residual(inp: ResidualInput) -> ReleaseOutput:
     Default LF: 0.010 (CEB Table 1; solids in any transport container).
     """
     return _residual(inp)
+
+
+# --- Cooling tower variants (share the residual shape) -------------------
+
+
+def cooling_tower_blowdown(inp: ResidualInput) -> ReleaseOutput:
+    """ModelID 12 — EPA/OPPT Cooling Tower Blowdown Loss Model.
+
+    Equation: DR (kg/site-day) = LF × Amt; AR = DR × Freq × NS.
+    Default LF: 0.006 (Barrett et al. 2023 Table 1; blowdown flow).
+    """
+    return _residual(inp)
+
+
+def cooling_tower_windage(inp: ResidualInput) -> ReleaseOutput:
+    """ModelID 13 — EPA/OPPT Cooling Tower Windage Loss Model.
+
+    Equation: DR (kg/site-day) = LF × Amt; AR = DR × Freq × NS.
+    Default LF: 0.001 (Barrett et al. 2023 Table 1; drift / windage).
+    """
+    return _residual(inp)
+
+
+def cooling_tower_evaporative(inp: ResidualInput) -> ReleaseOutput:
+    """ModelID 14 — EPA/OPPT Cooling Tower Evaporative Loss Model (volatiles).
+
+    Equation: DR (kg/site-day) = LF × Amt; AR = DR × Freq × NS.
+    Default LF: 0.005–0.03 depending on chemical volatility (Barrett 2023).
+    """
+    return _residual(inp)
+
+
+# --- User-defined loss rate ------------------------------------------------
+
+
+def user_defined_loss_rate(inp: ResidualInput) -> ReleaseOutput:
+    """ModelID 39 — User-Defined Loss Rate Model.
+
+    Same DR = LF × Amt shape; the user supplies any LF they want
+    (no canonical default). Used when none of the named models fits.
+    """
+    return _residual(inp)

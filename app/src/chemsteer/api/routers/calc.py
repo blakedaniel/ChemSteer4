@@ -18,6 +18,7 @@ from chemsteer.calc.release.vapor_generation import (
     Ap42LoadingInput,
     MassTransferInput,
     PenetrationInput,
+    UserDefinedGInput,
 )
 
 router = APIRouter(prefix="/api/calc", tags=["calc"])
@@ -35,6 +36,11 @@ _RELEASE_INPUT_CLASSES: dict[int, type[CalcInput]] = {
     7: Ap42LoadingInput,
     8: MassTransferInput,
     9: PenetrationInput,
+    12: ResidualInput,
+    13: ResidualInput,
+    14: ResidualInput,
+    39: ResidualInput,
+    43: UserDefinedGInput,
 }
 
 assert all(issubclass(cls, BaseModel) for cls in _RELEASE_INPUT_CLASSES.values())

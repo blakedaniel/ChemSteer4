@@ -20,7 +20,12 @@ RELEASE_MODELS: dict[int, ModelFn] = {
     7: vapor_generation.ap42_loading,
     8: vapor_generation.mass_transfer_coefficient,
     9: vapor_generation.penetration,
-    # Models 10+: ported in subsequent commits.
+    12: residual.cooling_tower_blowdown,
+    13: residual.cooling_tower_windage,
+    14: residual.cooling_tower_evaporative,
+    39: residual.user_defined_loss_rate,
+    43: vapor_generation.user_defined_vapor_generation,
+    # Models 41/42/48/51/52/53: ported in subsequent commits.
 }
 
 EXPOSURE_MODELS: dict[int, ModelFn] = {

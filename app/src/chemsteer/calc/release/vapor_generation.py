@@ -36,6 +36,7 @@ from chemsteer.calc.base import (
     GallonPerContainer,
     GasConstant,
     GramsPerMole,
+    GramsPerSecond,
     HoursPerSiteDay,
     Kelvin,
     ReleaseOutput,
@@ -213,6 +214,38 @@ class PenetrationInput(CalcInput):
     OHa: HoursPerSiteDay
     Freq: DaysPerYear
     NS: Sites
+
+
+class UserDefinedGInput(CalcInput):
+    """Inputs for the User-Defined Vapor Generation Rate Model (#43).
+
+    The user supplies G directly; the shell applies the standard outer
+    DR / AR conversion::
+
+        DR (kg/site-day) = (G × 3600 × OHa) / 1000
+        AR (kg/year)     = DR × Freq × NS
+    """
+
+    G: GramsPerSecond
+    """User-supplied vapor generation rate (g/s)."""
+
+    OHa: HoursPerSiteDay
+    Freq: DaysPerYear
+    NS: Sites
+
+
+def user_defined_vapor_generation(inp: UserDefinedGInput) -> ReleaseOutput:
+    """ModelID 43 — User-Defined Vapor Generation Rate Model.
+
+    Pass-through wrapper: the user supplies G directly; the shell
+    converts to DR / AR. Used when none of the empirical models (#7–#9)
+    is appropriate or when monitoring data give a measured G.
+    """
+    G_v = float(inp.G.to("gram / second").magnitude)
+    OHa_v = float(inp.OHa.to("hour / (site * day)").magnitude)
+    Freq_v = float(inp.Freq.to("day / year").magnitude)
+    NS_v = float(inp.NS.to("site").magnitude)
+    return _shell(G_v, OHa_v, Freq_v, NS_v)
 
 
 def penetration(inp: PenetrationInput) -> ReleaseOutput:

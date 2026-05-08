@@ -19,8 +19,11 @@ from chemsteer.calc.exposure.inhalation import (
     KCkOnlyInput,
     MassBalanceInput,
     OshaPelParticulatesInput,
+    OshaVaporPelInput,
     UserDefinedInhalationInput,
 )
+from chemsteer.calc.exposure.near_far_field import NearFarFieldInput
+from chemsteer.calc.exposure.small_volume import SmallVolumeInput
 from chemsteer.calc.release.electroplating import RinseWaterInput, SpentBathInput
 from chemsteer.calc.release.residual import ResidualInput
 from chemsteer.calc.release.vapor_generation import (
@@ -90,6 +93,7 @@ def run_release_model(model_id: int, body: dict[str, object]) -> ReleaseOutput:
 
 _EXPOSURE_INPUT_CLASSES: dict[int, type[CalcInput]] = {
     18: KCkInhalationInput,
+    21: SmallVolumeInput,
     22: MassBalanceInput,
     23: OshaPelParticulatesInput,
     24: KCkInhalationInput,
@@ -100,10 +104,12 @@ _EXPOSURE_INPUT_CLASSES: dict[int, type[CalcInput]] = {
     29: DermalInput,
     40: KCkOnlyInput,
     44: DermalInput,
+    45: OshaVaporPelInput,
     46: UserDefinedInhalationInput,
     47: KCkInhalationInput,
     49: KCkInhalationInput,
     50: KCkInhalationInput,
+    54: NearFarFieldInput,
 }
 
 assert all(issubclass(cls, BaseModel) for cls in _EXPOSURE_INPUT_CLASSES.values())

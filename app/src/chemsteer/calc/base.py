@@ -239,6 +239,36 @@ Ppm = Annotated[
     BeforeValidator(_make_coercer("dimensionless")),
     _ToJson,
 ]
+ExposureFactor = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("milligram / kilogram")),
+    _ToJson,
+]
+KgPerDay = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("kilogram / day")),
+    _ToJson,
+]
+Meters = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("meter")),
+    _ToJson,
+]
+CubicMeters = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("meter ** 3")),
+    _ToJson,
+]
+MetersPerSecond = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("meter / second")),
+    _ToJson,
+]
+PerHour = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("1 / hour")),
+    _ToJson,
+]
 
 
 class CalcInput(BaseModel):

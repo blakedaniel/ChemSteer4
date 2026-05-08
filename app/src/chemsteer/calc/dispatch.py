@@ -8,7 +8,7 @@ Cross-checked against ``mdb/ChmSteer/tables/ListOfModels.csv``.
 from __future__ import annotations
 
 from chemsteer.calc.base import ModelFn
-from chemsteer.calc.exposure import dermal, inhalation
+from chemsteer.calc.exposure import dermal, inhalation, near_far_field, small_volume
 from chemsteer.calc.release import (
     electroplating,
     residual,
@@ -41,6 +41,7 @@ RELEASE_MODELS: dict[int, ModelFn] = {
 
 EXPOSURE_MODELS: dict[int, ModelFn] = {
     18: inhalation.uv_roll_coating,
+    21: small_volume.small_volume_handling,
     22: inhalation.mass_balance,
     23: inhalation.osha_pel_particulates,
     24: inhalation.osha_total_pnor,
@@ -51,11 +52,12 @@ EXPOSURE_MODELS: dict[int, ModelFn] = {
     29: dermal.dermal_2hand_container_solids,
     40: inhalation.auto_spray_polyiso,
     44: dermal.user_defined_dermal,
+    45: inhalation.osha_pel_vapor,
     46: inhalation.user_defined_inhalation,
     47: inhalation.osha_respirable_pnor,
     49: inhalation.auto_oem_spray,
     50: inhalation.auto_refinish_spray,
-    # Models 21 (Small Volume), 45 (OSHA Vapor PEL), 54 (NF/FF): ported next.
+    54: near_far_field.near_far_field,
 }
 
 

@@ -371,6 +371,80 @@ class UserDefinedInhalationInput(CalcInput):
     NS: Sites
 
 
+class OshaVaporPelInput(CalcInput):
+    """Inputs for ModelID 45 (OSHA PEL-Limiting, Substance-specific Vapor).
+
+    Cv = lesser of:
+        Cvk × (VP × Ys / MW) / (Vppel × Ypel / Mwpel)
+    or  1,000,000 × X × VP / 760
+
+    Cm = Cv × MW / Vm
+    I  = Cm × b × h
+    """
+
+    Cvk: Ppm
+    """Vapor concentration constant of the chemical (ppm reference)."""
+    VP: Torr
+    Ys: Dimensionless
+    MW: GramsPerMole
+
+    Vppel: Torr
+    """Vapor pressure of the PEL-bearing reference chemical."""
+    Ypel: Dimensionless
+    Mwpel: GramsPerMole
+    """MW of the PEL-bearing reference chemical."""
+
+    X: Dimensionless
+
+    Vm: LitersPerMole
+
+    b: CubicMetersPerHour
+    h: HoursPerDay
+    ED: DaysPerSiteYear
+    Y: Years
+    BW: Kilograms
+    AT: Years
+    ATc: Years
+    NWexp: WorkersPerSite
+    NS: Sites
+
+
+def osha_pel_vapor(inp: OshaVaporPelInput) -> ExposureOutput:
+    """ModelID 45 — OSHA PEL-Limiting Model for Substance-specific Vapor.
+
+    Like Mass Balance (#22) but the generation-limited Cv branch references
+    the PEL-bearing chemical (Vppel/Ypel/Mwpel) instead of a vapor-
+    generation rate G. The saturation-limited branch is the same as #22.
+    """
+    Cvk_v = float(inp.Cvk.to("dimensionless").magnitude)
+    VP_v = float(inp.VP.to("torr").magnitude)
+    Ys_v = float(inp.Ys.to("dimensionless").magnitude)
+    MW_v = float(inp.MW.to("gram / mole").magnitude)
+    Vppel_v = float(inp.Vppel.to("torr").magnitude)
+    Ypel_v = float(inp.Ypel.to("dimensionless").magnitude)
+    Mwpel_v = float(inp.Mwpel.to("gram / mole").magnitude)
+    X_v = float(inp.X.to("dimensionless").magnitude)
+    Vm_v = float(inp.Vm.to("liter / mole").magnitude)
+
+    Cv1 = Cvk_v * (VP_v * Ys_v / MW_v) / (Vppel_v * Ypel_v / Mwpel_v)
+    Cv2 = 1_000_000.0 * X_v * VP_v / 760.0
+    Cv = min(Cv1, Cv2)
+    Cm = Cv * MW_v / Vm_v
+
+    return _from_Cm(
+        Cm,
+        b_m3_per_hr=float(inp.b.to("meter ** 3 / hour").magnitude),
+        h_hr_per_day=float(inp.h.to("hour / day").magnitude),
+        ED_d_per_site_y=float(inp.ED.to("day / (site * year)").magnitude),
+        Y_y=float(inp.Y.to("year").magnitude),
+        BW_kg=float(inp.BW.to("kilogram").magnitude),
+        AT_y=float(inp.AT.to("year").magnitude),
+        ATc_y=float(inp.ATc.to("year").magnitude),
+        NWexp_per_site=float(inp.NWexp.to("worker / site").magnitude),
+        NS_count=float(inp.NS.to("site").magnitude),
+    )
+
+
 def user_defined_inhalation(inp: UserDefinedInhalationInput) -> ExposureOutput:
     """ModelID 46 — User-defined Inhalation Model.
 

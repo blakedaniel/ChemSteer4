@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
+import json
 from datetime import datetime
+from typing import Any
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 class _Base(BaseModel):
@@ -91,9 +93,34 @@ class ModelRunRead(_Base):
     activity_id: int
     model_id: int
     model_kind: str
-    inputs: dict[str, object] = Field(alias="inputs_json")
-    outputs: dict[str, object] | None = Field(default=None, alias="outputs_json")
+    inputs: dict[str, Any] = Field(validation_alias="inputs_json")
+    outputs: dict[str, Any] | None = Field(default=None, validation_alias="outputs_json")
     last_run_at: datetime | None
+
+    @field_validator("inputs", "outputs", mode="before")
+    @classmethod
+    def _parse_json(cls, v: Any) -> Any:
+        if v is None or isinstance(v, dict):
+            return v
+        if isinstance(v, str):
+            return json.loads(v) if v else None
+        return v
+
+
+class CalcRunResult(BaseModel):
+    """Outcome of running a single ModelRun within a per-assessment calc."""
+
+    run_id: int
+    model_id: int
+    model_kind: str
+    ok: bool
+    error: str | None = None
+    outputs: dict[str, Any] | None = None
+
+
+class CalcAssessmentResponse(BaseModel):
+    assessment_id: int
+    runs: list[CalcRunResult]
 
 
 # --- Revisions -----------------------------------------------------------

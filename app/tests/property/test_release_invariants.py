@@ -25,7 +25,6 @@ from chemsteer.calc.release.water_saturation import (
     water_saturation,
 )
 
-
 # Reasonable industrial-screening ranges; avoid degenerate zero/inf cases.
 _amt = st.floats(min_value=1e-3, max_value=1e6, allow_nan=False, allow_infinity=False)
 _lf = st.floats(min_value=1e-6, max_value=1.0, allow_nan=False, allow_infinity=False)
@@ -115,9 +114,7 @@ def test_water_saturation_DR_formula(
     _ns,
 )
 @settings(max_examples=50)
-def test_spent_bath_DR_formula(
-    dv: float, y: float, d: float, freq: float, ns: float
-) -> None:
+def test_spent_bath_DR_formula(dv: float, y: float, d: float, freq: float, ns: float) -> None:
     """DR = DVbath × 3.78 × Ybath × Dbath (model #51)."""
     out = spent_bath_disposal(SpentBathInput(DVbath=dv, Ybath=y, Dbath=d, Freq=freq, NS=ns))
     expected = dv * 3.78 * y * d
@@ -125,29 +122,24 @@ def test_spent_bath_DR_formula(
 
 
 @given(
-    st.floats(min_value=0.0, max_value=1000.0, allow_nan=False),  # DVrinse
-    st.floats(min_value=0.0, max_value=0.1, allow_nan=False),  # Yrinse
-    st.floats(min_value=0.5, max_value=2.0, allow_nan=False),  # Drinse
-    st.floats(min_value=0.0, max_value=1.0, allow_nan=False),  # RinseE
+    # Use realistic industrial ranges (no subnormals to avoid underflow corners)
+    st.floats(min_value=1.0, max_value=10_000.0, allow_subnormal=False),  # DVrinse
+    st.floats(min_value=1e-6, max_value=0.1, allow_subnormal=False),  # Yrinse
+    st.floats(min_value=0.5, max_value=2.0, allow_subnormal=False),  # Drinse
     _freq,
     _ns,
 )
 @settings(max_examples=50)
 def test_rinse_water_full_recovery_implies_zero_release(
-    dv: float, y: float, d: float, eff: float, freq: float, ns: float
+    dv: float, y: float, d: float, freq: float, ns: float
 ) -> None:
-    """RinseE = 1 ⇒ DR = 0 (model #52)."""
-    out = rinse_water_loss(
-        RinseWaterInput(
-            DVrinse=dv, Yrinse=y, Drinse=d, RinseE=1.0, Freq=freq, NS=ns
-        )
+    """RinseE = 1 ⇒ DR = 0 (model #52); RinseE < 1 + non-zero inputs ⇒ DR > 0."""
+    out_full = rinse_water_loss(
+        RinseWaterInput(DVrinse=dv, Yrinse=y, Drinse=d, RinseE=1.0, Freq=freq, NS=ns)
     )
-    assert _kg_per_site_day(out.DR) == 0.0
-    # And confirm a partial-recovery case is non-zero (non-trivial property)
-    if dv > 0 and y > 0 and d > 0:
-        out_partial = rinse_water_loss(
-            RinseWaterInput(
-                DVrinse=dv, Yrinse=y, Drinse=d, RinseE=0.5, Freq=freq, NS=ns
-            )
-        )
-        assert _kg_per_site_day(out_partial.DR) > 0.0
+    assert _kg_per_site_day(out_full.DR) == 0.0
+
+    out_partial = rinse_water_loss(
+        RinseWaterInput(DVrinse=dv, Yrinse=y, Drinse=d, RinseE=0.5, Freq=freq, NS=ns)
+    )
+    assert _kg_per_site_day(out_partial.DR) > 0.0

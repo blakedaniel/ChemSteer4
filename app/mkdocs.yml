@@ -30,6 +30,9 @@ markdown_extensions:
   - pymdownx.highlight
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.snippets:
+      base_path: ["."]
+      check_paths: true
   - tables
   - toc:
       permalink: true
@@ -49,3 +52,6 @@ nav:
   - Home: index.md
   - Architecture: architecture.md
   - Calc engine: calc.md
+  - Model registry: models.md
+  - Parameter registry: parameters.md
+  - Validation strategy: validation.md

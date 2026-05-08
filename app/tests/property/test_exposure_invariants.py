@@ -53,16 +53,32 @@ _h = st.floats(min_value=0.5, max_value=12.0)  # hr/day
 @given(_S, _Qu, _Wf, _FT, _ED, _Y, _BW, _AT, _ATc, _NWexp, _NS)
 @settings(max_examples=50)
 def test_dermal_Dexp_equals_S_Qu_Wf_FT(
-    S: float, Qu: float, Wf: float, FT: float,
-    ED: float, Y: float, BW: float, AT: float, ATc: float,
-    NWexp: float, NS: float,
+    S: float,
+    Qu: float,
+    Wf: float,
+    FT: float,
+    ED: float,
+    Y: float,
+    BW: float,
+    AT: float,
+    ATc: float,
+    NWexp: float,
+    NS: float,
 ) -> None:
     """Dexp = S × Qu × Wf × FT for any dermal model."""
     out = dermal_2hand_liquid(
         DermalInput(
-            S=S, Qu=Qu, Wf=Wf, FT=FT,
-            ED=ED, Y=Y, BW=BW, AT=AT, ATc=ATc,
-            NWexp=NWexp, NS=NS,
+            S=S,
+            Qu=Qu,
+            Wf=Wf,
+            FT=FT,
+            ED=ED,
+            Y=Y,
+            BW=BW,
+            AT=AT,
+            ATc=ATc,
+            NWexp=NWexp,
+            NS=NS,
         )
     )
     expected = S * Qu * Wf * FT
@@ -73,16 +89,32 @@ def test_dermal_Dexp_equals_S_Qu_Wf_FT(
 @given(_S, _Qu, _Wf, _FT, _ED, _Y, _BW, _AT, _ATc, _NWexp, _NS)
 @settings(max_examples=50)
 def test_APDR_equals_Dexp_over_BW(
-    S: float, Qu: float, Wf: float, FT: float,
-    ED: float, Y: float, BW: float, AT: float, ATc: float,
-    NWexp: float, NS: float,
+    S: float,
+    Qu: float,
+    Wf: float,
+    FT: float,
+    ED: float,
+    Y: float,
+    BW: float,
+    AT: float,
+    ATc: float,
+    NWexp: float,
+    NS: float,
 ) -> None:
     """APDR ≡ Dexp / BW exactly."""
     out = dermal_2hand_liquid(
         DermalInput(
-            S=S, Qu=Qu, Wf=Wf, FT=FT,
-            ED=ED, Y=Y, BW=BW, AT=AT, ATc=ATc,
-            NWexp=NWexp, NS=NS,
+            S=S,
+            Qu=Qu,
+            Wf=Wf,
+            FT=FT,
+            ED=ED,
+            Y=Y,
+            BW=BW,
+            AT=AT,
+            ATc=ATc,
+            NWexp=NWexp,
+            NS=NS,
         )
     )
     assert out.Dexp is not None
@@ -94,17 +126,33 @@ def test_APDR_equals_Dexp_over_BW(
 @given(_S, _Qu, _Wf, _FT, _ED, _Y, _BW, _AT, _ATc, _NWexp, _NS)
 @settings(max_examples=50)
 def test_LADD_le_ADD_when_ATc_ge_AT(
-    S: float, Qu: float, Wf: float, FT: float,
-    ED: float, Y: float, BW: float, AT: float, ATc: float,
-    NWexp: float, NS: float,
+    S: float,
+    Qu: float,
+    Wf: float,
+    FT: float,
+    ED: float,
+    Y: float,
+    BW: float,
+    AT: float,
+    ATc: float,
+    NWexp: float,
+    NS: float,
 ) -> None:
     """ATc (lifetime) ≥ AT (working) ⇒ LADD ≤ ADD (longer averaging dilutes)."""
     assume(ATc >= AT)
     out = dermal_2hand_liquid(
         DermalInput(
-            S=S, Qu=Qu, Wf=Wf, FT=FT,
-            ED=ED, Y=Y, BW=BW, AT=AT, ATc=ATc,
-            NWexp=NWexp, NS=NS,
+            S=S,
+            Qu=Qu,
+            Wf=Wf,
+            FT=FT,
+            ED=ED,
+            Y=Y,
+            BW=BW,
+            AT=AT,
+            ATc=ATc,
+            NWexp=NWexp,
+            NS=NS,
         )
     )
     LADD = _mg_per_kg_per_day(out.LADD)
@@ -115,15 +163,31 @@ def test_LADD_le_ADD_when_ATc_ge_AT(
 @given(_S, _Qu, _Wf, _FT, _ED, _Y, _BW, _AT, _ATc, _NWexp, _NS)
 @settings(max_examples=30)
 def test_NW_equals_NWexp_times_NS(
-    S: float, Qu: float, Wf: float, FT: float,
-    ED: float, Y: float, BW: float, AT: float, ATc: float,
-    NWexp: float, NS: float,
+    S: float,
+    Qu: float,
+    Wf: float,
+    FT: float,
+    ED: float,
+    Y: float,
+    BW: float,
+    AT: float,
+    ATc: float,
+    NWexp: float,
+    NS: float,
 ) -> None:
     out = dermal_2hand_liquid(
         DermalInput(
-            S=S, Qu=Qu, Wf=Wf, FT=FT,
-            ED=ED, Y=Y, BW=BW, AT=AT, ATc=ATc,
-            NWexp=NWexp, NS=NS,
+            S=S,
+            Qu=Qu,
+            Wf=Wf,
+            FT=FT,
+            ED=ED,
+            Y=Y,
+            BW=BW,
+            AT=AT,
+            ATc=ATc,
+            NWexp=NWexp,
+            NS=NS,
         )
     )
     assert math.isclose(_workers(out.NW), NWexp * NS, rel_tol=1e-9)
@@ -135,16 +199,32 @@ def test_NW_equals_NWexp_times_NS(
 @given(_KCk, _Ys, _b, _h, _ED, _Y, _BW, _AT, _ATc, _NWexp, _NS)
 @settings(max_examples=50)
 def test_inhalation_I_equals_Cm_b_h(
-    KCk: float, Ys: float, b: float, h: float,
-    ED: float, Y: float, BW: float, AT: float, ATc: float,
-    NWexp: float, NS: float,
+    KCk: float,
+    Ys: float,
+    b: float,
+    h: float,
+    ED: float,
+    Y: float,
+    BW: float,
+    AT: float,
+    ATc: float,
+    NWexp: float,
+    NS: float,
 ) -> None:
     """I = Cm × b × h, with Cm = KCk × Ys for the simple family."""
     out = uv_roll_coating(
         KCkInhalationInput(
-            KCk=KCk, Ys=Ys, b=b, h=h,
-            ED=ED, Y=Y, BW=BW, AT=AT, ATc=ATc,
-            NWexp=NWexp, NS=NS,
+            KCk=KCk,
+            Ys=Ys,
+            b=b,
+            h=h,
+            ED=ED,
+            Y=Y,
+            BW=BW,
+            AT=AT,
+            ATc=ATc,
+            NWexp=NWexp,
+            NS=NS,
         )
     )
     expected_Cm = KCk * Ys
@@ -160,20 +240,49 @@ def test_inhalation_I_equals_Cm_b_h(
     st.floats(min_value=0.0, max_value=10000.0),  # Cv (ppm)
     st.floats(min_value=10.0, max_value=400.0),  # MW
     st.floats(min_value=20.0, max_value=30.0),  # Vm (~24.45)
-    _Ys, _b, _h, _ED, _Y, _BW, _AT, _ATc, _NWexp, _NS,
+    _Ys,
+    _b,
+    _h,
+    _ED,
+    _Y,
+    _BW,
+    _AT,
+    _ATc,
+    _NWexp,
+    _NS,
 )
 @settings(max_examples=30)
 def test_user_defined_inhalation_Cm_formula(
-    Cv: float, MW: float, Vm: float, Ys: float, b: float, h: float,
-    ED: float, Y: float, BW: float, AT: float, ATc: float,
-    NWexp: float, NS: float,
+    Cv: float,
+    MW: float,
+    Vm: float,
+    Ys: float,
+    b: float,
+    h: float,
+    ED: float,
+    Y: float,
+    BW: float,
+    AT: float,
+    ATc: float,
+    NWexp: float,
+    NS: float,
 ) -> None:
     """Cm = Cv × MW / Vm × Ys for the user-defined inhalation model."""
     out = user_defined_inhalation(
         UserDefinedInhalationInput(
-            Cv=Cv, MW=MW, Vm=Vm, Ys=Ys, b=b, h=h,
-            ED=ED, Y=Y, BW=BW, AT=AT, ATc=ATc,
-            NWexp=NWexp, NS=NS,
+            Cv=Cv,
+            MW=MW,
+            Vm=Vm,
+            Ys=Ys,
+            b=b,
+            h=h,
+            ED=ED,
+            Y=Y,
+            BW=BW,
+            AT=AT,
+            ATc=ATc,
+            NWexp=NWexp,
+            NS=NS,
         )
     )
     expected_Cm = Cv * MW / Vm * Ys

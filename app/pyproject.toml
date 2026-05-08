@@ -1,6 +1,6 @@
 [project]
 name = "chemsteer"
-version = "0.1.0"
+version = "1.0.0"
 description = "Python web app reimplementation of EPA's ChemSTEER (Chemical Screening Tool for Exposures and Environmental Releases)"
 readme = "README.md"
 requires-python = ">=3.12"

@@ -53,11 +53,6 @@ MANIFEST.md       index of every artifact
 See [MANIFEST.md](MANIFEST.md) for the full step-by-step command log and
 the source-installer SHA-256.
 
-## Plan
-
-The execution plan (with verification checks and out-of-scope items) is at
-`~/.claude/plans/ok-lets-put-a-wobbly-codd.md`.
-
 ## Legal
 
 ChemSTEER itself is public-domain US-government work. No EULA applies. No

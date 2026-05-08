@@ -7,6 +7,13 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from chemsteer import __version__
+from chemsteer.api.routers import (
+    activities,
+    models,
+    operations,
+    parameters,
+    scenarios,
+)
 
 
 @asynccontextmanager
@@ -43,6 +50,13 @@ def create_app() -> FastAPI:
     @api.get("/api/", tags=["meta"])
     async def root() -> dict[str, str]:
         return {"message": "hello from chemsteer", "version": __version__}
+
+    # Read-only seed-data browse endpoints
+    api.include_router(operations.router)
+    api.include_router(activities.router)
+    api.include_router(models.router)
+    api.include_router(parameters.router)
+    api.include_router(scenarios.router)
 
     return api
 

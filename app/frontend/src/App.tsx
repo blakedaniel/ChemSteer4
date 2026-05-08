@@ -1,44 +1,40 @@
-import { useQuery } from "@tanstack/react-query";
-
-type Health = { status: string; version: string };
-
-async function fetchHealth(): Promise<Health> {
-  const r = await fetch("/api/health");
-  if (!r.ok) throw new Error(`HTTP ${r.status}`);
-  return r.json();
-}
+import { NavLink, Route, Routes, Navigate } from "react-router-dom";
+import { ModelsPage } from "./features/models/ModelsPage";
+import { ModelDetailPage } from "./features/models/ModelDetailPage";
+import { ActivitiesPage } from "./features/activities/ActivitiesPage";
+import { ActivityDetailPage } from "./features/activities/ActivityDetailPage";
+import { OperationsPage } from "./features/operations/OperationsPage";
+import { ParametersPage } from "./features/parameters/ParametersPage";
+import { ScenariosPage } from "./features/scenarios/ScenariosPage";
 
 export function App() {
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["health"],
-    queryFn: fetchHealth,
-  });
-
   return (
-    <main style={{ fontFamily: "system-ui", padding: 32, maxWidth: 720 }}>
-      <h1>ChemSTEER</h1>
-      <p>
-        Python web app reimplementation of EPA's Chemical Screening Tool for
-        Exposures and Environmental Releases. Phase 0 — bootstrap.
-      </p>
-
-      <section style={{ marginTop: 24 }}>
-        <h2 style={{ fontSize: 18 }}>API status</h2>
-        {isLoading && <p>checking…</p>}
-        {error && <p style={{ color: "crimson" }}>error: {String(error)}</p>}
-        {data && (
-          <pre
-            style={{
-              background: "#f4f4f5",
-              padding: 12,
-              borderRadius: 6,
-              fontSize: 13,
-            }}
-          >
-            {JSON.stringify(data, null, 2)}
-          </pre>
-        )}
-      </section>
-    </main>
+    <div className="layout">
+      <aside className="sidebar">
+        <h1>ChemSTEER</h1>
+        <nav>
+          <NavLink to="/operations">Operations</NavLink>
+          <NavLink to="/activities">Activities</NavLink>
+          <NavLink to="/models">Models</NavLink>
+          <NavLink to="/parameters">Parameters</NavLink>
+          <NavLink to="/scenarios">Generic Scenarios</NavLink>
+        </nav>
+        <p className="muted" style={{ marginTop: 24, fontSize: 11 }}>
+          Phase 1 — read-only browse over seed data.
+        </p>
+      </aside>
+      <main className="content">
+        <Routes>
+          <Route path="/" element={<Navigate to="/models" replace />} />
+          <Route path="/operations" element={<OperationsPage />} />
+          <Route path="/activities" element={<ActivitiesPage />} />
+          <Route path="/activities/:id" element={<ActivityDetailPage />} />
+          <Route path="/models" element={<ModelsPage />} />
+          <Route path="/models/:id" element={<ModelDetailPage />} />
+          <Route path="/parameters" element={<ParametersPage />} />
+          <Route path="/scenarios" element={<ScenariosPage />} />
+        </Routes>
+      </main>
+    </div>
   );
 }

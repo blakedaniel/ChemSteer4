@@ -1,0 +1,138 @@
+/* Minimal Phase 1 styling. Tailwind + shadcn arrives in Phase 7. */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  color: #18181b;
+  background: #fafafa;
+}
+
+a {
+  color: #1d4ed8;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 100vh;
+}
+
+.sidebar {
+  background: #18181b;
+  color: #f4f4f5;
+  padding: 24px 16px;
+}
+.sidebar h1 {
+  font-size: 16px;
+  margin: 0 0 16px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #a1a1aa;
+}
+.sidebar nav a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: #d4d4d8;
+}
+.sidebar nav a.active,
+.sidebar nav a:hover {
+  background: #27272a;
+  color: #fff;
+  text-decoration: none;
+}
+
+.content {
+  padding: 32px 40px;
+  max-width: 1200px;
+}
+.content h2 {
+  margin-top: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid #e4e4e7;
+  border-radius: 8px;
+  overflow: hidden;
+}
+th,
+td {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid #f4f4f5;
+}
+th {
+  background: #f4f4f5;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #52525b;
+}
+tr:last-child td {
+  border-bottom: none;
+}
+tr:hover td {
+  background: #fafafa;
+}
+
+pre.equation {
+  background: #f4f4f5;
+  padding: 12px;
+  border-radius: 6px;
+  font-family: ui-monospace, monospace;
+  font-size: 13px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.tag-R {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+.tag-I {
+  background: #dcfce7;
+  color: #15803d;
+}
+.tag-D {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.muted {
+  color: #71717a;
+  font-size: 13px;
+}
+
+.spinner {
+  color: #71717a;
+  font-style: italic;
+}
+
+.error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  padding: 12px;
+  border-radius: 6px;
+}

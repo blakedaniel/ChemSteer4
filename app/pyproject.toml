@@ -71,6 +71,15 @@ select = [
 ]
 ignore = ["E501"]    # line length handled by formatter
 
+[tool.ruff.lint.flake8-bugbear]
+# FastAPI's Query/Path/Body/Depends/Header/Cookie/File/Form are intentionally
+# called as default values — this is the canonical idiom.
+extend-immutable-calls = [
+    "fastapi.Query", "fastapi.Path", "fastapi.Body",
+    "fastapi.Depends", "fastapi.Header", "fastapi.Cookie",
+    "fastapi.File", "fastapi.Form",
+]
+
 [tool.mypy]
 python_version = "3.12"
 strict = true

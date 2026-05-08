@@ -6,6 +6,8 @@ import { ActivityDetailPage } from "./features/activities/ActivityDetailPage";
 import { OperationsPage } from "./features/operations/OperationsPage";
 import { ParametersPage } from "./features/parameters/ParametersPage";
 import { ScenariosPage } from "./features/scenarios/ScenariosPage";
+import { AssessmentsPage } from "./features/assessments/AssessmentsPage";
+import { AssessmentDetailPage } from "./features/assessments/AssessmentDetailPage";
 
 export function App() {
   return (
@@ -13,6 +15,12 @@ export function App() {
       <aside className="sidebar">
         <h1>ChemSTEER</h1>
         <nav>
+          <NavLink to="/assessments">
+            <strong>Assessments</strong>
+          </NavLink>
+          <p className="muted" style={{ fontSize: 10, margin: "12px 0 4px", letterSpacing: ".06em" }}>
+            REGISTRY
+          </p>
           <NavLink to="/operations">Operations</NavLink>
           <NavLink to="/activities">Activities</NavLink>
           <NavLink to="/models">Models</NavLink>
@@ -20,12 +28,14 @@ export function App() {
           <NavLink to="/scenarios">Generic Scenarios</NavLink>
         </nav>
         <p className="muted" style={{ marginTop: 24, fontSize: 11 }}>
-          Phase 1 — read-only browse over seed data.
+          Phase 4 — assessment workflow with calc engine.
         </p>
       </aside>
       <main className="content">
         <Routes>
-          <Route path="/" element={<Navigate to="/models" replace />} />
+          <Route path="/" element={<Navigate to="/assessments" replace />} />
+          <Route path="/assessments" element={<AssessmentsPage />} />
+          <Route path="/assessments/:id" element={<AssessmentDetailPage />} />
           <Route path="/operations" element={<OperationsPage />} />
           <Route path="/activities" element={<ActivitiesPage />} />
           <Route path="/activities/:id" element={<ActivityDetailPage />} />

@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from chemsteer import __version__
 from chemsteer.api.routers import (
     activities,
+    calc,
     models,
     operations,
     parameters,
@@ -57,6 +58,7 @@ def create_app() -> FastAPI:
     api.include_router(models.router)
     api.include_router(parameters.router)
     api.include_router(scenarios.router)
+    api.include_router(calc.router)
 
     return api
 

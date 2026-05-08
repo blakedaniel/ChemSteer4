@@ -69,7 +69,12 @@ select = [
     "SIM",           # flake8-simplify
     "RUF",           # ruff-specific
 ]
-ignore = ["E501"]    # line length handled by formatter
+ignore = [
+    "E501",   # line length handled by formatter
+    "RUF001", # ambiguous chars in identifiers (we don't have any)
+    "RUF002", # × / – are deliberate in equation docstrings
+    "RUF003", # same for comments
+]
 
 [tool.ruff.lint.flake8-bugbear]
 # FastAPI's Query/Path/Body/Depends/Header/Cookie/File/Form are intentionally

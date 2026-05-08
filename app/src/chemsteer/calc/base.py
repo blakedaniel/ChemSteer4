@@ -1,0 +1,112 @@
+"""Shared types for the calc engine.
+
+Each release / exposure model is a callable mapping a Pydantic input model
+to a Pydantic output model. Inputs and outputs validate at the boundary
+and serialize cleanly through the FastAPI layer.
+
+Internally, every unit-bearing field is a `pint.Quantity`. The
+``Annotated`` aliases below pre-bake the canonical unit for each
+parameter family, so a model author writes::
+
+    class Input(CalcInput):
+        Amt: KgPerSiteDay
+        LF:  Dimensionless
+
+and Pydantic validates raw floats / strings / dicts into Quantities at
+the right unit on input.
+"""
+
+from __future__ import annotations
+
+from collections.abc import Callable
+from typing import Annotated, Any
+
+from pint import Quantity as PintQuantity
+from pydantic import BaseModel, BeforeValidator, ConfigDict, PlainSerializer
+
+from chemsteer.calc.units import Q_, ureg
+
+
+def _make_coercer(unit: str) -> Callable[[Any], PintQuantity[float]]:
+    """Build a BeforeValidator that maps raw input -> Quantity[unit]."""
+
+    def _coerce(v: Any) -> PintQuantity[float]:
+        if isinstance(v, PintQuantity):
+            return v.to(unit)
+        if isinstance(v, dict) and "value" in v and "unit" in v:
+            return Q_(v["value"], v["unit"]).to(unit)
+        if isinstance(v, int | float):
+            return Q_(float(v), unit)
+        if isinstance(v, str):
+            # Route through our custom registry so app-defined units (site,
+            # worker, container, ...) parse correctly. Pint's str overload
+            # returns Quantity[str]; coerce magnitude to float for typing.
+            parsed = ureg.Quantity(v)
+            return ureg.Quantity(float(parsed.magnitude), parsed.units).to(unit)
+        raise TypeError(f"cannot coerce {type(v).__name__} to Quantity[{unit}]")
+
+    return _coerce
+
+
+def _serialize_quantity(q: PintQuantity[float]) -> dict[str, Any]:
+    return {"value": float(q.magnitude), "unit": str(q.units)}
+
+
+_ToJson = PlainSerializer(_serialize_quantity, return_type=dict, when_used="json")
+
+
+# --- Canonical typed-quantity aliases ------------------------------------
+# Add new aliases as new units appear in models.
+
+KgPerSiteDay = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("kilogram / (site * day)")),
+    _ToJson,
+]
+KgPerYear = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("kilogram / year")),
+    _ToJson,
+]
+Dimensionless = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("dimensionless")),
+    _ToJson,
+]
+DaysPerYear = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("day / year")),
+    _ToJson,
+]
+Sites = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("site")),
+    _ToJson,
+]
+
+
+class CalcInput(BaseModel):
+    model_config = ConfigDict(arbitrary_types_allowed=True, populate_by_name=True)
+
+
+class CalcOutput(BaseModel):
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
+
+# Loose model-function signature for the dispatch registry: every model has
+# its own typed Pydantic input class, so the registry is heterogeneous —
+# the precise per-model types live on the function itself, the dispatch is
+# just a lookup by ID.
+ModelFn = Callable[..., CalcOutput]
+
+
+class ReleaseOutput(CalcOutput):
+    """Standard ChemSTEER release outputs.
+
+    ``DR`` is the per-site daily release; ``AR`` is the annual aggregate
+    over all sites; ``NS`` is the number of sites the release occurs at.
+    """
+
+    DR: KgPerSiteDay
+    AR: KgPerYear
+    NS: Sites

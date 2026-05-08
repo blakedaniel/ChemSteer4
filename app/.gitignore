@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# uv
+# (commit uv.lock once stable; ignored during pre-alpha churn)
+uv.lock
+.uv/
+
+# Node / Vite
+node_modules/
+frontend/dist/
+*.tsbuildinfo
+.vite/
+
+# Bundled SPA copied during Docker build (regenerable from frontend/)
+src/chemsteer/static/
+
+# Generated TS API client (regenerable)
+frontend/src/lib/api.generated.ts
+
+# MkDocs build output
+site/
+
+# User runtime data (if anyone runs locally from this dir)
+_dev/
+*.db-journal

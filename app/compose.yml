@@ -1,0 +1,19 @@
+# Production compose: single image, FastAPI serves the pre-built SPA.
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: chemsteer:latest
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      CHEMSTEER_HOST: 0.0.0.0
+      CHEMSTEER_PORT: 8000
+      CHEMSTEER_USER_DATA_DIR: /data
+    volumes:
+      - chemsteer-data:/data
+    restart: unless-stopped
+
+volumes:
+  chemsteer-data:

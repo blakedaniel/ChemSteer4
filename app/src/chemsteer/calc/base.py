@@ -83,6 +83,62 @@ Sites = Annotated[
     BeforeValidator(_make_coercer("site")),
     _ToJson,
 ]
+HoursPerSiteDay = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("hour / (site * day)")),
+    _ToJson,
+]
+Torr = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("torr")),
+    _ToJson,
+]
+GramsPerMole = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("gram / mole")),
+    _ToJson,
+]
+Kelvin = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("kelvin")),
+    _ToJson,
+]
+Atm = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("atm")),
+    _ToJson,
+]
+Centimeter = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("centimeter")),
+    _ToJson,
+]
+SquareCentimeter = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("centimeter ** 2")),
+    _ToJson,
+]
+CmPerSecond = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("centimeter / second")),
+    _ToJson,
+]
+GallonPerContainer = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("gallon / container")),
+    _ToJson,
+]
+ContainerPerHour = Annotated[
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("container / hour")),
+    _ToJson,
+]
+GasConstant = Annotated[
+    # 82.057 atm·cm³/(mol·K)
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("atm * centimeter ** 3 / mole / kelvin")),
+    _ToJson,
+]
 
 
 class CalcInput(BaseModel):

@@ -8,7 +8,7 @@ Cross-checked against ``mdb/ChmSteer/tables/ListOfModels.csv``.
 from __future__ import annotations
 
 from chemsteer.calc.base import ModelFn
-from chemsteer.calc.release import residual
+from chemsteer.calc.release import residual, vapor_generation
 
 RELEASE_MODELS: dict[int, ModelFn] = {
     1: residual.bulk_transport_residual,
@@ -17,7 +17,10 @@ RELEASE_MODELS: dict[int, ModelFn] = {
     4: residual.single_process_vessel_residual,
     5: residual.small_container_residual,
     6: residual.solid_transport_container_residual,
-    # Models 7–53: ported in subsequent commits.
+    7: vapor_generation.ap42_loading,
+    8: vapor_generation.mass_transfer_coefficient,
+    9: vapor_generation.penetration,
+    # Models 10+: ported in subsequent commits.
 }
 
 EXPOSURE_MODELS: dict[int, ModelFn] = {

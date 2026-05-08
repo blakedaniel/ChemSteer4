@@ -1,0 +1,73 @@
+InstructID,whichwindow,Instructions
+1,Add/Remove Release Model,"The models most likely to be associated with your selected release activity are listed below.  If the model  you would like to use doesn’t appear, click Show All Release Models to see the full list of available models.  To add a release model to the selected activity, click on the model name in the list above and then click the Add to List button.  To remove a release model from the selected activity, click on the model name in the list below and then click the Remove from List button.  When you are done, press OK to return to the  Releases window."
+2,Update Operation Activities,"Select sources/activities from the list above in order to include them in the current operation.  You can rename a selected source/activity by clicking on it in the list below and typing in a new name.  Be sure to set the Release column to ""Yes"" if the exposure model requires a vapor generation rate (G).  For more information about adding, removing, or ordering sources/activities, or for more information about the default model processing (DMP) status, read the ""Purpose and Use of the Sources/Activities Subtab"" topic of the Help System.
+
+When you are finished updating the sources/activities in the operation, press OK."
+3,Update chemical information,"Update or add the chemical information below, then press OK to return to the Chemical window. Read the ""Purpose and Use of the Chemical Tab"" topic in the Help System for more information."
+4,Update release groups,"Review the default release combinations in the ""Combinations"" box at the bottom of the screen.  You can remove a combination by selecting it in the ""Combinations"" box and pressing the ""&Undo Combination"" button.  You can combine releases by selecting the source activities in ""Available Activities"" above and pressing the ""&Select"" button.  When all source activities have been selected, press the ""&Make Combination"" button.
+
+When you are finished updating the release combinations, press OK to save your updates to the database."
+5,View Contact Reports,"Press the ""&Add"" button to add a new blank contact report.  Press the Co&py button to create a contact report that has the contract information from the existing contact report that is selected in the grid. You can modify or delete an existing contact report by highlighting the report of interest and pressing either the ""&Modify"" or ""&Delete"" button."
+6,other info,Add or update Special LVE Considerations. Press OK when you are finished.
+7,Exposure Based Critiera,"Add or update the exposure-based criteria below, then press OK."
+8,Update operation-level input parms - step 1,Please specify whether this operation is continuous or batch
+9,Update operation-level input parms - step 2,"Please specify exactly three of the first five parameters, including at least one parameter from the first 'pair' and at least one parameter from the second 'pair.'  ChemSTEER will calculate the other two parameters for you.  If you only need a smaller subset of these parameters for use in a limited set of models, enter only those parameters and ChemSTEER will not derive a complete set of default values."
+10,Update operation-level input parms - step 1c,Please specify whether you want to use the operation's raw material or product as the basis for calculations.
+11,Update operation-level input parms - step 1c,"If appropriate, you may change one or both of the following two changeable parameters and ChemSTEER will recalculate the Daily Batch Parameters below."
+12,Update operation-level input parms - step 3,"If appropriate, you may change one or two of the following three changeable parameters and press the 'Recalc' button for the parameter you wish to have ChemSTEER recalculate. These parameters' values are limited by the values in the Batch Frequency Parameters box above."
+13,Update Physical State,"Add or update information about the chemical’s physical state into, out of, and within the selected operation (shown in bold above).  Click ""OK"" to return to the ""Physical States"" subtab."
+14,Update Container Handling parms,"Verify or change the container information below, the press OK to return to the main window.
+
+Please note that you may update Vc and Di in order to derive MCi, or you may uncheck Vc and Di and enter MCi yourself."
+15,Update Container Handling parms,"Verify or change the container information below, the press OK to return to the main window.
+
+Please note that you may only select up to two of the parameters in the 1st and 2nd groups and you can only select up to two parameters in the 2nd and 3rd groups.  When taken together, you can only change up to three parameters on the window."
+16,Update general information,"Update or add the information below, then press OK to return to the main window."
+17,Add/Remove exposure models,missing instructions #17
+18,notepad,"Update or add information below, then press OK to save this new information to the database."
+19,Update operations,"To add an operation to the assessment, select it from the list above and press the ""&Add to list"" button.  If you wish to remove an operation from the assessment, select it in the list below and press the ""&Remove from list"" button.  To rename an operation, select it in the list below and type in a new name.  
+
+Ordering operations on the Operations tab will have no affect on relationships specified on the Relationships tab.  Setting the order on the Operations tab will only affect the order of operation display (top to bottom) on summary reports and on the Operations, Operation Parameters, Releases, and Exposures tabs.
+
+When you are finished updating the list of operations in the assessment, press OK."
+20,Update Other Uses,"Add or update Other Uses, Occupational Exposure Rating, or Consumer Use information below.  Press OK when you are finished."
+21,Update Operation Description,Add or update the NAICS code(s) and/or process description for the operation.  Press OK when you are finished.
+22,Add/Remove NAICS code (part of Update Operation Description),"Select one or more NAICS code(s) that are associated with the selected operation. To search for a NAICS code, enter a partial description or partial code in the search text box and press the ""Search"" button. When you are done, press the ""Close"" button."
+23,Update release model media,Verify or change the media for the estimated release below.
+24,Update operation relationships,"To designate an operation as ""subsequent"" to the selected operation (shown in bold above), select it in the list of ""Available Operations"" below and click ""Add to list"".  To remove an operation from the list of subsequent operations, select it in the list of ""Subsequent Operations"" and click ""Remove from list"".  Read the Purpose and Use of the Relationships Subtab"" topic in the Help System for more information.
+
+If the checkbox for ""This operation has no preceding operations."" is grayed out and unavailable, it means that this operation is already defined as a subsequent operation. Only operations that have not been defined as a subsequent operation can be marked as having ""no preceding operations""."
+25,Update SAT,"Add or modify SAT information below.  When you are done, press OK ."
+26,Update Site Info,"Click on a Facility Name in the list of facilities to see the address.  Use the ""&Add"", ""&Modify"", and ""&Delete"" buttons to update the information."
+27,Modify Contact Report,"Update or add contact report information below, then press OK to return to the View/Update Contact Reports window."
+28,View/Update Release Model,"Read-only and updateable information about the selected release model are shown below.  Click on the associated Type column label for a parameter to change its value. When the Type is User-defined, you enter your value directly in the Value column. To calculate two sets of model results, enable the Model Parameters for the Output 1 option and the Model Parameters for the Output 2 option below.  Note that Output 1 parameters are used to calculate the Output 1 model results and Output 2 parameters are used to calculate the Output 2 model results. Use care and consistency in entering the parameter values to ensure that the are used appropriately by the model equation(s)."
+29,View/Update Exposure Model,"Read-only and updatable information about the selected exposure model are shown below.  Click on the associated Type column label for a parameter to change it's value. When the Type is User-defined, you enter your value directly in the Value column. To calculate two sets of model results, enable the Model Parameters for Output 1 option and the Model Parameters for Output 2 option below.  Note that Output 1 parameters are used to calculate the Output 1 model results and Output 2 parameters are used to calculate the Output 2 model results. Use care and consistency in entering the parameter values to ensure that the are used appropriately by the model equation(s)."
+30,Update msds/tlv,"Add or update the Exposure Limit information below, then press the ""Close"" button to return to the previous window."
+31,Update msds/tlv,"Enter the Exposure Limit information below, then press OK to return to the previous window."
+32,Update msds/GE,"Add or update the MSDS General Equipment Requirement information below, then press the ""OK"" button to return to the previous window."
+33,Update msds/GE,missing instructions #33
+34,Update msds/Respirator,missing instructions 34
+35,Update msds/Respirator,missing insturctions 35
+36,Update msds/HE,missig instructions 36
+37,Update msds/Respirator,missing instructions 37
+38,preferences,"Your Vapor Model Activation preferences are shown below.  You may update them if you wish.  If you update these preferences, they will only affect new assessments created on this workstation. No changes are made until you press the OK button."
+39,open/select assess step 1,"Please select the assessment you wish to open by clicking on it.  When you have selected the assessment you wish to open, press the Open button.  If you have changed your mind, press the Cancel button."
+40,open/select assess step 2 (search),You may enter one or more search criteria below.  You do not need to enter them all.  Press the Search button when you are done.  Press the Cancel button to cancel this search.
+41,update op misc parms,missing insturctions 41
+42,delete/select assess,"Please select the assessment you wish to delete by clicking on it.  When you have selected the assessment you wish to delete, press the Delete button.  If you have changed your mind, press the Cancel button."
+43,,"Add or update the LVE Personal Protective Equipment information below, then press the ""OK"" button to return to the previous window."
+44,,Text added to this box will appear on the IRER report at the end of the Releases section for this operation.
+45,default model,Your default database is shown below.  You may use the Browse button to select a default database.  No changes are made until you press the OK button.
+46,default CRS database,Your default CRSS database is shown below.  You may use the Browse button to select a default CRSS database.  No changes are made until you press the OK button.
+47,select CRSS,"Please select the CRSS report you wish to import by clicking on it.  When you have selected the CRSS report you wish to import, press the Import button."
+49,frmMDUpdOps tab3,Please select the assessment from which you wish to import an operation.
+50,frmMDUpdOps tab2,"Please select the Generic Scenario you wish to add to your assessment.
+
+Select the Generic Scenario Help button to view pertinent information about the selected Generic Scenario. 
+
+Generic scenarios denoted as ""volatile"" are intended for chemicals that have vapor pressures that fall between the default range for vapor generation models: 0.001 to 35 torr. Chemicals with a vapor pressure less than 0.001 torr are considered non-volatile. See the User Guide for additional details. 
+
+Note that you must adjust your mass balance parameters prior to running models."
+51,frmMDUpdOps tab3,"Please select the previously saved operation you wish to add to your assessment.
+
+Note that you must adjust your mass balance parameters prior to running models."

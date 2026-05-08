@@ -1,0 +1,559 @@
+{
+  "ActExpModels": {
+    "rows": 0,
+    "columns": [
+      "AssessID",
+      "AssOpID",
+      "AssActID",
+      "ExplModID",
+      "ExpParmsAN",
+      "ModelID",
+      "Basis",
+      "Freq",
+      "Ire",
+      "Icb",
+      "ILADDre",
+      "ILADDcb",
+      "IADDre",
+      "IADDcb",
+      "IAPDDre",
+      "IAPDDcb",
+      "DexpRe",
+      "DexpCb",
+      "DLADDre",
+      "DLADDcb",
+      "DADDre",
+      "DADDcb",
+      "DAPDRre",
+      "DAPDRcb",
+      "ChemStateID",
+      "OutputOn1",
+      "OutputOn2",
+      "Char1",
+      "Char2",
+      "ModelStatus",
+      "InhUncertainty",
+      "InhClass",
+      "InhClassNotes",
+      "InhClassExpLevel",
+      "InhClassHazRating",
+      "InhClassInhMon"
+    ]
+  },
+  "ActExpModEst": {
+    "rows": 0,
+    "columns": [
+      "ExpParmsAN",
+      "OutputID",
+      "Freq",
+      "I",
+      "ILADD",
+      "IADD",
+      "IAPDD",
+      "I_SN",
+      "ILADD_SN",
+      "IADD_SN",
+      "IAPDD_SN",
+      "Dexp",
+      "DLADD",
+      "DADD",
+      "DAPDR",
+      "Dexp_SN",
+      "DLADD_SN",
+      "DADD_SN",
+      "DAPDR_SN",
+      "NSxNWexp"
+    ]
+  },
+  "ActExpModParms": {
+    "rows": 0,
+    "columns": [
+      "ExpParmsAN",
+      "OutputID",
+      "ParmID",
+      "ParmValue",
+      "ParmType",
+      "ParmVC"
+    ]
+  },
+  "Activities": {
+    "rows": 0,
+    "columns": [
+      "AssessID",
+      "AssOpID",
+      "AssActID",
+      "ActName",
+      "ActID",
+      "DoRel",
+      "DoExp",
+      "DidRel",
+      "DidExp",
+      "Volatile",
+      "NW_NS",
+      "NW_NWexp",
+      "NW_NSxNWexp",
+      "NW_Route",
+      "ActOrder"
+    ]
+  },
+  "ActRelModels": {
+    "rows": 0,
+    "columns": [
+      "AssessID",
+      "AssOpID",
+      "AssActID",
+      "RelModID",
+      "RelParmsAN",
+      "ModelID",
+      "DailyRelRE",
+      "DailyRelCB",
+      "AnnRelRE",
+      "AnnRelCB",
+      "DailyRel1_SN",
+      "DailyRel2_SN",
+      "AnnRel1_SN",
+      "AnnRel2_SN",
+      "RelDays",
+      "AirPct",
+      "WaterPct",
+      "LFPct",
+      "IncPct",
+      "OtherPct",
+      "OtherDesc",
+      "DestPct",
+      "Basis",
+      "DeepPct",
+      "RelDays2",
+      "OutputOn1",
+      "OutputOn2",
+      "Char1",
+      "Char2",
+      "NAICS",
+      "ModelStatus"
+    ]
+  },
+  "ActRelModMedia": {
+    "rows": 0,
+    "columns": [
+      "AssessID",
+      "AssOpID",
+      "AssActID",
+      "RelModID",
+      "MediaID",
+      "Pct"
+    ]
+  },
+  "Assessments": {
+    "rows": 0,
+    "columns": [
+      "AssessID",
+      "EPAIDNumber",
+      "CBI",
+      "AssessType",
+      "TypeOther",
+      "AssessStatus",
+      "StatusOther",
+      "FiscalYear",
+      "ConsolidatedCase",
+      "ConsolidatedCaseText",
+      "Company",
+      "Address1",
+      "Address2",
+      "City",
+      "State",
+      "Zip",
+      "ContactInfo",
+      "SubmissionDate",
+      "Assessor1",
+      "Assessor1Aff",
+      "Assessor1Phone",
+      "Assessor1Email",
+      "Assessor2",
+      "Assessor2Aff",
+      "Assessor2Phone",
+      "Assessor2Email",
+      "NumContRpts",
+      "AssessNotepad",
+      "P2Considerations",
+      "Assumptions",
+      "CRSSdate",
+      "MiscCRSSInfo",
+      "OtherUses",
+      "OccExpRating",
+      "ConsUse",
+      "ExpBased",
+      "NumWorkersExposed",
+      "NumWorkersCriteria",
+      "GT100WGT10",
+      "GT100W1to10",
+      "RoutineDermalGT250",
+      "MSDSInc",
+      "LabelInc",
+      "MSDS_HE",
+      "MSDS_Resp",
+      "MSDS_GenEq",
+      "MSDS_ExpLim",
+      "VPlow",
+      "VPhigh",
+      "LastSaved",
+      "LVE_PPE",
+      "P2Rec",
+      "P2RecNotes",
+      "crDate",
+      "NumWorkersExpEst",
+      "NumWorkersExpEstBasis",
+      "NumWorkersExpEstEnabled",
+      "NumExpBasedCriteria"
+    ]
+  },
+  "Chemicals": {
+    "rows": 0,
+    "columns": [
+      "AssessID",
+      "ChemicalName",
+      "CASNumber",
+      "ChemCat",
+      "TradeNames",
+      "MolFormula",
+      "TypeOfNotice",
+      "PV",
+      "PVi",
+      "PVd",
+      "PVformatted",
+      "VP",
+      "VPformatted",
+      "VPTemp",
+      "MW",
+      "DChem",
+      "DChemTemp",
+      "Solubility",
+      "SolTemp",
+      "MP",
+      "BP",
+      "Lt500",
+      "Lt1000",
+      "EndUse",
+      "EndUseMemo",
+      "QualifierYX",
+      "QualifierNX",
+      "QualifierCOS",
+      "QualifierP2REC",
+      "QualifierP2RECDR",
+      "QualifierBindingPV",
+      "QualifierOther",
+      "QualifierOtherDesc",
+      "SubPV",
+      "SubPVi",
+      "SubPVd",
+      "SubPVformatted"
+    ]
+  },
+  "ContactRpts": {
+    "rows": 0,
+    "columns": [
+      "ContRptID",
+      "AssessID",
+      "CBI",
+      "Phone",
+      "ContDate",
+      "ContTime",
+      "CallTo",
+      "CallToAff",
+      "CallFrom",
+      "CallFromAff",
+      "ContNotes",
+      "ContAppAssess"
+    ]
+  },
+  "GSSOptions": {
+    "rows": 0,
+    "columns": [
+      "AssessID",
+      "AssOpID",
+      "ParmID",
+      "OptionValue",
+      "Other"
+    ]
+  },
+  "IrerRels": {
+    "rows": 0,
+    "columns": [
+      "AssessID",
+      "AssOpID",
+      "OpName",
+      "ActSort",
+      "ModSort",
+      "MediaSort",
+      "Media",
+      "DualID",
+      "Acts",
+      "Basis",
+      "NAICS",
+      "DRR",
+      "ARR",
+      "ARRSite",
+      "DOR",
+      "Output",
+      "NS",
+      "RelSetId",
+      "RelSetName",
+      "RelSetNo",
+      "RelSetStart"
+    ]
+  },
+  "ListOfAssStatus": {
+    "rows": 10,
+    "columns": [
+      "AssStatusID",
+      "AssStatus",
+      "SortOrder"
+    ]
+  },
+  "ListOfChemStates": {
+    "rows": 6,
+    "columns": [
+      "ChemStateID",
+      "ChemState"
+    ]
+  },
+  "ListOfModels": {
+    "rows": 36,
+    "columns": [
+      "specNum",
+      "specsApproved",
+      "ModelID",
+      "ModelName",
+      "Type",
+      "PCat",
+      "DefaultA",
+      "DefaultI",
+      "DefaultL",
+      "DefaultW",
+      "Mechanism",
+      "ChemStateID",
+      "Equation",
+      "Basis",
+      "OutputOn1",
+      "OutputOn2",
+      "Char1",
+      "Char2"
+    ]
+  },
+  "MSDS_ExpLimits": {
+    "rows": 0,
+    "columns": [
+      "AssessID",
+      "RowID",
+      "Material",
+      "Concentration",
+      "ExpLimit",
+      "Reference",
+      "TypeOfMaterial",
+      "ExpLimitType"
+    ]
+  },
+  "Operations": {
+    "rows": 0,
+    "columns": [
+      "AssessID",
+      "AssOpID",
+      "OpID",
+      "OpName",
+      "PVop",
+      "ProcessDesc",
+      "PSInto",
+      "PSIntoOther",
+      "PSOut",
+      "PSOutOther",
+      "PSIn",
+      "PSInOther",
+      "NoPrev",
+      "OpType",
+      "IoE",
+      "OpNumWorkers",
+      "NumWorkersExpDaysPerYear",
+      "MassBalDisc1",
+      "MassBalDisc2",
+      "Basis",
+      "GSS_XmoProd",
+      "GSS_Yprod",
+      "GSS_NS",
+      "WaterRelBasis",
+      "InhExpBasis",
+      "AddNotesRelSummary",
+      "AddNotesExpSummary",
+      "DerExpBasis",
+      "OpOrder",
+      "NWdefault",
+      "NWestimated",
+      "NWbasis",
+      "NWbasisEnabled",
+      "OpGssImport"
+    ]
+  },
+  "OpNAICS": {
+    "rows": 0,
+    "columns": [
+      "AssessID",
+      "AssOpID",
+      "NaicsIndex",
+      "NAICS"
+    ]
+  },
+  "OpParms": {
+    "rows": 0,
+    "columns": [
+      "AssessID",
+      "AssOpID",
+      "ParmID",
+      "ParmValue",
+      "ParmType"
+    ]
+  },
+  "OpRel": {
+    "rows": 0,
+    "columns": [
+      "AssessID",
+      "AssOpID",
+      "RelID",
+      "Child",
+      "ChildPVf",
+      "ChildPVOP"
+    ]
+  },
+  "OpSites": {
+    "rows": 0,
+    "columns": [
+      "AssessID",
+      "AssOpID",
+      "FacID",
+      "FacName",
+      "FacAddr1",
+      "FacAddr2",
+      "FacCity",
+      "FacState",
+      "FacZip",
+      "FacCounty"
+    ]
+  },
+  "RelGroups": {
+    "rows": 0,
+    "columns": [
+      "RelGrpId",
+      "AssessID",
+      "AssOpID",
+      "RelGroupNum",
+      "NumDays",
+      "GroupRelease"
+    ]
+  },
+  "RevisionHistory": {
+    "rows": 0,
+    "columns": [
+      "RevisionID",
+      "AssessID",
+      "EPAIDNumber",
+      "CBI",
+      "AssessType",
+      "TypeOther",
+      "AssessStatus",
+      "StatusOther",
+      "FiscalYear",
+      "VPlow",
+      "VPhigh",
+      "SavedOn",
+      "NumberOfOps",
+      "NumberOfActs"
+    ]
+  },
+  "SAT": {
+    "rows": 0,
+    "columns": [
+      "AssessID",
+      "HRating",
+      "ERating",
+      "PRate",
+      "BRate",
+      "TRate",
+      "Dermal",
+      "DW",
+      "Inh",
+      "NR",
+      "OtherReq",
+      "OtherReqDesc",
+      "M2G",
+      "M2GDesc",
+      "EcoW",
+      "EcoA",
+      "EcoL",
+      "EcoO",
+      "EcoODesc",
+      "EcoNR",
+      "SATdate",
+      "RelatedCases",
+      "AddPBTinfo",
+      "HealthXP",
+      "HealthXPYesNo",
+      "HealthXPDesc",
+      "EcoXP",
+      "EcoXPYesNo",
+      "EcoXPDesc",
+      "cc"
+    ]
+  },
+  "Tron": {
+    "rows": 1,
+    "columns": [
+      "dataVersion",
+      "crVersion",
+      "crDate"
+    ]
+  },
+  "ActContParms": {
+    "rows": 0,
+    "columns": [
+      "AssessID",
+      "AssOpID",
+      "AssActID",
+      "ParmID",
+      "ParmValue",
+      "ParmType"
+    ]
+  },
+  "ActRelModParms": {
+    "rows": 0,
+    "columns": [
+      "RelParmsAN",
+      "OutputID",
+      "ParmID",
+      "ParmValue",
+      "ParmType",
+      "ParmVC"
+    ]
+  },
+  "States": {
+    "rows": 57,
+    "columns": [
+      "StateCode",
+      "StateName"
+    ]
+  },
+  "ListOfAssessTypes": {
+    "rows": 15,
+    "columns": [
+      "AssTypeID",
+      "AssType",
+      "AssIDMustBe4Digits",
+      "SortOrder"
+    ]
+  },
+  "Codes": {
+    "rows": 90,
+    "columns": [
+      "Type",
+      "ID",
+      "Description",
+      "SortOrder"
+    ]
+  }
+}

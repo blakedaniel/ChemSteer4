@@ -1,0 +1,250 @@
+ParmID,ModelID,ActID,GSSID,DefaultValue,TempNotes
+2,0,0,0,1.70000000e+02,AutoRef GSS default
+2,0,0,103,3.60000000e+02,WaterCool GSS default
+2,0,0,104,2.50000000e+02,Electroplating Bath GSS default
+2,0,93,0,3.60000000e+02,WaterCool GSS default
+4,7,0,0,-3.10800000e+03,VP
+4,8,0,0,-3.10800000e+03,VP
+4,9,0,0,-3.10800000e+03,VP
+4,22,0,0,-3.10900000e+03,VP
+4,45,0,0,-3.10900000e+03,VP
+6,0,0,0,8.20500031e+01,"R: universal gas constant, all models"
+7,0,0,0,1.00000000e+00,P for all models
+8,0,0,0,2.98000000e+02,"T: temp, all models"
+19,0,3,0,1.00000000e+00,Vc for Bottles
+19,0,4,0,5.00000000e+00,Vc for Small Containers
+19,0,5,0,5.50000000e+01,Vc for Drums
+19,0,6,0,5.50000000e+02,Vc for Totes
+19,0,7,0,5.00000000e+03,Vc for Tank Trucks
+19,0,8,0,2.00000000e+04,Vc for Rail Cars
+19,0,11,0,1.00000000e+00,Vc for Bottles
+19,0,12,0,5.00000000e+00,Vc for Small Containers
+19,0,13,0,5.50000000e+01,Vc for Drums
+19,0,14,0,5.50000000e+02,Vc for Totes
+19,0,15,0,5.00000000e+03,Vc for Tank Trucks
+19,0,16,0,2.00000000e+04,Vc for Rail Cars
+19,0,19,0,1.00000000e+00,Vc for Bottles
+19,0,20,0,5.00000000e+00,Vc for Small Containers
+19,0,21,0,5.50000000e+01,Vc for Drums
+19,0,22,0,5.50000000e+02,Vc for Totes
+19,0,23,0,5.00000000e+03,Vc for Tank Trucks
+19,0,24,0,2.00000000e+04,Vc for Rail Cars
+19,0,61,0,1.00000000e+00,Vc for Bottles
+19,0,62,0,5.00000000e+00,Vc for Small Containers
+19,0,63,0,5.50000000e+01,Vc for Drums
+19,0,64,0,5.50000000e+02,Vc for Totes
+19,0,65,0,5.00000000e+03,Vc for Tank Trucks
+19,0,66,0,2.00000000e+04,Vc for Rail Cars
+21,0,0,0,8.00000000e+00,Vcar
+22,0,0,0,-3.11700000e+03,f
+23,0,3,0,6.00000000e+01,rRE for Bottles
+23,0,4,0,6.00000000e+01,rRE for Small Containers
+23,0,5,0,2.00000000e+01,rRE for Drums
+23,0,6,0,2.00000000e+01,rRE for Totes
+23,0,7,0,2.00000000e+00,rRE for Tank Trucks
+23,0,8,0,1.00000000e+00,rRE for Rail Cars
+23,0,11,0,6.00000000e+01,rRE for Bottles
+23,0,12,0,6.00000000e+01,rRE for Small Containers
+23,0,13,0,2.00000000e+01,rRE for Drums
+23,0,14,0,2.00000000e+01,rRE for Totes
+23,0,15,0,2.00000000e+00,rRE for Tank Trucks
+23,0,16,0,1.00000000e+00,rRE for Rail Cars
+23,0,19,0,6.00000000e+01,rRE for Bottles
+23,0,20,0,6.00000000e+01,rRE for Small Containers
+23,0,21,0,2.00000000e+01,rRE for Drums
+23,0,22,0,2.00000000e+01,rRE for Totes
+23,0,23,0,2.00000000e+00,rRE for Tank Trucks
+23,0,24,0,1.00000000e+00,rRE for Rail Cars
+23,0,61,0,6.00000000e+01,rRE for Bottles
+23,0,62,0,6.00000000e+01,rRE for Small Containers
+23,0,63,0,2.00000000e+01,rRE for Drums
+23,0,64,0,2.00000000e+01,rRE for Totes
+23,0,65,0,2.00000000e+00,rRE for Tank Trucks
+23,0,66,0,1.00000000e+00,rRE for Rail Cars
+25,0,0,0,6.64000000e+02,Ncar
+26,8,0,0,-3.11600000e+03,d for Mass Transfer
+26,9,0,0,-3.11600000e+03,d for Penetration
+27,8,0,0,-1.10300000e+03,Are for Mass Transfer
+27,9,0,0,-1.10300000e+03,Are for Penetration
+31,7,0,0,-1.10800000e+03,OHa for AP42
+31,8,0,0,-1.10300000e+03,OHa for Mass Transfer
+31,9,0,0,-1.10300000e+03,OHa for Penetration
+31,43,0,0,-1.10300000e+03,OHa User Defined VG
+36,25,0,0,5.35000000e+02,S constant; had been 420 - updated to 535 Sept 2013 per Jason
+36,26,0,0,1.07000000e+03,"S constant, had been 840 - updated to 1070 Sept 2013 per Jason"
+36,27,0,0,1.07000000e+03,"S constant, had been 840 - updated to 1070 Sept 2013 per Jason"
+37,25,0,0,-3.11900000e+03,Qu constant
+37,26,0,0,-3.11900000e+03,Qu constant
+37,27,0,0,-3.11900000e+03,Qu constant
+39,0,0,0,1.00000000e+00,CEB Y* default of 1
+40,7,0,0,-1.11200000e+03,X: vp correction factor
+40,8,0,0,-1.11200000e+03,X: vp correction factor
+40,9,0,0,-1.11200000e+03,X: vp correction factor
+40,22,0,0,-1.11100000e+03,X: vp correction factor
+40,45,0,0,-1.11100000e+03,X: vp correction factor
+41,0,0,0,4.00000000e+01,EY for all models
+42,0,0,0,7.00000000e+01,BW for all models
+43,0,0,0,-3.10700000e+03,TE
+44,0,0,0,1.25000000e+00,b for all models
+45,0,0,0,-3.10700000e+03,McE
+46,18,0,0,8.00000000e+00,h
+46,22,0,0,-3.10400000e+03,h
+46,23,0,0,8.00000000e+00,h
+46,40,0,0,8.00000000e+00,h
+46,45,0,0,8.00000000e+00,h
+46,46,0,0,-3.10400000e+03,h
+46,49,0,0,8.00000000e+00,h
+46,54,0,0,-3.10400000e+03,h
+47,0,0,0,4.00000000e+01,AT for all models
+48,0,0,0,7.00000000e+01,ATc for all models
+49,0,0,0,-1.00000000e+00,User Defined G
+51,22,0,0,-3.10600000e+03,k
+52,0,0,0,-3.10700000e+03,SrE
+53,22,0,0,-3.10100000e+03,Q
+55,44,0,0,-3.12000000e+03,S
+56,44,0,0,-3.11900000e+03,Qu
+57,18,0,0,-3.12100000e+03,KcK (meta2 version)
+57,40,0,0,-2.10900000e+03,KcK (meta2 version)
+57,49,0,0,-2.10900000e+03,KcK (meta2 version)
+57,50,0,0,-2.10900000e+03,KcK (meta2 version)
+58,28,0,0,3.10000000e+03,SxQu
+58,29,0,0,1.10000000e+03,SxQu
+59,18,0,0,-2.10800000e+03,Ymist
+59,49,0,0,-2.10800000e+03,Ymist
+59,50,0,0,-2.10800000e+03,Ymist
+60,0,0,0,1.00000000e+00,FT for all models
+61,21,0,0,-2.10200000e+03,Default AH
+62,23,0,0,-2.11200000e+03,Kck
+63,0,0,0,2.44500008e+01,Vm for all models
+64,0,0,0,0.00000000e+00,Cm (calc in interface or user defined)
+67,0,0,0,-1.00000000e+00,Cv (user defined)
+68,8,0,0,4.40000000e+02,vz RE for Mass Transfer ----------------- I THINK THIS IS OBSOLETE
+68,9,0,0,1.00000000e+02,vz RE for Penetration ----------------- I THINK THIS IS OBSOLETE
+68,18,0,0,2.50000000e-01,Ysf
+68,49,0,0,2.50000000e-01,Ysf
+68,50,0,0,2.50000000e-01,Ysf
+69,8,0,0,4.40000000e+02,vz RE for Mass Transfer
+69,9,0,0,1.00000000e+02,vz RE for Penetration
+70,24,0,0,1.50000000e+01,Kck constant
+70,47,0,0,5.00000000e+00,Kck constant
+71,24,0,0,8.00000000e+00,h Constant
+71,47,0,0,8.00000000e+00,h Constant
+71,54,0,0,8.00000000e+00,h Constant
+72,1,0,0,-1.10200000e+03,Default Freq
+72,2,0,0,-1.10200000e+03,Default Freq
+72,3,0,0,-1.10200000e+03,Default Freq
+72,4,0,0,-1.10200000e+03,Default Freq
+72,5,0,0,-1.10200000e+03,Default Freq
+72,6,0,0,-1.10200000e+03,Default Freq
+72,7,0,0,-1.10400000e+03,Default Freq
+72,8,0,0,-1.10400000e+03,Default Freq
+72,9,0,0,-1.10400000e+03,Default Freq
+72,12,0,0,-1.11000000e+03,Freq
+72,13,0,0,-1.11000000e+03,Freq
+72,14,0,0,-1.11000000e+03,Freq
+72,39,0,0,-1.10200000e+03,Default Freq
+72,41,0,0,-1.10500000e+03,Default Freq
+72,42,0,0,-1.10200000e+03,Default Freq
+72,43,0,0,-1.10400000e+03,Default Freq
+72,48,0,0,-1.10500000e+03,Default Freq
+72,51,0,0,-1.11300000e+03,Default Freq
+72,52,0,0,-1.10500000e+03,Default Freq
+72,53,0,0,-1.11500000e+03,Freq for Dust Model (july 2007)
+73,1,0,0,-3.11000000e+03,LF for Bulk Transport
+73,2,0,0,-3.11100000e+03,LF for drum residual model
+73,3,0,0,-3.11500000e+03,LF
+73,4,0,0,-3.11200000e+03,LF
+73,5,0,0,-3.11300000e+03,LF for Small Container Residual
+73,6,0,0,-3.11400000e+03,LF for drum residual model
+73,12,0,0,-3.12300000e+03,LF
+73,13,0,0,-3.12400000e+03,LF
+73,14,0,0,-3.12500000e+03,LF
+73,53,0,0,-3.12800000e+03,LF for Dust Model (july 2007)
+74,41,0,0,-3.10500000e+03,LF for model
+74,48,0,0,-3.10500000e+03,LF for model
+75,18,0,0,-2.10700000e+03,ED
+75,21,0,0,-2.10400000e+03,ED
+75,22,0,0,-2.10500000e+03,ED
+75,23,0,0,-2.10300000e+03,ED
+75,24,0,0,-2.10300000e+03,ED
+75,25,0,0,-2.10300000e+03,ED
+75,26,0,0,-2.10300000e+03,ED
+75,27,0,0,-2.10300000e+03,ED
+75,28,0,0,-2.10300000e+03,ED
+75,29,0,0,-2.10300000e+03,ED
+75,40,0,0,-2.11000000e+03,ED
+75,44,0,0,-2.10300000e+03,ED
+75,45,0,0,-2.10500000e+03,ED
+75,46,0,0,-2.10500000e+03,ED
+75,47,0,0,-2.10300000e+03,ED
+75,49,0,0,-2.10700000e+03,ED
+75,50,0,0,-2.10700000e+03,ED
+75,54,0,0,-2.10500000e+03,ED
+77,25,0,0,-2.10100000e+03,Ydrm
+77,26,0,0,-2.10100000e+03,Ydrm
+77,27,0,0,-2.10100000e+03,Ydrm
+77,28,0,0,-2.10100000e+03,Ydrm
+77,29,0,0,-2.10100000e+03,Ydrm
+77,44,0,0,-2.10100000e+03,Ydrm
+78,21,0,0,-2.10100000e+03,Ys
+78,23,0,0,-2.10100000e+03,Ys
+78,24,0,0,-2.10600000e+03,Ys
+78,45,0,0,-2.10100000e+03,Ys
+78,46,0,0,-2.11100000e+03,Ys
+78,47,0,0,-2.10600000e+03,Ys
+79,0,0,0,1.00000000e+00,LF for model
+81,21,0,0,-3.11800000e+03,EF for B01
+82,0,0,0,1.00000000e+00,Sd for all models
+90,0,0,0,-1.00000000e+00,"Cvk, user defined"
+91,0,0,0,-3.10200000e+03,NW
+92,1,0,0,-1.10100000e+03,Default Amt
+92,2,0,0,-1.10100000e+03,Default Amt
+92,3,0,0,-1.10100000e+03,Default Amt
+92,4,0,0,-1.10100000e+03,Default Amt
+92,5,0,0,-1.10100000e+03,Default Amt
+92,6,0,0,-1.10100000e+03,Default Amt
+92,12,0,0,-1.10700000e+03,Amt
+92,13,0,0,-1.10700000e+03,Amt
+92,14,0,0,-1.10700000e+03,Amt
+92,39,0,0,-1.10100000e+03,Default Amt
+92,41,0,0,-1.10900000e+03,Default Amt
+92,42,0,0,-1.10600000e+03,Default Amt
+92,48,0,0,-1.10900000e+03,Default Amt
+92,53,0,0,-1.11400000e+03,Amt for Dust Model (july 2007)
+95,0,0,0,-1.00000000e+00,"VPpel, user defined"
+96,23,0,0,-2.11300000e+03,Ypel
+96,45,0,0,-3.10300000e+03,Ypel
+97,0,0,0,-1.00000000e+00,"MWpel, user defined"
+98,0,0,0,2.50000000e+02,ED CEB default
+113,0,0,0,-3.12200000e+03,Ys non-meta
+114,0,0,0,5.00000000e+05,OEM GSS AMOProd
+115,0,0,0,0.00000000e+00,OEM GSS Vbatch
+116,0,0,0,2.34999990e+00,AutoRef GSS default
+117,0,0,0,0.00000000e+00,LF user defined
+124,0,0,0,1.00000005e-03,WaterCool GSS default
+125,0,0,0,3.78500009e+00,WaterCool GSS default
+126,0,0,0,2.00000000e+03,WaterCool GSS default
+127,0,0,0,6.00000005e-03,WaterCool GSS default
+128,0,0,0,1.00000005e-03,WaterCool GSS default
+129,0,0,0,0.00000000e+00,WaterCool GSS default
+131,0,0,0,4.34000008e-02,Electroplating Bath GSS default
+132,0,0,0,2.34999992e-02,Electroplating Bath GSS default
+133,0,0,0,1.00000000e+00,Electroplating Bath GSS default
+134,0,0,0,1.00000000e+00,Electroplating Bath GSS default
+135,0,0,0,2.50000000e+03,Electroplating Bath GSS default
+136,0,0,0,3.00000000e+00,Electroplating Bath GSS default
+137,0,0,0,2.00000000e+00,Electroplating Bath GSS default
+137,51,0,0,-3.12600000e+03,Electroplating Spent Bath Disposal Model default
+138,0,0,0,4.93200000e+03,Electroplating Bath GSS default
+139,0,0,0,8.99999976e-01,Electroplating Bath GSS default
+141,0,0,0,7.50000000e+03,Electroplating Bath GSS default
+141,51,0,0,-3.12700000e+03,DVbath
+142,0,0,0,5.00000000e-01,WWTE
+143,53,0,0,-1.30200000e+03,DstCntrl for Dust Model (july 2007)
+147,54,0,0,3.60000000e+02,"Near-field indoor wind speed, Near/Far Field model"
+148,54,0,0,3.04999995e+00,"Length of near-field, Near/Far Field model"
+149,54,0,0,3.04999995e+00,"Width of near-field, Near/Far Field model"
+150,54,0,0,1.83000004e+00,"Height of near-field, Near/Far Field model"
+46,50,0,0,2.34999990e+00,h; had been 8 hours; changed in Dec 2014 per Jason's email of 12/3/14
+145,54,0,0,-1.00000000e+00,"Volume of Far-Field, user-defined"
+146,54,0,0,-1.00000000e+00,"Air Exchange Rate, Near/Far Field model, user-defined"

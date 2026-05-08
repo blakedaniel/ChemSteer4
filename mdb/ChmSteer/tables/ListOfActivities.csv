@@ -1,0 +1,73 @@
+ActID,ActName,RelActivity,ExpActivity,DefaultRelModel,DefaultRelModel2,DefaultRelModel3,DefaultInhModel,DefaultDrmModel,ContTab,ActType,RestrictedActivity,TwinActivity
+1,Sampling Liquids,1,1,-9,,,-22,25,,,0,
+2,Sampling Solids,0,1,,,,21,28,,,0,
+3,Loading Liquid Product into Bottles,1,1,-7,,,-22,26,2,2,0,
+4,Loading Liquid Product into Small Containers,1,1,-7,,,-22,26,2,2,0,
+5,Loading Liquid Product into Drums,1,1,-7,,,-22,26,2,2,0,
+6,Loading Liquid Product into Totes,1,1,-7,,,-22,26,2,2,0,
+7,Loading Liquid Product into Tank Trucks,1,1,-7,,,-22,26,2,2,0,
+8,Loading Liquid Product into Rail Cars,1,1,-7,,,-22,26,2,2,0,
+10,Loading Solid Product into Transport Containers,1,1,53,,,-1001,28,2,2,0,
+11,Unloading Liquid Raw Material from Bottles,1,1,-7,,,-22,26,1,3,0,19.0
+12,Unloading Liquid Raw Material from Small Containers,1,1,-7,,,-22,26,1,3,0,20.0
+13,Unloading Liquid Raw Material from Drums,1,1,-7,,,-22,26,1,3,0,21.0
+14,Unloading Liquid Raw Material from Totes,1,1,-7,,,-22,26,1,3,0,22.0
+15,Unloading Liquid Raw Material from Tank Trucks,1,1,-7,,,-22,26,1,3,0,23.0
+16,Unloading Liquid Raw Material from Rail Cars,1,1,-7,,,-22,26,1,3,0,24.0
+18,Unloading Solid Raw Material from Transport Containers,1,1,53,,,-1001,28,1,3,0,26.0
+19,Cleaning Liquid Residuals from Bottles Used to Transport the Raw Material,1,1,5,-9,,-22,26,1,1,0,11.0
+20,Cleaning Liquid Residuals from Small Containers Used to Transport the Raw Material,1,1,5,-9,,-22,26,1,1,0,12.0
+21,Cleaning Liquid Residuals from Drums Used to Transport the Raw Material,1,1,2,-9,,-22,26,1,1,0,13.0
+22,Cleaning Liquid Residuals from Totes Used to Transport the Raw Material,1,1,1,-9,,-22,26,1,1,0,14.0
+23,Cleaning Liquid Residuals from Tank Trucks Used to Transport the Raw Material,1,1,1,-8,,-22,26,1,1,0,15.0
+24,Cleaning Liquid Residuals from Rail Cars Used to Transport the Raw Material,1,1,1,-8,,-22,26,1,1,0,16.0
+26,Cleaning Solid/ Powder Residuals from Containers Used to Transport the Raw Material,1,1,6,,,-1001,28,1,1,0,18.0
+27,Equipment Cleaning Losses of Liquids from Multiple Vessels,1,0,3,-8,,,,,,0,
+28,"Equipment Cleaning Losses of Liquids from a Single, Large Vessel",1,0,4,-8,,,,,,0,
+29,"Equipment Cleaning Losses of Liquids from a Single, Small Vessel",1,0,4,-8,,,,,,0,
+30,Vapor Release from Open Liquid Surfaces,1,1,-43,,,-22,,,,0,
+31,Miscellaneous Sources/ Activities Related to Liquid Processing,0,1,,,,46,27,,,0,
+33,Miscellaneous Sources/ Activities Related to Solid Processing,0,1,,,,-1001,28,,,0,
+54,Roll Coating,1,1,39,,,18,,,,0,
+55,Sampling Liquid Raw Material,1,1,-9,,,-22,25,,,0,
+56,Sampling Liquid Product,1,1,-9,,,-22,25,,,0,
+57,Sampling Solid Raw Material,0,1,,,,21,28,,,0,
+58,Sampling Solid Product,0,1,,,,21,28,,,0,
+59,Loading Liquid into Storage/ Transport Vessels (User-Defined),1,1,-7,,,-22,26,3,2,0,
+60,Loading Solids into Storage/ Transport Vessels (User-Defined),1,1,53,,,-1001,28,3,2,0,
+61,Cleaning Liquid Residuals from Bottles Used to Transport the Product,1,1,5,,,-22,26,2,1,0,
+62,Cleaning Liquid Residuals from Small Containers Used to Transport the Product,1,1,5,,,-22,26,2,1,0,
+63,Cleaning Liquid Residuals from Drums Used to Transport the Product,1,1,2,,,-22,26,2,1,0,
+64,Cleaning Liquid Residuals from Totes Used to Transport the Product,1,1,1,,,-22,26,2,1,0,
+65,Cleaning Liquid Residuals from Tank Trucks Used to Transport the Product,1,1,1,-8,,-22,26,2,1,0,
+66,Cleaning Liquid Residuals from Rail Cars Used to Transport the Product,1,1,1,-8,,-22,26,2,1,0,
+67,Cleaning Liquid Residuals from Storage/ Transport Vessels (User-Defined),1,1,2,,,-22,26,3,1,0,85.0
+68,Cleaning Solid/Powder Residuals from Containers Used to Transport the Product,1,1,6,,,-1001,28,2,1,0,86.0
+69,Miscellaneous Sources Related to Liquid Processing,0,1,,,,46,27,,,0,
+70,Miscellaneous Sources Related to Solid Processing,0,1,,,,-1001,28,,,0,
+71,Distillation Column Bottoms Disposal,1,0,39,,,,,,,0,
+72,Filter Media Changeout,1,1,39,,,,28,,,0,
+73,Scrubber Releases,1,1,39,,,46,,,,0,
+74,Aqueous Wash of Organic Mass,1,1,42,,,46,26,,,0,
+75,Liquid/ Liquid Extraction Solvent Disposal,1,1,39,,,,26,,,0,
+76,Grinding and Sanding,1,1,39,,,24,28,,,0,
+77,Cleaning Liquid Residuals from Containers Used to Transport the Raw Material,1,1,2,,,-22,26,1,1,0,83.0
+78,Cleaning Liquid Residuals from Containers Used to Transport the Product,1,1,2,,,-22,26,2,1,0,84.0
+79,Cleaning Solid Residuals from Storage/ Transport Vessels (User-Defined),1,1,6,,,-1001,28,3,1,0,87.0
+80,Loading Liquid Product into Containers,1,1,-7,,,-22,26,2,2,0,
+81,Loading Liquid Raw Material into Containers,1,1,-7,,,-22,26,1,2,0,
+82,Loading Solid Raw Material into Containers,1,1,53,,,-1001,28,1,2,0,
+83,Unloading Liquid Raw Material from Containers,1,1,-7,,,-22,26,1,3,0,77.0
+84,Unloading Liquid Product from Containers,1,1,-7,,,-22,26,2,3,0,78.0
+85,Unloading Liquid from Storage/ Transport Containers (User-Defined),1,1,-7,,,-22,26,3,3,0,67.0
+86,Unloading Solid Product from Transport Containers,1,1,53,,,-1001,28,2,3,0,68.0
+87,Unloading Solids from Storage/ Transport Containers (User-Defined),1,1,53,,,-1001,28,3,3,0,79.0
+88,Coating Using Hand-Held Spray Gun,0,1,,,,24,,,,0,
+89,Automotive OEM Spray Coating Application,1,1,48,,,49,27,,,0,
+90,Automotive Refinishing Spray Coating Application,1,1,41,,,50,27,,,0,
+91,Equipment Cleaning Losses of Solids from Process Vessels,1,1,6,,,-1001,28,,1,0,
+92,Coating Using Hand Held Spray Can,0,1,,,,46,,,,0,
+93,Recirculating Water-Cooling Tower Additive Releases,1,0,12,13,-14,,,,,1,
+94,Changing Electroplating Bath,1,0,51,,,,,,,1,
+95,Rinsing Electroplated Parts,1,0,52,,,,,,,1,
+96,Operating Electroplating Bath,0,1,,,,23,,,,1,

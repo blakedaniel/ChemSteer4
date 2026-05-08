@@ -1,0 +1,202 @@
+{
+  "ActContParms": {
+    "rows": 961,
+    "columns": [
+      "ScenActID",
+      "ParmID",
+      "ParmValue",
+      "ParmType",
+      "ScenarioID"
+    ]
+  },
+  "ActExpModels": {
+    "rows": 74,
+    "columns": [
+      "ScenActID",
+      "ExplModID",
+      "ExpParmsAN",
+      "ModelID",
+      "Basis",
+      "Freq",
+      "Ire",
+      "Icb",
+      "ILADDre",
+      "ILADDcb",
+      "IADDre",
+      "IADDcb",
+      "IAPDDre",
+      "IAPDDcb",
+      "DexpRe",
+      "DexpCb",
+      "DLADDre",
+      "DLADDcb",
+      "DADDre",
+      "DADDcb",
+      "DAPDRre",
+      "DAPDRcb",
+      "ChemStateID",
+      "OutputOn1",
+      "OutputOn2",
+      "Char1",
+      "Char2",
+      "ModelStatus",
+      "InhUncertainty",
+      "InhClass",
+      "InhClassNotes",
+      "InhClassExpLevel",
+      "InhClassHazRating",
+      "InhClassInhMon",
+      "ScenarioID"
+    ]
+  },
+  "ActExpModParms": {
+    "rows": 4864,
+    "columns": [
+      "ExpParmsAN",
+      "OutputID",
+      "ParmID",
+      "ParmValue",
+      "ParmType",
+      "ParmVC"
+    ]
+  },
+  "Activities": {
+    "rows": 159,
+    "columns": [
+      "ScenActID",
+      "ActName",
+      "ActID",
+      "DoRel",
+      "DoExp",
+      "DidRel",
+      "DidExp",
+      "Volatile",
+      "NW_NS",
+      "NW_NWexp",
+      "NW_NSxNWexp",
+      "NW_Route",
+      "ActOrder",
+      "ScenarioID"
+    ]
+  },
+  "ActRelModels": {
+    "rows": 137,
+    "columns": [
+      "ScenActID",
+      "RelModID",
+      "RelParmsAN",
+      "ModelID",
+      "DailyRelRE",
+      "DailyRelCB",
+      "AnnRelRE",
+      "AnnRelCB",
+      "DailyRel1_SN",
+      "DailyRel2_SN",
+      "AnnRel1_SN",
+      "AnnRel2_SN",
+      "RelDays",
+      "AirPct",
+      "WaterPct",
+      "LFPct",
+      "IncPct",
+      "OtherPct",
+      "OtherDesc",
+      "DestPct",
+      "Basis",
+      "DeepPct",
+      "RelDays2",
+      "OutputOn1",
+      "OutputOn2",
+      "Char1",
+      "Char2",
+      "NAICS",
+      "ModelStatus",
+      "ScenarioID"
+    ]
+  },
+  "ActRelModMedia": {
+    "rows": 149,
+    "columns": [
+      "ScenActID",
+      "RelModID",
+      "MediaID",
+      "Pct",
+      "ScenarioID"
+    ]
+  },
+  "ActRelModParms": {
+    "rows": 9346,
+    "columns": [
+      "RelParmsAN",
+      "OutputID",
+      "ParmID",
+      "ParmValue",
+      "ParmType",
+      "ParmVC"
+    ]
+  },
+  "GSSOptions": {
+    "rows": 0,
+    "columns": [
+      "ParmID",
+      "OptionValue",
+      "Other",
+      "ScenarioID"
+    ]
+  },
+  "Operations": {
+    "rows": 34,
+    "columns": [
+      "OpID",
+      "OpName",
+      "PVop",
+      "ProcessDesc",
+      "PSInto",
+      "PSIntoOther",
+      "PSOut",
+      "PSOutOther",
+      "PSIn",
+      "PSInOther",
+      "NoPrev",
+      "OpType",
+      "IoE",
+      "OpNumWorkers",
+      "NumWorkersExpDaysPerYear",
+      "MassBalDisc1",
+      "MassBalDisc2",
+      "Basis",
+      "GSS_XmoProd",
+      "GSS_Yprod",
+      "GSS_NS",
+      "WaterRelBasis",
+      "InhExpBasis",
+      "AddNotesRelSummary",
+      "AddNotesExpSummary",
+      "DerExpBasis",
+      "OpOrder",
+      "NWdefault",
+      "NWestimated",
+      "NWbasis",
+      "NWbasisEnabled",
+      "GSS_PDF",
+      "ScenarioID"
+    ]
+  },
+  "OpNAICS": {
+    "rows": 0,
+    "columns": [
+      "NaicsIndex",
+      "NAICS",
+      "ScenarioID"
+    ]
+  },
+  "OpParms": {
+    "rows": 4992,
+    "columns": [
+      "ParmID",
+      "ParmValue",
+      "ParmType",
+      "ScenarioID"
+    ]
+  }
+}

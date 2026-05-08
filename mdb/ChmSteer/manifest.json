@@ -1,0 +1,303 @@
+{
+  "ActCats": {
+    "rows": 90,
+    "columns": [
+      "ActCat",
+      "ActID"
+    ]
+  },
+  "Codes": {
+    "rows": 92,
+    "columns": [
+      "Type",
+      "ID",
+      "Description",
+      "SortOrder"
+    ]
+  },
+  "Instructions": {
+    "rows": 50,
+    "columns": [
+      "InstructID",
+      "whichwindow",
+      "Instructions"
+    ]
+  },
+  "ListOfActCats": {
+    "rows": 18,
+    "columns": [
+      "ActCat",
+      "CatName",
+      "IsGSS"
+    ]
+  },
+  "ListOfActivities": {
+    "rows": 72,
+    "columns": [
+      "ActID",
+      "ActName",
+      "RelActivity",
+      "ExpActivity",
+      "DefaultRelModel",
+      "DefaultRelModel2",
+      "DefaultRelModel3",
+      "DefaultInhModel",
+      "DefaultDrmModel",
+      "ContTab",
+      "ActType",
+      "RestrictedActivity",
+      "TwinActivity"
+    ]
+  },
+  "ListOfAssessTypes": {
+    "rows": 15,
+    "columns": [
+      "AssTypeID",
+      "AssType",
+      "AssIDMustBe4Digits",
+      "SortOrder"
+    ]
+  },
+  "ListOfAssStatus": {
+    "rows": 10,
+    "columns": [
+      "AssStatusID",
+      "AssStatus",
+      "SortOrder"
+    ]
+  },
+  "ListOfMedia": {
+    "rows": 18,
+    "columns": [
+      "MediaID",
+      "Media",
+      "SortID"
+    ]
+  },
+  "ListOfModels": {
+    "rows": 38,
+    "columns": [
+      "specNum",
+      "specsApproved",
+      "ModelID",
+      "ModelName",
+      "Type",
+      "PCat",
+      "DefaultA",
+      "DefaultI",
+      "DefaultL",
+      "DefaultW",
+      "Mechanism",
+      "ChemStateID",
+      "Equation",
+      "Basis",
+      "OutputOn1",
+      "OutputOn2",
+      "Char1",
+      "Char2"
+    ]
+  },
+  "ListOfOperations": {
+    "rows": 8,
+    "columns": [
+      "OpID",
+      "OpName",
+      "OpType",
+      "SortOrder",
+      "OpStatus",
+      "InfluentLabel",
+      "EffluentLabel",
+      "BatchOrCont",
+      "InfOrEff",
+      "EnableCmdCalcXmoProd",
+      "EnableCmdCalcNS",
+      "EnableCmdCalcYprod",
+      "MassBalMsg",
+      "DefaultNAICS",
+      "DefaultProcDesc"
+    ]
+  },
+  "ListOfOptData": {
+    "rows": 7,
+    "columns": [
+      "SortOrder",
+      "OptionalData"
+    ]
+  },
+  "ListOfParms": {
+    "rows": 161,
+    "columns": [
+      "ParmID",
+      "ParmName",
+      "StdUnits",
+      "Abbr",
+      "Notes",
+      "Type",
+      "DefaultSource",
+      "PCat2",
+      "PCat3",
+      "PCat4",
+      "PCat5",
+      "PCat6",
+      "PCat7",
+      "PCat8",
+      "PCat9",
+      "PCat10",
+      "PCat11",
+      "PCat14",
+      "PCat15",
+      "PCat16",
+      "PCat17",
+      "PCat18",
+      "PCat19",
+      "PCat20",
+      "PCat24",
+      "PCat25",
+      "PCat26",
+      "PCat27",
+      "PCat28",
+      "PCat29",
+      "PCat30",
+      "PCat31"
+    ]
+  },
+  "ListOfPhyStates": {
+    "rows": 6,
+    "columns": [
+      "PhyStateID",
+      "PhyState"
+    ]
+  },
+  "ListOfValidModels": {
+    "rows": 298,
+    "columns": [
+      "ActID",
+      "ModelID"
+    ]
+  },
+  "MediaDefaults": {
+    "rows": 25,
+    "columns": [
+      "ModelID",
+      "MediaID",
+      "Pct"
+    ]
+  },
+  "Meta2Defaults": {
+    "rows": 72,
+    "columns": [
+      "ModelID",
+      "ParmID",
+      "DualID",
+      "LabelID",
+      "Label",
+      "Value",
+      "note"
+    ]
+  },
+  "MostLikelyActs": {
+    "rows": 31,
+    "columns": [
+      "OpID",
+      "ActID",
+      "AutoSelect"
+    ]
+  },
+  "NAICS": {
+    "rows": 1814,
+    "columns": [
+      "naicsid",
+      "naics",
+      "naicsdesc"
+    ]
+  },
+  "ParmDefaults": {
+    "rows": 249,
+    "columns": [
+      "ParmID",
+      "ModelID",
+      "ActID",
+      "GSSID",
+      "DefaultValue",
+      "TempNotes"
+    ]
+  },
+  "ParmLabelOverrides": {
+    "rows": 22,
+    "columns": [
+      "OpID",
+      "ParmID",
+      "ParmName",
+      "Abbr"
+    ]
+  },
+  "pel_rel_twa": {
+    "rows": 652,
+    "columns": [
+      "NumericCas",
+      "CASNumber",
+      "ChemicalName",
+      "MW",
+      "PEL-TWA",
+      "PEL-TWAConvert",
+      "PEL-TWAmgm3",
+      "PEL-TWAmgm3Convert",
+      "NOTEPEL",
+      "PEL-STEL",
+      "PEL-STELConvert",
+      "PEL-STELmgm3",
+      "PEL-STELmgm3Convert",
+      "PEL-CL",
+      "PEL-CLConvert",
+      "PEL-CLmgm3",
+      "PEL-CLmgm3Convert",
+      "PEL-mpcfa",
+      "PEL-COMMENTS",
+      "REL-TWA",
+      "REL-TWAConvert",
+      "REL-TWAmgm3",
+      "REL-TWAmgm3Convert",
+      "NOTEREL",
+      "REL-STEL",
+      "REL-STELConvert",
+      "REL-STELmgm3",
+      "REL-STELmgm3Convert",
+      "REL-CL",
+      "REL-CLConvert",
+      "REL-CLmgm3",
+      "REL-CLmgm3Convert",
+      "RELFCC",
+      "REL-COMMENTS"
+    ]
+  },
+  "States": {
+    "rows": 51,
+    "columns": [
+      "StateCode",
+      "StateName"
+    ]
+  },
+  "GssAutoSelectActs": {
+    "rows": 16,
+    "columns": [
+      "OpID",
+      "ActID",
+      "SortOrder",
+      "AddActID"
+    ]
+  },
+  "ListOfChemStates": {
+    "rows": 6,
+    "columns": [
+      "ChemStateID",
+      "ChemState"
+    ]
+  },
+  "ListOfValidActivities": {
+    "rows": 4,
+    "columns": [
+      "OpID",
+      "ActID"
+    ]
+  }
+}

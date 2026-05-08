@@ -1,0 +1,16 @@
+AssTypeID,AssType,AssIDMustBe4Digits,SortOrder
+11,C (Correction),1,6
+4,LOREX,1,7
+2,LVE,1,8
+5,LVEMOD,1,9
+1,PMN,1,10
+3,TME,1,11
+6,I (Enforcement),1,12
+998,Other New Chem,1,13
+7,Existing Chemical,0,1
+10,OECD-SIDS,0,2
+8,RM1,0,3
+9,RM2,0,4
+999,Other,0,5
+12,LOREXMOD (XM),1,14
+13,SNUN,1,15

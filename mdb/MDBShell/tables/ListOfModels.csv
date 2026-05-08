@@ -1,0 +1,161 @@
+specNum,specsApproved,ModelID,ModelName,Type,PCat,DefaultA,DefaultI,DefaultL,DefaultW,Mechanism,ChemStateID,Equation,Basis,OutputOn1,OutputOn2,Char1,Char2
+A04,07/22/03 00:00:00,1,EPA/OPPT Bulk Transport Residual Model,R,14,,,,1.00000000e+02,Not applicable,,"DR (kg/site-day) = LF × Amt
+DR occurs over [Freq] days/year
+AR (kg/year) = DR × Freq × NS,  AR is for all sites combined","EPA/OPPT Bulk Transport Residual Model, CEB standard 0.2% residual.",0,1,Central Tendency,High End
+A05,07/22/03 00:00:00,2,EPA/OPPT Drum Residual Model,R,14,,,,1.00000000e+02,Not applicable,,"DR (kg/site-day) = LF × Amt
+DR occurs over [Freq] days/year
+AR (kg/year) = DR × Freq × NS,  AR is for all sites combined","EPA/OPPT Drum Residual Model, CEB standard 3% residual.",0,1,Central Tendency,High End
+A06,07/22/03 00:00:00,3,EPA/OPPT Multiple Process Vessel Residual Model,R,14,,,,1.00000000e+02,Not applicable,,"DR (kg/site-day) = LF × Amt
+DR occurs over [Freq] days/year
+AR (kg/year) = DR × Freq × NS,  AR is for all sites combined","EPA/OPPT Multiple Process Vessel Residual Model, CEB standard 2% residual.",0,1,Conservative,Conservative
+A07,07/22/03 00:00:00,4,EPA/OPPT Single Process Vessel Residual Model,R,14,,,,1.00000000e+02,Not applicable,,"DR (kg/site-day) = LF × Amt
+DR occurs over [Freq] days/year
+AR (kg/year) = DR × Freq × NS,  AR is for all sites combined","EPA/OPPT Single Vessel Residual Model, CEB standard 1% residual.",0,1,High End to Bounding,Conservative
+A08,07/22/03 00:00:00,5,EPA/OPPT Small Container Residual Model,R,14,,,,1.00000000e+02,Not applicable,,"DR (kg/site-day) = LF × Amt
+DR occurs over [Freq] days/year
+AR (kg/year) = DR × Freq × NS,  AR is for all sites combined","EPA/OPPT Small Container Residual Model, CEB standard 0.6% residual.",0,1,Central Tendency,High End
+A09,07/22/03 00:00:00,6,EPA/OPPT Solid Residuals in Transport Containers Model,R,14,,,,1.00000000e+02,Not applicable,,"DR (kg/site-day) = LF × Amt
+DR occurs over [Freq] days/year
+AR (kg/year) = DR × Freq × NS,  AR is for all sites combined","EPA/OPPT Solid Residuals in Transport Containers Model, CEB standard 1% residual.",0,1,Output,Output
+A01,07/09/03 00:00:00,7,EPA/OAQPS AP-42 Loading Model,R,16,1.00000000e+02,,,,Displacement of air containing chemical vapor,,"DR (kg/site-day) = (G × 3600 × OHa) / 1000
+DR occurs over [Freq] days/year
+G (g/s) = f × MW × (Vc x 3785.4) × r × X × (VP / 760) / (3600 × T × R)
+AR (kg/year) = DR × Freq × NS, AR is for all sites combined",EPA/OAQPS AP-42 Loading Model.,1,1,Typical,Worst Case
+A02,07/22/03 00:00:00,8,EPA/OPPT Mass Transfer Coefficient Model,R,20,1.00000000e+02,,,,"Volatilization of chemical from ""static"" pool",,"DR (kg/site-day) = (G × 3600 × OHa) / 1000
+DR occurs over [Freq] days/year
+G (g/s) = 1.93x10-7 x MW0.78 x X x VP x (1/29 + 1/MW)0.33 x vz0.78 x A / (T0.4 x d0.11 x (T0.5 - 5.87)2/3)
+AR (kg/year) = DR × Freq × NS, AR is for all sites combined",EPA/OPPT Mass Transfer Coefficient Model.,-9001,1,Output,Output
+A03,07/22/03 00:00:00,9,EPA/OPPT Penetration Model,R,18,1.00000000e+02,,,,"Volatilization of chemical from ""static"" pool",,"DR (kg/site-day) = (G × 3600 × OHa) / 1000
+DR occurs over [Freq] days/year
+G (g/s) = 8.24x10-8 x MW0.835 x X x VP x (1/29 + 1/MW)0.25 x vz0.5 x A / (T0.05 x d0.5 x P0.5)
+AR (kg/year) = DR × Freq × NS, AR is for all sites combined",EPA/OPPT Penetration Model.,-9001,1,Output,Output
+A12,,12,EPA/OPPT Cooling Tower Blowdown Loss Model,R,10,,,,1.00000000e+02,Not applicable,,"DR (kg/site-day) = LF × Amt
+DR occurs over [Freq] days/year
+AR (kg/year) = DR × Freq × NS,  AR is for all sites combined",EPA/OPT Cooling Tower Blowdown Loss Model; up to 0.6% of the tower recirculation rate.,0,1,What-If,What-If
+A13,,13,EPA/OPPT Cooling Tower Windage Loss Model,R,10,1.00000000e+02,,,,Not applicable,,"DR (kg/site-day) = LF × Amt
+DR occurs over [Freq] days/year
+AR (kg/year) = DR × Freq × NS,  AR is for all sites combined",EPA/OPT Cooling Tower Windage Loss Model; up to 0.1% of the tower recirculation rate.,0,1,What-If,What-If
+A14,,14,EPA/OPPT Cooling Tower Evaporative Loss Model (volatiles),R,10,1.00000000e+02,,,,Not applicable,,"DR (kg/site-day) = LF × Amt
+DR occurs over [Freq] days/year
+AR (kg/year) = DR × Freq × NS,  AR is for all sites combined",EPA/OPPT Cooling Tower Evaporative Loss Model (volatiles); user specified fraction of the tower recirculation rate.,0,1,What-If,What-If
+B18,07/31/03 00:00:00,18,UV Roll Coating Inhalation Model,I,8,,,,,"Inhalation / Particulate or non-volatile portion of mist, aerosols, etc.",3,"I = Cm x b x h
+Cm = KCk x Ys
+LADD = (I x ED x Y) / (BW x ATc x 365 days/yr)
+ADD = (I x ED x Y) / (BW x AT x 365 days/yr)
+APDR =  I / BW
+NW = NWexp x NS",EPA/OPPT UV Roll Coating Inhalation Model (non-volatiles); airborned particulate concentration (KcK is based on 8-hour TWA personal monitoring data.,1,1,Low End of Range,High End of Range
+B01,07/14/03 00:00:00,21,EPA Small Volume Handling Model,I,2,,,,,Inhalation / Particulate,3,"I = EF x AH x Ys x Sd
+LADD = (I x ED x Y) / (BW x ATc x 365 days/yr)
+ADD = (I x ED x Y) / (BW x AT x 365 days/yr)
+APDR =  I / BW
+NW = NWexp x NS","EPA Small Volume Handling Model, less than 54 kg of solid containing the  PMN handled per site-day.",1,1,Typical,Worst Case
+B02,07/24/03 00:00:00,22,EPA/OPPT Mass Balance Model,I,3,,,,,Inhalation / Vapor,1,"I = Cm x b x h
+LADD = (I x ED x Y) / (BW x ATc x 365 days/yr)
+ADD = (I x ED x Y) / (BW x AT x 365 days/yr)
+APDR =  I / BW
+Cm = Cv x MW / Vm
+Cv = lesser of (170,000 x T x G) / (MW x Q x k) or 1,000,000 x X x VP / 760
+NW = NWexp x NS",EPA/OPPT Mass Balance Model.,1,1,Typical,Worst Case
+B03,07/21/03 00:00:00,23,OSHA PEL-Limiting Model for Substance-specific Particulates (TWA or C),I,28,,,,,Inhalation / Particulate,3,"I = Cm x b x h
+Cm = KCk x Ys / Ypel
+LADD = (I x ED x Y) / (BW x ATc x 365 days/yr)
+ADD = (I x ED x Y) / (BW x AT x 365 days/yr)
+APDR = I / BW
+NW = NWexp x NS",OSHA PEL-Limiting Model for Substance-specific Particulates (TWA or C).,0,1,Upper Bound,Upper Bound
+B04,07/24/03 00:00:00,24,OSHA Total PNOR PEL-Limiting Model,I,4,,,,,"Inhalation / Particulate or non-volatile portion of mist, aerosols, etc.",3,"I = Cm x b x h
+Cm = KCk x Ys
+LADD = (I x ED x Y) / (BW x ATc x 365 days/yr)
+ADD = (I x ED x Y) / (BW x AT x 365 days/yr)
+APDR =  I / BW
+NW = NWexp x NS",OSHA PNOR PEL-Limiting Model.,0,1,Upper Bound,Upper Bound
+B09,07/21/03 00:00:00,25,EPA/OPPT 1-Hand Dermal Contact with Liquids Model,D,6,,,,,Dermal contact / Liquid,11,"Dexp = S x Qu x Wf x FT
+LADD = (Dexp x ED x Y) / (BW x ATc x 365 days/yr)
+ADD = (Dexp x ED x Y) / (BW x AT x 365 days/yr)
+APDR = Dexp / BW
+NW = NWexp x NS",EPA/OPPT 1-Hand Dermal Contact with Liquids Model.,0,1,Output,High End
+B10,07/21/03 00:00:00,26,EPA/OPPT 2-Hand Dermal Contact with Liquid Model,D,6,,,,,Dermal contact / Liquid,11,"Dexp = S x Qu x Wf x FT
+LADD = (Dexp x ED x Y) / (BW x ATc x 365 days/yr)
+ADD = (Dexp x ED x Y) / (BW x AT x 365 days/yr)
+APDR = Dexp / BW
+NW = NWexp x NS",EPA/OPPT 2-Hand Dermal Contact with Liquids Model.,0,1,Output,High End
+B11,07/21/03 00:00:00,27,EPA/OPPT 2-Hand Dermal Immersion in Liquid Model,D,6,,,,,Dermal contact / Liquid,11,"Dexp = S x Qu x Wf x FT
+LADD = (Dexp x ED x Y) / (BW x ATc x 365 days/yr)
+ADD = (Dexp x ED x Y) / (BW x AT x 365 days/yr)
+APDR = Dexp / BW
+NW = NWexp x NS",EPA/OPPT 2-Hand Dermal Immersion in Liquid Model.,0,1,Output,High End
+B12,07/21/03 00:00:00,28,EPA/OPPT Direct 2-Hand Dermal Contact with Solids Model,D,7,,,,,Dermal contact / Solid,12,"Dexp = S x Qu x Wf x FT
+LADD = (Dexp x ED x Y) / (BW x ATc x 365 days/yr)
+ADD = (Dexp x ED x Y) / (BW x AT x 365 days/yr)
+APDR = Dexp / BW
+NW = NWexp x NS",EPA/OPPT Direct 2-Hand Dermal Contact with Solids Model.,0,1,High End,High End
+B13,07/21/03 00:00:00,29,EPA/OPPT 2-Hand Dermal Contact with Container Surfaces (Solids) Model,D,7,,,,,Dermal contact / Solid,12,"Dexp = S x Qu x Wf x FT
+LADD = (Dexp x ED x Y) / (BW x ATc x 365 days/yr)
+ADD = (Dexp x ED x Y) / (BW x AT x 365 days/yr)
+APDR = Dexp / BW
+NW = NWexp x NS",EPA/OPPT 2-Hand Dermal Contact with Container Surfaces (Solids) Model.,0,1,High End,High End
+A21,07/22/03 00:00:00,39,User-Defined Loss Rate Model,R,15,,,,1.00000000e+02,Not applicable,,"DR (kg/site-day) = LF × Amt
+DR occurs over [Freq] days/year
+AR (kg/year) = DR × Freq × NS,  AR is for all sites combined",User-Defined Loss Rate Model.,0,1,Output,Output
+B07,08/12/03 00:00:00,40,EPA/OPPT Automobile Spray Coating Inhalation Exposure Model (polyisocyanates),I,9,,,,,"Inhalation / Particulate or non-volatile portion of mist, aerosols, etc.",3,"I = Cm x b x h
+Cm = KCk
+LADD = (I x ED x Y) / (BW x ATc x 365 days/yr)
+ADD = (I x ED x Y) / (BW x AT x 365 days/yr)
+APDR =  I / BW
+NW = NWexp x NS",EPA/OPPT Automobile Spray Coating Inhalation Model (non-volatile polyisocyanates).,1,1,What-If,What-If
+A11,08/12/03 00:00:00,41,EPA/OPPT Automobile Refinish Coating Overspray Loss Model (non-volatiles),R,17,1.00000000e+01,,9.00000000e+01,,Not applicable,,"DR (kg/site-day) = LF × Amt
+DR occurs over [Freq] days/year
+AR (kg/year) = DR × Freq × NS,  AR is for all sites combined",EPA/OPPT Automobile Refinish Coating Overspray Loss Model (non-volatiles).,0,1,Output,Output
+A22,07/22/03 00:00:00,42,EPA/OPPT Water Saturation Loss Model,R,24,,,,1.00000000e+02,Not applicable,,"DR (kg/site-day) = WSchem × CF × Amt / 1000
+DR occurs over [Freq] days/year
+AR (kg/year) = DR × Freq × NS, AR is for all sites combined",EPA/OPPT Water Saturation Loss Model.,0,1,Output,Output
+A23,07/22/03 00:00:00,43,User-defined Vapor Generation Rate Model,R,25,1.00000000e+02,,,,The user enters the vapor generation rate and associated parameters.,,"DR (kg/site-day) = (G × 3600 × OHa) / 1000
+DR occurs over [Freq] days/year
+AR (kg/year) = DR × Freq × NS, AR is for all sites combined",User-defined Vapor Generation Rate Model.,0,1,Output,Output
+B17,07/15/03 00:00:00,44,User-defined Dermal Model,D,5,,,,,Dermal contact / Liquid or solid,11,"Dexp = S x Qu x Wf x FT
+LADD = (Dexp x ED x Y) / (BW x ATc x 365 days/yr)
+ADD = (Dexp x ED x Y) / (BW x AT x 365 days/yr)
+APDR = Dexp / BW
+NW = NWexp x NS",User-defined Dermal Model.,1,1,Output,Output
+B19,07/21/03 00:00:00,45,OSHA PEL-Limiting Model for Substance-specific Vapor (TWA or C),I,26,,,,,Inhalation / Vapor,1,"I = Cm x b x h
+LADD = (I x ED x Y) / (BW x ATc x 365 days/yr)
+ADD = (I x ED x Y) / (BW x AT x 365 days/yr)
+APDR =  I / BW
+Cm = Cv x MW / Vm
+Cv = lesser of Cvk x (VP x Ys / MW) / (Vppel x Ypel / Mwpel) or 1,000,000 x X x VP / 760
+NW = NWexp x NS",OSHA PEL-Limiting Model for Substance-specific Vapor (TWA or C),0,1,Upper Bound,Upper Bound
+B08,07/31/03 00:00:00,46,User-defined Inhalation Model,I,27,,,,,"Inhalation / Vapor, particulate, mist, aerosols, etc.",1,"Cm = Cv x MW / Vm x Ys 
+I = Cm x b x h
+LADD = (I x ED x Y) / (BW x ATc x 365 days/yr)
+ADD = (I x ED x Y) / (BW x AT x 365 days/yr)
+APDR =  I / BW
+NW = NWexp x NS",User-defined Inhalation Model.,0,1,Output,Output
+B20,07/24/03 00:00:00,47,OSHA Respirable PNOR PEL-Limiting Model,I,4,,,,,"Inhalation / Particulate or non-volatile portion of mist, aerosols, etc.",3,"I = Cm x b x h
+Cm = KCk x Ys
+LADD = (I x ED x Y) / (BW x ATc x 365 days/yr)
+ADD = (I x ED x Y) / (BW x AT x 365 days/yr)
+APDR =  I / BW
+NW = NWexp x NS",OSHA Respirable PNOR PEL-Limiting Model.,0,1,Upper Bound,Upper Bound
+A10,08/12/03 00:00:00,48,EPA/OPPT Automobile OEM Coating Overspray Loss Model (non-volatiles),R,17,4.00000000e+00,,8.64000015e+01,9.60000038e+00,Not applicable,,"DR (kg/site-day) = LF × Amt
+DR occurs over [Freq] days/year
+AR (kg/year) = DR × Freq × NS,  AR is for all sites combined",EPA/OPPT Automobile OEM Coating Overspray Loss Model (non-volatiles).,0,1,Output,Output
+B05,08/12/03 00:00:00,49,EPA/OPPT Automobile OEM Spray Coating Inhalation Exposure Model (non-volatile non-polyisocyanates),I,19,,,,,"Inhalation / Particulate or non-volatile portion of mist, aerosols, etc.",2,"I = Cm x b x h
+Cm = KCk x Ys
+LADD = (I x ED x Y) / (BW x ATc x 365 days/yr)
+ADD = (I x ED x Y) / (BW x AT x 365 days/yr)
+APDR =  I / BW
+NW = NWexp x NS",EPA/OPPT Automobile OEM Spray Coating Inhalation Model (non-volatile non-polyisocyanates).,0,1,What-If,What-If
+B06,08/12/03 00:00:00,50,EPA/ OPPT Refinish Automobile Spray Coating Inhalation Exposure Model (non-volatiles),I,19,,,,,"Inhalation / Particulate or non-volatile portion of mist, aerosols, etc.",2,"I = Cm x b x h
+Cm = KCk x Ys
+LADD = (I x ED x Y) / (BW x ATc x 365 days/yr)
+ADD = (I x ED x Y) / (BW x AT x 365 days/yr)
+APDR =  I / BW
+NW = NWexp x NS",EPA/ OPPT Automobile Refinish Spray Coating Inhalation Model (non-volatile non-polyisocyanates).,0,1,Typical,High End
+A24,,53,EPA/OPPT Solids Transfer Dust Loss Model,R,11,,,,,Not applicable,,"DR (kg/site-day) = LF x Amt x (1-SrE)
+DR occurs over [Freq] days/year
+AR (kg/year) = DR × Freq × NS,  AR is for all sites combined","EPA/OPPT Solids Transfer Dust Loss Model.  If DstCntrl is None, then add, ""No dust controls are assumed as a worst case"".  Otherwise add, ""Dust emissions controlled by"" [DstCntrl].  *It is recommended that you update this default text as appropriate, especially to specify a user-defined control technology.",0,1,Conservative,Conservative
+C01,,54,EPA/OPPT Near-Field/Far-Field Inhalation Exposure Model,I,3,,,,,Inhalation / Vapor,1,"I = Cm x b x h
+Cm = KCk x Ys
+LADD = (I x ED x Y) / (BW x ATc x 365 days/yr)
+ADD = (I x ED x Y) / (BW x AT x 365 days/yr)
+APDR =  I / BW
+NW = NWexp x NS",EPA/OPPT Near-Field/Far-Field Inhalation Exposure Model,1,1,Typical,High-End

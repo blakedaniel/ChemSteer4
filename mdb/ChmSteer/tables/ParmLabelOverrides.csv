@@ -1,0 +1,23 @@
+OpID,ParmID,ParmName,Abbr
+100,10,Weight Fraction of the Chemical in the Formulated Paint,Yfpaint
+100,12,Daily Mass of Formulated Paint Used,DMUfpaint
+100,13,Daily Mass Output of Chemical in Formulated Paint,DMUChem
+100,30,Density of the Material in Formulated Paint,Dfpaint
+100,32,Batch Mass of Formulated Paint Used,BMUPaint
+100,104,Batch Mass Output of Chemical in Formulated Paint,BMUChem
+100,106,Batch Mass Output of Chemical in Formulated Paint x Nbd,BMUChem x Nbd
+100,108,Batch Mass Output of Chemical in Formulated Paint x Ls,BMUChem x Ls
+101,10,Weight Fraction of the Chemical in the Formulated Paint,Yfpaint
+101,11,Weight Fraction of the Chemical in the Purchased Paint,Yppaint
+101,12,Daily Mass of Formulated Paint Used,DMUfpaint
+101,13,Daily Mass Output of Chemical in Formulated Paint,DMUChem
+101,14,Daily Mass Input of Purchased Paint Containing the Chemical,DMIppaint
+101,29,Density of Purchased Paint,Dppaint
+101,30,Density of the Material in Formulated Paint,Dfpaint
+103,10,Weight Fraction of Chemical in the Additive,Yaddtv
+103,12,Daily Mass Use of Additive Containing Assessed Chemical,DMUaddtv
+103,13,Daily Mass Use of Chemical in Additive Used,DMUchem
+104,10,Weight Fraction of Chemical in the Bath,Yaddtv
+104,12,Avg Daily Mass of Electroplating Bath Additive,ADMUaddtv
+104,13,Avg Daily Mass of Chem in Electroplating Bath Additive,ADMUchem
+104,137,Frequency of Release of Chemical,Freq

@@ -1,0 +1,19 @@
+MediaID,Media,SortID
+0,Air,8
+1,Air or Incineration,9
+2,Air or Incineration or Landfill,10
+3,Water or Air or Incineration or Landfill,4
+4,Air or Landfill,11
+5,Water or Air or Landfill,3
+6,Water or Air,1
+7,Incineration,12
+8,Incineration or Landfill,13
+9,Water or Incineration or Landfill,6
+10,Water or Incineration,5
+11,Landfill,14
+12,Water or Landfill,7
+13,Water,0
+14,Deepwell Injection,15
+15,Destroyed,16
+16,Other,17
+17,Water or Air or Incineration,2

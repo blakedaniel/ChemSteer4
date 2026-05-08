@@ -1,0 +1,73 @@
+ModelID,ParmID,DualID,LabelID,Label,Value,note
+18,57,0,1,Low end or range,3.99999991e-02,
+18,57,0,2,High end of range,2.59999990e-01,
+18,57,1,1,Low end or range,3.99999991e-02,
+18,57,1,2,High end of range,2.59999990e-01,
+40,57,0,1,HVLP/Downdraft,6.00000024e-01,
+40,57,0,2,Conv/Downdraft,9.99999978e-03,
+40,57,0,3,HVLP/Crossdraft,1.00000000e+00,
+40,57,0,4,Conv/Crossdraft,5.00000007e-02,
+40,57,1,1,HVLP/Downdraft,1.39999998e+00,
+40,57,1,2,Conv/Downdraft,3.70000005e+00,
+40,57,1,3,HVLP/Crossdraft,5.19999981e+00,
+40,57,1,4,Conv/Crossdraft,1.83999996e+01,
+41,43,0,1,HVLP Gun,6.49999976e-01,
+41,43,0,2,Conv Gun,2.00000003e-01,9/19/13 jc: had been 0.25
+41,43,1,1,HVLP Gun,6.49999976e-01,
+41,43,1,2,Conv Gun,2.00000003e-01,9/19/13 jc: had been 0.25
+41,45,0,1,Waterwash / Dry Filter,9.59999979e-01,had been Waterwash .96
+41,45,0,2,Waterwash / Dry Filter,9.59999979e-01,had been Dry Filter .9
+41,45,1,1,Waterwash / Dry Filter,9.59999979e-01,had been Waterwash .96
+41,45,1,2,Waterwash / Dry Filter,9.59999979e-01,had been Dry Filter .9
+41,52,0,1,Waterwash,8.99999976e-01,
+41,52,0,2,Dry Filter,1.00000000e+00,
+41,52,1,1,Waterwash,8.99999976e-01,
+41,52,1,2,Dry Filter,1.00000000e+00,
+48,43,0,1,HVLP Gun,6.49999976e-01,
+48,43,0,2,Conv Gun,2.00000003e-01,9/19/13 jc: had been 0.25
+48,43,1,1,HVLP Gun,6.49999976e-01,
+48,43,1,2,Conv Gun,2.00000003e-01,9/19/13 jc: had been 0.25
+48,45,0,1,Waterwash / Dry Filter,9.59999979e-01,had been Waterwash .96
+48,45,0,2,Waterwash / Dry Filter,9.59999979e-01,had been Dry Filter .9
+48,45,1,1,Waterwash / Dry Filter,9.59999979e-01,had been Waterwash .96
+48,45,1,2,Waterwash / Dry Filter,9.59999979e-01,had been Dry Filter .9
+48,52,0,1,Waterwash,8.99999976e-01,
+48,52,0,2,Dry Filter,1.00000000e+00,
+48,52,1,1,Waterwash,8.99999976e-01,
+48,52,1,2,Dry Filter,1.00000000e+00,
+49,57,0,1,HVLP/Downdraft,1.89999998e+00,
+49,57,0,2,Conv/Downdraft,2.29999995e+00,
+49,57,0,3,HVLP/Crossdraft,1.50000000e+01,
+49,57,0,4,Conv/Crossdraft,1.50000000e+01,
+49,57,1,1,HVLP/Downdraft,1.89999998e+00,
+49,57,1,2,Conv/Downdraft,2.29999995e+00,
+49,57,1,3,HVLP/Crossdraft,1.50000000e+01,
+49,57,1,4,Conv/Crossdraft,1.50000000e+01,
+50,57,0,1,Typical/Downdraft,1.00000000e+00,
+50,57,0,2,High-End/Downdraft,7.00000000e+00,
+50,57,0,3,Typical/Crossdraft,9.00000000e+00,
+50,57,0,4,High-End/Crossdraft,3.20000000e+01,
+50,57,1,1,Typical/Downdraft,1.00000000e+00,
+50,57,1,2,High-End/Downdraft,7.00000000e+00,
+50,57,1,3,Typical/Crossdraft,9.00000000e+00,
+50,57,1,4,High-End/Crossdraft,3.20000000e+01,
+51,142,0,1,Organic Compounds,5.00000000e-01,
+51,142,0,2,Suspended Solids,9.70000029e-01,
+51,142,1,1,Organic Compounds,5.00000000e-01,
+51,142,1,2,Suspended Solids,9.70000029e-01,
+52,142,0,1,Organic Compounds,5.00000000e-01,
+52,142,0,2,Suspended Solids,9.70000029e-01,
+52,142,1,1,Organic Compounds,5.00000000e-01,
+52,142,1,2,Suspended Solids,9.70000029e-01,
+53,143,0,0,,0.00000000e+00,
+53,143,0,1,Mechanical collector/cyclone (low end; conservative),8.00000012e-01,
+53,143,0,2,Mechanical collector/cyclone (high end),9.90000010e-01,
+53,143,0,3,Fabric filter/baghouse (conservative),9.90000010e-01,
+54,145,0,1,Low End,3.00000000e+02,
+54,145,0,2,High end,2.00000000e+03,
+54,145,1,1,Low End,3.00000000e+02,
+54,145,1,2,High End,2.00000000e+03,
+54,146,0,1,Low End,2.00000000e+00,
+54,146,0,2,High End,1.50000000e+01,
+54,146,1,1,Low End,2.00000000e+00,
+54,146,1,2,High End,1.50000000e+01,

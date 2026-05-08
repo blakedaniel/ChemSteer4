@@ -1,0 +1,19 @@
+ActCat,CatName,IsGSS
+1,Cleaning Liquid Residuals from Transport Containers/ Vessels,0
+2,Cleaning Solid Residuals from Transport Containers/ Vessels,0
+3,Equipment Cleaning Losses of Liquids,0
+4,Equipment Cleaning Losses of Solids,0
+5,Loading Liquids into Transport Containers/ Vessels,0
+6,Loading Solids into Transport Containers/ Vessels,0
+7,Miscellaneous Sources/ Activities,0
+8,Sampling Liquids,0
+9,Sampling Solids,0
+10,Unloading Liquids from Transport Containers/ Vessels,0
+11,Unloading Solids from Transport Containers/ Vessels,0
+12,Vapor Release from Transfer Operations,0
+13,Unit Operations and Processes,0
+14,Coating Applications,0
+15,Equipment Cleaning Losses of Solids,0
+100,Automobile Spray Coating,1
+103,Recirculating Water-Cooling Tower Additive Use Operation,1
+104,Use of Electroplating Bath Additive,1

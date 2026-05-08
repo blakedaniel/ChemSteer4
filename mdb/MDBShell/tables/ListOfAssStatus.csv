@@ -1,0 +1,11 @@
+AssStatusID,AssStatus,SortOrder
+20,CEB Staff Draft,1
+10,Contractor Draft,2
+30,Focus Ready Draft,3
+40,Post-Focus Draft Revision 1,4
+41,Post-Focus Draft Revision 2,5
+42,Post-Focus Draft Revision 3,6
+43,Post-Focus Draft Revision 4,7
+44,Post-Focus Draft Revision 5,8
+50,Standard Review Draft,9
+999,Other,999

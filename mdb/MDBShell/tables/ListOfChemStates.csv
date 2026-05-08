@@ -1,0 +1,7 @@
+ChemStateID,ChemState
+1,Vapor
+2,Mist
+3,Particulate
+4,Aerosol
+11,Liquid
+12,Solid

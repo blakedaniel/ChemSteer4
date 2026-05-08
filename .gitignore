@@ -1,0 +1,39 @@
+# Claude / agent tooling
+CLAUDE.md
+.claude/
+.serena/
+.mcp.json
+
+# Source installer (large binary, fetch from EPA)
+installer/*.exe
+installer/*.zip
+
+# Local scripts (not committed)
+scripts/
+
+# Raw extracted installer payload (regenerable from installer)
+extracted/
+
+# Ghidra project (large, machine-specific, regenerable)
+decompilation/ghidra-project/
+
+# Generated SQLite DBs (regenerable from CSVs via scripts/dump-mdb.py)
+mdb/*/*.sqlite
+mdb/*/schema.sql
+
+# Decompiled help HTML (regenerable from .chm)
+help/html/
+
+# Raw strings dumps (regenerable)
+strings/ascii.txt
+strings/unicode.txt
+strings/pe-imports.txt
+
+# OS / editor cruft
+.DS_Store
+*.swp
+*~
+__pycache__/
+*.pyc
+.venv/
+venv/

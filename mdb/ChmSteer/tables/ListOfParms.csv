@@ -1,0 +1,162 @@
+ParmID,ParmName,StdUnits,Abbr,Notes,Type,DefaultSource,PCat2,PCat3,PCat4,PCat5,PCat6,PCat7,PCat8,PCat9,PCat10,PCat11,PCat14,PCat15,PCat16,PCat17,PCat18,PCat19,PCat20,PCat24,PCat25,PCat26,PCat27,PCat28,PCat29,PCat30,PCat31
+1,Number of Sites,sites,NS,,1,-1000,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+2,Number of Operating Days,days/site-yr,OD,,141,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+3,Operating Hours per Day,hrs/site-day,OH,,1,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+4,Vapor Pressure,torr,VP,,1,-1302,0,1,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,1,0,0,0,0,0
+5,Molecular Weight,g/mol,MW,,1,-1102,0,1,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,1,1,0,0,0,0
+6,Universal Gas Constant,atm cm3/gmol K,R,,20,-1300,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+7,Atmospheric Pressure,atm,P,,1,-1300,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0
+8,Temperature,K,T,,1,-1300,0,1,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0
+9,Weight Fraction,dimensionless,WFused,,1,-1302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,Weight Fraction of Chemical in Product,dimensionless,Yprod,,142,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+11,Weight Fraction of Chemical in Raw Material,dimensionless,Yrm,,142,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+12,Mass Output of Product Containing Chemical,kg/site-day,DMOprod,,140,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+13,Daily Mass Output of Chemical in Product,kg/site-day,DMOchem,,140,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+14,Mass Input of Raw Material Containing Chemical,kg/site-day,DMIrm,,140,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+15,Daily Mass Input of Chemical in Raw Material,kg/site-day,DMIchem,,140,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+16,Total batches/site-year,btc/site-yr,Nby,,141,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+17,Number of Batches per Day,btc/site-day,Nbd,,1,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+18,Maximum number of operating days,days,ODmax,feb12,1,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+19,Volume Capacity of container,gal/container,Vc,,1,-1203,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+20,Fraction of PV to the Container Type,dimensionless,fc,,1,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+21,Volume of paint used per car,L/car,vCar,mar29,1,-1300,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+22,Saturation Factor,dimensionless,f,,1,-1300,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+23,Container Rate,containers/hr,r,,1,-1201,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+24,Number of batches per line per day,batches/line,Nbld,feb12,1,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+25,Number of cars painted per site-day,cars/site-day,Ncar,mar29,1,-1300,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+26,Diameter of Opening / Pool Length,cm,d,,1,-1302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0
+27,Volume of paint used per day,gallons of paint/site-day,Vpaint,mar29,1,-1300,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+28,Area,cm2,A,,21,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0
+29,Density of the Material in Raw Material,kg/L,Drm,,1,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+30,Density of the Material in Product,kg/L,Dprod,,1,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+31,Operating Hours for the Activity,hours/day,Oha,,1,-1302,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,0,0,0,0,0
+32,Batch Mass Output of Product,kg/site-batch,BMOprod,feb12,140,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+33,Batch Mass Input of Chemical x Nbd / Ls,kg/site-day,BMIChem x Nbd / Ls,,140,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+34,work field,,HMxChem,used in Mass Balance,1,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+35,work field,,HD,used in Mass Balance,1,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+36,Surface Area,cm2,S,aug25 - constant,20,-1302,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+37,"Quantity for Chemical on Skin, CB",mg/cm2-event,Qu,aug25 - no UserDef,1,-1302,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+38,"OBSO: Weight Fraction of Chemical in Particulate, Solids Fraction of Mist, or Mixture",dimensionless,OBSO Ys,aug26 - was YsHybrid,1,-1302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+39,Internal Work field: 1,dimensionless,CEB Default,Aug28,142,-1300,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+40,Vapor Pressure Correction Factor,dimensionless,X,mar20,1,-1302,0,1,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,1,0,0,0,0,0
+41,Years of Occupation Exposure,years,EY,,1,-1300,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,1,1,1,0,0,1
+42,Body Weight,kg,BW,,1,-1300,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,1,1,1,0,0,1
+43,Spray Gun Transfer Efficiency,dimensionless,TE,,1,-1300,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+44,Inhalation Rate,m3/hr,b,,1,-1300,0,1,1,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,1,1,1,0,0,1
+45,Spray Mist Capture Efficiency,dimensionless,McE,,1,-1300,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+46,Exposure Duration,hrs/day,h,,1,-1302,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,1,1,1,0,0,1
+47,Averaging Time,years,AT,,1,-1300,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,1,1,1,0,0,1
+48,Averaging Time over a Lifetime (Chronic),years,ATc,,1,-1300,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,1,1,1,0,0,1
+49,Vapor Generation Rate,g/s,G,input,1,-1300,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+50,Vapor Generation Rate,g/s,G,output,21,-1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,1
+51,Mixing Factor,dimensionless,k,,1,-1302,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+52,Solid Removal Efficiency from Captured Mist,dimensionless,SrE,,1,-1300,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+53,Ventilation Rate,ft3/min,Q,,1,-1302,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+54,FOR INTERNAL USE ONLY: Cm/Cv option,,CmCvOption,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+55,Surface Area,cm2,S,,1,-1302,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+56,"Quantity for Chemical on Skin, CB",mg/cm2-event,Qu,,1,-1302,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+57,Mass concentration of total or total respirable particulate in air,mg/m3,KCk,"july14, w/o user defined",1,-1302,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+58,Surface Area x Quantity for Chemical on Skin,mg/event,SQu,,20,-1302,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+59,Weight fraction of chemical in mist,dimensionless,Ymist,july14,1,-1302,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+60,Frequency of Events,events/site-day,FT,,1,-1300,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+61,Amount of Material Handled,kg/day,AH,,1,-1302,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+62,Mass concentration of total or total respirable particulate in air,mg/m3,KCk,w/user defined,1,-1302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+63,Molar Volume,L/mol,Vm,,1,-1300,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0
+64,Mass Concentration of Chemical in Air,mg/m3,Cm,"input, special processing in Rel Model View/Update",1,-1300,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1
+65,Mass Concentration of Chemical in Air,mg/m3,Cm,output,21,-1,0,1,1,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0
+66,Volume Concentration of Chemical in Air,ppm,Cv,output,21,-1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0
+67,Volume Concentration of Chemical in Air,ppm,Cv,"input, special processing in Rel Model View/Update",1,-1300,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+68,Weight fraction of solids in paint,dimensionless,Ysf,July14,1,-1302,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+69,Air Speed,ft/min,vz,,1,-1302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0
+70,Mass concentration of total or total respirable particulate in air,mg/m3,KCk,aug24,20,-1302,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+71,Exposure Duration,hrs/day,h,aug24,20,-1302,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+72,Frequency to Use,days/site-yr,Freq,Label EF on Exp,1,-1302,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,1,1,1,0,0,0,1,0,0
+73,Loss Fraction,dimensionless,LF,no user defined,1,-1302,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+74,Loss Fraction,dimensionless,LF,"autos, 1-TE",20,-1302,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+75,Exposure Days,days/site-yr,ED,4/3,1,-1302,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,1,1,1,0,0,1
+76,Weight Fraction in liquid,dimensionless,Yl,4/3,1,-1302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+77,Weight Fraction of chemical in liquid/solid,dimensionless,Yderm,4/5,1,-1302,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+78,"Weight Fraction of Chemical in Particulate, Solids Fraction of Mist, or Mixture",dimensionless,Ys,4/3 - meta,1,-1302,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0
+79,Correction Factor,dimensionless,CF,added apr29,1,-1300,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0
+80,Water solubility of the chemical,g/L,WSchem,added apr29,1,-1104,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0
+81,Exposure Factor,mg/kg,EF,4/29,1,-1302,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+82,Shifts worked by the worker,shifts/worker/day,Sd,4/29,1,-1300,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+83,Batch Mass Input of Raw Material x Nbd,kg/site-day,BMIrm x Nbd,Apr29,140,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+84,Batch Mass Input of Raw Material x Nbd / Ls,kg/site-batch,BMIrm x Nbd / Ls,Apr29,140,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+85,Batch Mass Output of Product x Nbd,kg/site-day,BMOprod x Nbd,Apr29,140,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+86,Batch Mass Output of Product x Nbd / Ls,kg/site-batch,BMOprod x Nbd / Ls,Apr29,140,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+87,Mass Capacity of container x Ncd,kg/container,MCi x Ncd,Apr29,140,-1213,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+88,Batch Mass Input of Raw Material x Ls,kg/site-batch,BMIrm x Ls,Apr29,140,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+89,Batch Mass Output of Product x Ls,kg/site-batch,BMOprod x Ls,Apr29,140,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+90,Vapor concentration of the chemical,ppm,Cvk,5/1,1,-1300,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0
+91,Number of Workers Exposed,workers/site,NWexp,,1,-1300,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,1,1,1,0,0,1
+92,Amount to Use,kg/site-day,Amt,,1,-1302,0,0,0,0,0,0,0,0,1,1,1,1,0,1,0,0,0,1,0,0,0,0,0,0,0
+93,Days per site per year for the activity,days/yr,ODa,mar20,141,-1209,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+94,Weight fraction of chemical in material handled,dimensionless,Yi,apr03,142,-1202,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+95,Vapor Pressure of the pure PEL chemical,torr,VPpel,5/1,1,-1300,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0
+96,Weight fraction of chemical with PEL in mixture,dimensionless,Ypel,5/1,1,-1302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0
+97,Molecular weight of the PEL chemical,g/mol,MWpel,5/1,1,-1300,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0
+98,Internal Work field: 250,days/site-yr,CEB Default,5/1,141,-1300,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+99,Batch Mass Input of Raw Material,kg/site-batch,BMIrm,feb12,140,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+100,Density of material handled in activity,kg/L,Di,,1,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+101,Hours per batch,hours,HB,feb12,1,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+102,Lines per site,lines/site,Ls,feb12,1,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+103,Batch Mass Input of Chemical,kg/site-batch,BMIchem,feb12,140,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+104,Batch Mass Output of Chemical,kg/site-batch,BMOchem,feb12,140,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+105,Number of Containers per site per year,containers/site-year,Ncy,mar20,141,-1208,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+106,Batch Mass Output of Chemical x Nbd,kg/site-day,BMOchem x Nbd,mar23,140,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+107,Batch Mass Input of Chemical x Nbd,kg/site-day,BMIchem x Nbd,mar23,140,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+108,Batch Mass Output of Chemical x Ls,kg/site-batch,BMOchem x Ls,mar23,140,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+109,Batch Mass Input of Chemical x Ls,kg/site-batch,BMIchem x Ls,mar23,140,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+110,Mass Capacity of container,kg/container,MCi,mar23,140,-1206,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+111,Mass Capacity of container x Yi,kg/container,MCi x Yi,mar23,140,-1211,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+112,Mass Capacity of container x Yi x Ncd,kg/container,MCi x Yi x Ncd,mar23,140,-1212,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+113,"Weight Fraction of Chemical in Particulate, Solids Fraction of Mist, or Mixture",dimensionless,Ys,aug26 - nonMeta,1,-1300,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+114,Annual Mass of Adhesive Formulated containing the chemical,kg/site-year,AMOprod,july26,1,-1300,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+115,Volume of Adhesive Formulated per batch,liters/batch,Vbatch,july26,1,-1300,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+116,Volume of purchased paint used per day,Liters/site-day,DVIppaint,Aug10,1,-1300,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+117,Loss Fraction,dimensionless,LF,user defined,3,999,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+118,Vapor Pressure Correction Factor for Raw Material,dimensionless,Xrm,May12,143,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+119,Vapor Pressure Correction Factor for Product,dimensionless,Xprod,May12,143,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+120,Vapor Pressure Correction Factor for Other Material,dimensionless,Xother,May12,143,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+121,Adjusted Vapor Pressure for Raw Material,torr,AVPrm,May12,1,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+122,Adjusted Vapor Pressure for Product,torr,AVPprod,May12,1,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+123,Batch Mass Output of Chemical x Nbd / Ls,kg/site-day,BMOChem x Nbd / Ls,,140,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+124,Weight fraction of the chemical in the cooling tower,dimensionless,Yctw,oct02 - robyn,142,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+125,Density of the recirculating cooling tower water,kg/gal,Dctw,oct02 - robyn,1,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+126,Recirculation rate of the cooling tower operation,hrs/site-day,RRctw,oct02 - robyn,1,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+127,Loss fraction of daily recirculation rate from cooling tower blowdown,dimensionless,LFb,oct02 - robyn,144,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+128,Loss fraction of daily recirculation rate from cooling tower windage,dimensionless,LFw,oct02 - robyn,144,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+129,Loss fraction of daily recirculation rate from cooling tower evaporation,dimensionless,Lfe,oct02 - robyn,144,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+130,Daily recirculation rate of chemical in the cooling tower,kg/site-day,DRRchem,oct02 - robyn,140,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+131,Weight fraction of the chemical in the bath,dimensionless,Ybath,jul04 - robyn,1,-1302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+132,Weight fraction of the chemical in the rinse water,dimensionless,Yrinse,jul04 - robyn,1,-1302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0
+133,Density of the bath,kg/liter,Dbath,jul04 - robyn,1,-1302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+134,Density of the rinse,kg/liter,Drinse,jul04 - robyn,1,-1302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0
+135,Volume of solution per bath,gallons/bath,Vbath,jul04 - robyn,1,-1300,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+136,Number of bath tanks per site,baths/site,Nbath,jul04 - robyn,1,-1300,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+137,Frequency of bath changes per year,changes/bath/yr,Freqbath,jul04 - robyn,1,-1302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+138,Daily volume of rinse water generated per site,gallons/site-day,DVrinse,jul04 - robyn,1,-1302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0
+139,Rinsewater recovery efficiency,dimensionless,RinseE,jul04 - robyn,1,-1302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0
+140,Estimated PVop for iterative calculation sequences,need uinit,EPVop,jul04 - robyn,1,-1300,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+141,Daily volume of bath change,gallons,DVbath,jul04 - robyn,1,-1302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+142,Wastewater treatment efficiency,dimensionless,WWTE,jul04 - robyn,1,-1302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0
+143,Dust control technology,,DstCntrl,july07 - jc,1,-1302,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+144,Solid removal efficiency of dust control technology,dimensionless,SrE,july07 - jc,1,-1302,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+145,Volume of Far-Field,m3,VFF,Nov14 - rr,1,-1302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+147,Near-Field indoor wind speed,m/hr,velocityNF,Nov14 - rr,1,-1302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+148,Length of Near-Field,m,LNF,Nov14 - rr,1,-1302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+149,Width of Near-Field,m,WNF,Nov14 - rr,1,-1302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+150,Height of Near-Field,m,HNF,Nov14 - rr,1,-1302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+151,Vapor Generation Rate,mg/hr,G,Nov14 - rr,1,-1300,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+152,Inhalation potential dose rate,mg/day,I,Nov14 - rr,21,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+153,Mass concentration of chemical in near-field air,mg/m3,CnfTWA,Nov14 - rr,143,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+154,Mass concentration of chemical in far-field air,mg/m3,CffTWA,Nov14 - rr,143,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+155,Lifetime average daily dose,mg/kg-day,LADD,Nov14 - rr,143,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+156,Average daily dose,mg/kg-day,ADD,Nov14 - rr,143,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+157,Acute potential dose rate,mg/kg-day,APDR,Nov14 - rr,143,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+158,Volume of Near-Field,volume,VNF,Nov14 - rr,143,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+159,Free Surface Area,m2,FSA,Nov14 - rr,143,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+160,Near-Field Ventilation Rate,m3/hr,QNF,Nov14 - rr,143,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+161,Far-Field Ventilation Rate,m3/hr,QFF,Nov14 - rr,143,-1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+146,Air Exchange Rate, 1/hr,AER,Nov14 - rr,1,-1302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1

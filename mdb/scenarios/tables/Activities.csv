@@ -1,0 +1,160 @@
+ScenActID,ActName,ActID,DoRel,DoExp,DidRel,DidExp,Volatile,NW_NS,NW_NWexp,NW_NSxNWexp,NW_Route,ActOrder,ScenarioID
+0,Automotive OEM Spray Coating Application,89,-1,-1,9,0,0,0,0,0,,1,41
+0,Recirculating Water-Cooling Tower Additive Releases,93,-1,0,0,0,0,0,0,0,,1,43
+0,Changing Electroplating Bath,94,-1,0,0,0,0,0,0,0,,1,44
+1,Rinsing Electroplated Parts,95,-1,0,0,0,0,0,0,0,,2,44
+2,Operating Electroplating Bath,96,0,-1,0,0,0,0,0,0,,3,44
+0,Unloading Liquid Raw Material from Drums,13,0,0,0,0,1,0,0,0,Inhalation and Dermal,1,83
+1,Cleaning Liquid Residuals from Drums Used to Transport the Raw Material,21,-1,-1,1,1,1,11,19,209,Dermal,2,83
+2,Process Releases During Spray Coating (Default),1,-1,-1,1,1,1,11,19,209,Inhalation and Dermal,3,83
+3,Equipment Cleaning Losses of Liquids from Multiple Vessels,27,-1,0,1,0,1,0,0,0,Inhalation and Dermal,4,83
+0,Unloading Liquid Raw Material from Drums,13,-1,0,1,0,1,0,0,0,Inhalation and Dermal,1,84
+1,Cleaning Liquid Residuals from Drums Used to Transport the Raw Material,21,-1,-1,1,1,1,11,19,209,Inhalation and Dermal,2,84
+2,Open Surface Losses to Air During Raw material Sampling,55,-1,0,1,0,1,0,0,0,Inhalation and Dermal,3,84
+3,Process Releases During Spray Coating (Default),1,-1,-1,1,1,1,11,19,209,Inhalation and Dermal,4,84
+4,Equipment Cleaning Losses of Liquids from Multiple Vessels,27,-1,0,1,0,1,0,0,0,Inhalation and Dermal,5,84
+0,Cleaning Liquid Residuals from Drums Used to Transport the Raw Material,21,-1,-1,1,1,1,3,29,87,Inhalation and Dermal,1,85
+1,Unloading Liquid Raw Material from Drums,13,-1,0,1,0,1,0,0,0,Inhalation and Dermal,2,85
+2,Fugitive Air Releases During Mixing Operations,1,-1,0,1,0,1,0,0,0,Inhalation and Dermal,3,85
+3,Open Surface Losses to Air During Product Sampling,1,-1,0,1,0,1,0,0,0,Inhalation and Dermal,4,85
+4,Equipment Cleaning Losses ,91,-1,0,9,0,1,0,0,0,Inhalation and Dermal,5,85
+5,"Conveying, Mixing, and Packaging Powdered Commercial and Consumer Products",2,-1,-1,9,9,1,3,29,87,Inhalation and Dermal,6,85
+0,Unloading Liquid Raw Material from Drums,13,0,-1,0,2,0,153,8,1224,Dermal,1,86
+1,Cleaning Liquid Residuals from Drums Used to Transport the Raw Material,21,-1,0,2,0,0,0,0,0,Inhalation and Dermal,2,86
+2,Equipment and Storage Tank Cleaning,1,-1,0,2,0,0,0,0,0,Inhalation and Dermal,3,86
+3,Separation Process - Oil Phase Release,1,-1,0,2,0,0,0,0,0,Inhalation and Dermal,4,86
+4,Separation Process - Water Phase Release (on-shore production),1,-1,0,2,0,0,0,0,0,Inhalation and Dermal,5,86
+5,Separation Process - Land Release (on-shore production),1,-1,0,2,0,0,0,0,0,Inhalation and Dermal,6,86
+0,Unloading Liquid Raw Material from Drums,13,0,-1,0,1,1,15,9,135,Dermal,1,87
+1,Water-Washing Process,55,-1,0,1,0,1,0,0,0,Inhalation and Dermal,2,87
+0,Water-Washing Process,55,-1,0,1,0,1,0,0,0,Inhalation and Dermal,1,88
+1,Unloading Solid Raw Material from Transport Containers,18,-1,-1,9,9,1,4,9,36,Inhalation and Dermal,2,88
+2,Cleaning Solid/ Powder Residuals from Containers Used to Transport the Raw Material,26,0,0,0,0,1,0,0,0,Inhalation and Dermal,3,88
+3,Handling Damp Laundry and Other Operational Exposures,1,0,-1,0,1,1,4,9,36,Dermal,4,88
+0,Unloading Liquid Raw Material from Drums,13,-1,-1,1,1,1,15,9,135,Inhalation and Dermal,1,89
+1,Water-Washing Process,55,-1,0,1,0,1,0,0,0,Inhalation and Dermal,2,89
+0,Release to Air or Water from Deposition Process,30,-1,0,2,0,1,0,0,0,Inhalation and Dermal,1,91
+0,Unloading Liquid Raw Material from Bulk Transport,15,0,0,0,0,0,0,0,0,Inhalation and Dermal,1,92
+1,Cleaning Liquid Residuals from Bulk Transport Used to Transport the Raw Material,23,-1,-1,2,2,0,1,90,90,Dermal,2,92
+2,Equipment Cleaning Losses of Liquids from Multiple Vessels,27,-1,0,2,0,0,0,0,0,Inhalation and Dermal,3,92
+3,Coating Process Losses and Cleaning Coating Equipment,1,-1,0,2,0,0,0,0,0,Inhalation and Dermal,4,92
+4,Trimmings and Off-Spec Product ,1,-1,-1,2,2,0,1,90,90,Inhalation,5,92
+5,Roll Coating,54,0,-1,0,9,0,1,90,90,Inhalation,6,92
+0,Equipment Cleaning Losses of Liquids from Multiple Vessels,27,-1,-1,2,9,0,1,90,90,Dermal,1,93
+1,Coating Process Losses and Cleaning Coating Equipment,1,-1,0,2,0,0,0,0,0,Inhalation and Dermal,2,93
+2,Trimmings and Off-Spec Product ,1,-1,-1,2,2,0,1,90,90,Inhalation,3,93
+3,Roll Coating,54,0,-1,0,9,0,1,90,90,Inhalation,4,93
+4,Unloading Solid Raw Material from Bags or Supersacks,18,-1,-1,9,9,0,1,90,90,Inhalation and Dermal,5,93
+5,Cleaning Solid/ Powder Residuals from Bags or Supersacks Used to Transport the Raw Material,26,-1,0,9,0,0,0,0,0,Inhalation and Dermal,6,93
+0,Unloading Liquid Raw Material from Bulk Transport,15,0,0,0,0,0,0,0,0,Inhalation and Dermal,1,94
+1,Cleaning Liquid Residuals from Bulk Transport Used to Transport the Raw Material,23,-1,-1,2,2,0,1,90,90,Dermal,2,94
+2,Equipment Cleaning Losses of Liquids from Multiple Vessels,27,-1,0,2,0,0,0,0,0,Inhalation and Dermal,3,94
+3,Coating Process Losses and Cleaning Coating Equipment,1,-1,0,2,0,0,0,0,0,Inhalation and Dermal,4,94
+4,Trimmings and Off-Spec Product ,1,-1,-1,2,2,0,1,90,90,Inhalation,5,94
+5,Roll Coating,54,0,-1,0,9,0,1,90,90,Inhalation,6,94
+0,Equipment Cleaning Losses of Liquids from Multiple Vessels,27,-1,-1,2,9,0,1,90,90,Dermal,1,95
+1,Coating Process Losses and Cleaning Coating Equipment,1,-1,0,2,0,0,0,0,0,Inhalation and Dermal,2,95
+2,Trimmings and Off-Spec Product ,1,-1,-1,2,2,0,1,90,90,Inhalation,3,95
+3,Roll Coating,54,0,-1,0,9,0,1,90,90,Inhalation,4,95
+4,Unloading Solid Raw Material from Bags or Supersacks,18,-1,-1,9,9,0,1,90,90,Inhalation and Dermal,5,95
+5,Cleaning Solid/ Powder Residuals from Bags or Supersacks Used to Transport the Raw Material,26,-1,0,9,0,0,0,0,0,Inhalation and Dermal,6,95
+0,Cleaning Liquid Residuals from Drums Used to Transport the Raw Material,21,-1,-1,1,1,1,1,22,22,Dermal,1,96
+1,Unloading Liquid Raw Material from Drums,13,0,0,0,0,1,0,0,0,Inhalation and Dermal,2,96
+0,Unloading Liquid Raw Material from Small Container,11,0,0,0,0,0,0,0,0,Inhalation and Dermal,1,114
+1,Cleaning Liquid Residuals from Small Containers Used to Transport the Raw Material,19,-1,-1,2,2,0,1,8,8,Dermal,2,114
+2,Equipment Cleaning Losses of Liquids from Multiple Vessels,27,-1,0,2,0,0,0,0,0,Inhalation and Dermal,3,114
+3,Spray Coating,88,-1,-1,9,9,0,1,3,3,Inhalation,4,114
+2,Equipment Cleaning Losses of Liquids from Multiple Vessels,27,-1,0,1,0,1,0,0,0,Inhalation and Dermal,3,96
+3,Loading Liquid Product into Drums,5,0,0,0,0,1,0,0,0,Inhalation and Dermal,4,96
+0,Equipment Cleaning Losses of Liquids from Multiple Vessels,27,-1,-1,1,9,1,1,22,22,Dermal,1,97
+1,Loading Liquid Product into Drums,5,0,0,0,0,1,0,0,0,Inhalation and Dermal,2,97
+2,Unloading Solid Raw Material from Transport Containers,18,-1,-1,9,9,1,1,22,22,Inhalation and Dermal,3,97
+3,Cleaning Solid/ Powder Residuals from Containers Used to Transport the Raw Material,26,-1,0,9,0,1,0,0,0,Inhalation and Dermal,4,97
+0,Cleaning Liquid Residuals from Drums Used to Transport the Raw Material,21,-1,-1,1,1,1,1,22,22,Inhalation and Dermal,1,98
+1,Unloading Liquid Raw Material from Drums,13,-1,0,1,0,1,0,0,0,Inhalation and Dermal,2,98
+2,Vented Losses to Air During Process Operations,1,-1,0,1,0,1,0,0,0,Inhalation and Dermal,3,98
+3,Open Surface Losses to Air During Product Sampling,1,-1,0,1,0,1,0,0,0,Inhalation and Dermal,4,98
+4,Equipment Cleaning Losses of Liquids from Multiple Vessels,27,-1,0,1,0,1,0,0,0,Inhalation and Dermal,5,98
+5,Loading Liquid Product into Drums,5,-1,0,1,0,1,0,0,0,Inhalation and Dermal,6,98
+0,Cleaning Liquid Residuals from Drums Used to Transport the Raw Material,21,-1,-1,1,1,1,8,39,312,Dermal,1,99
+1,Unloading Liquid Raw Material from Drums,13,0,0,0,0,1,0,0,0,Inhalation and Dermal,2,99
+2,"Equipment Cleaning Losses of Liquids from a Single, Large Vessel",28,-1,0,1,0,1,0,0,0,Inhalation and Dermal,3,99
+3,Loading Liquid Product into Drums,5,0,0,0,0,1,0,0,0,Inhalation and Dermal,4,99
+0,"Equipment Cleaning Losses of Liquids from a Single, Large Vessel",28,-1,0,1,0,1,0,0,0,Inhalation and Dermal,1,100
+1,Loading Liquid Product into Drums,5,0,-1,0,1,1,8,39,312,Dermal,2,100
+2,Unloading Solid Raw Material from Transport Containers,18,-1,-1,9,9,1,8,39,312,Inhalation and Dermal,3,100
+3,Cleaning Solid/ Powder Residuals from Containers Used to Transport the Raw Material,26,-1,0,9,0,1,0,0,0,Inhalation and Dermal,4,100
+0,Cleaning Liquid Residuals from Drums Used to Transport the Raw Material,21,-1,-1,1,1,1,8,39,312,Inhalation and Dermal,1,101
+1,Unloading Liquid Raw Material from Drums,13,-1,0,1,0,1,0,0,0,Inhalation and Dermal,2,101
+2,Vented Losses to Air During Process Operations,1,-1,0,1,0,1,0,0,0,Inhalation and Dermal,3,101
+3,Open Surface Losses to Air During Product Sampling,1,-1,0,1,0,1,0,0,0,Inhalation and Dermal,4,101
+4,"Equipment Cleaning Losses of Liquids from a Single, Large Vessel",28,-1,0,1,0,1,0,0,0,Inhalation and Dermal,5,101
+5,Filter Media Changeout,72,-1,0,9,0,1,0,0,0,Inhalation and Dermal,6,101
+6,Loading Liquid Product into Drums,5,-1,0,1,0,1,0,0,0,Inhalation and Dermal,7,101
+0,Unloading Liquid Raw Material from Drums,13,0,-1,0,1,1,5,38,190,Dermal,1,102
+1,Cleaning Liquid Residuals from Drums Used to Transport the Raw Material,21,-1,0,1,0,1,0,0,0,Inhalation and Dermal,2,102
+2,Equipment Cleaning Losses of Liquids from Multiple Vessels,27,-1,0,1,0,1,0,0,0,Inhalation and Dermal,3,102
+3,Filter Media Changeout,56,-1,0,1,0,1,0,0,0,Inhalation and Dermal,4,102
+4,Loading Liquid Product into Drums,5,0,0,0,0,1,0,0,0,Inhalation and Dermal,5,102
+5,Off-Spec Waste ,1,-1,0,1,0,1,0,0,0,Inhalation and Dermal,6,102
+0,Equipment Cleaning Losses of Liquids from Multiple Vessels,27,-1,0,1,0,1,0,0,0,Inhalation and Dermal,1,103
+1,Filter Media Changeout,56,-1,0,1,0,1,0,0,0,Inhalation and Dermal,2,103
+2,Loading Liquid Product into Drums,5,0,-1,0,1,1,4,38,152,Dermal,3,103
+3,Off-Spec Waste ,1,-1,0,1,0,1,0,0,0,Inhalation and Dermal,4,103
+4,Unloading Solid Raw Material from Transport Containers,18,-1,-1,9,9,1,4,38,152,Inhalation and Dermal,5,103
+5,Cleaning Solid/ Powder Residuals from Containers Used to Transport the Raw Material,26,-1,0,9,0,1,0,0,0,Inhalation and Dermal,6,103
+0,Unloading Liquid Raw Material from Drums,13,-1,-1,1,1,1,5,38,190,Inhalation and Dermal,1,104
+1,Cleaning Liquid Residuals from Drums Used to Transport the Raw Material,21,-1,0,1,0,1,0,0,0,Inhalation and Dermal,2,104
+2,Venting During Dispersion and Blending,1,-1,0,1,0,1,0,0,0,Inhalation and Dermal,3,104
+3,Equipment Cleaning Losses of Liquids from Multiple Vessels,27,-1,0,1,0,1,0,0,0,Inhalation and Dermal,4,104
+4,Filter Media Changeout,56,-1,0,1,0,1,0,0,0,Inhalation and Dermal,5,104
+5,Loading Liquid Product into Drums,5,-1,0,1,0,1,0,0,0,Inhalation and Dermal,6,104
+6,Off-Spec Waste ,1,-1,0,1,0,1,0,0,0,Inhalation and Dermal,7,104
+7,Coating Product Sampling,56,-1,0,1,0,1,0,0,0,Inhalation and Dermal,8,104
+0,Equipment Cleaning Losses of Liquids from Multiple Vessels,27,-1,0,2,0,0,0,0,0,Inhalation and Dermal,1,105
+1,Fugitive Air from Compounding,70,-1,0,9,0,0,0,0,0,Inhalation and Dermal,2,105
+2,Unloading Liquid Raw Material from Drums,13,0,-1,0,2,0,41,24,984,Dermal,3,105
+3,Cleaning Liquid Residuals from Drums Used to Transport the Raw Material,21,-1,0,2,0,0,0,0,0,Inhalation and Dermal,4,105
+0,Unloading Solid Raw Material from Transport Containers,18,0,-1,0,9,0,41,24,984,Inhalation and Dermal,1,106
+1,Cleaning Solid/ Powder Residuals from Containers Used to Transport the Raw Material,26,-1,0,9,0,0,0,0,0,Inhalation and Dermal,2,106
+2,Dust from Compounding,2,-1,0,9,0,0,0,0,0,Inhalation and Dermal,3,106
+3,Equipment Cleaning Losses of Liquids from Multiple Vessels,27,-1,-1,2,9,0,41,24,984,Dermal,4,106
+4,Fugitive Air from Compounding,70,-1,0,9,0,0,0,0,0,Inhalation and Dermal,5,106
+0,Unloading Solid Raw Material from Transport Containers,18,0,-1,0,9,0,63,48,3024,Inhalation,1,107
+1,Cleaning Solid/ Powder Residuals from Containers Used to Transport the Raw Material,26,-1,0,9,0,0,0,0,0,Inhalation and Dermal,2,107
+2,Dust Generation from Converting Activities,2,-1,0,9,0,0,0,0,0,Inhalation and Dermal,3,107
+3,Fugitive Air from Converting Activities,2,-1,0,9,0,0,0,0,0,Inhalation and Dermal,4,107
+4,Equipment Cleaning Losses of Liquids from Multiple Vessels,27,-1,0,2,0,0,0,0,0,Inhalation and Dermal,5,107
+5,Trimming Waste,2,-1,0,9,0,0,0,0,0,Inhalation and Dermal,6,107
+0,Unloading Liquid Raw Material from Adhesive Containers,13,0,0,0,0,1,0,0,0,Inhalation and Dermal,1,108
+1,Cleaning Liquid Residuals from Empty Adhesive Containers,21,-1,-1,1,1,1,12,90,1080,Dermal,2,108
+2,Equipment Cleaning,28,-1,0,1,0,1,0,0,0,Inhalation and Dermal,3,108
+3,Spray Coating Application,88,-1,-1,9,9,1,12,90,1080,Inhalation and Dermal,4,108
+4,Evaporative Losses during Curing/Drying,1,0,0,0,0,1,0,0,0,Inhalation and Dermal,5,108
+0,Unloading Liquid Raw Material from Adhesive Containers,13,-1,0,1,0,1,0,0,0,Inhalation and Dermal,1,109
+1,Cleaning Liquid Residuals from Empty Adhesive Containers,21,-1,-1,1,1,1,12,90,1080,Inhalation and Dermal,2,109
+2,Equipment Cleaning,28,-1,0,1,0,1,0,0,0,Inhalation and Dermal,3,109
+3,Spray Coating Application,88,-1,-1,9,9,1,12,90,1080,Inhalation and Dermal,4,109
+4,Evaporative Losses during Curing/Drying,1,-1,0,1,0,1,0,0,0,Inhalation and Dermal,5,109
+0,Unloading Liquid Raw Material from Drums,13,0,-1,0,2,0,1,2,2,Dermal,1,110
+1,Cleaning Liquid Residuals from Drums Used to Transport the Raw Material,21,-1,0,2,0,0,0,0,0,Inhalation and Dermal,2,110
+2,Dragout Losses,1,-1,0,2,0,0,0,0,0,Inhalation and Dermal,3,110
+3,Filter Media and Other Recycling Wastes,1,-1,0,2,0,0,0,0,0,Inhalation and Dermal,4,110
+4,Spent Metalworking Fluid,1,-1,0,2,0,0,0,0,0,Inhalation and Dermal,5,110
+5,Metal Shaping Operations,1,0,-1,0,2,0,1,46,46,Inhalation,6,110
+0,Cleaning Liquid Residuals from Empty Photoresist Containers,19,-1,-1,2,2,0,2,18,36,Dermal,1,111
+1,Equipment Cleaning,28,-1,0,2,0,0,0,0,0,Inhalation and Dermal,2,111
+2,Excess Photoresist Spin-off,1,-1,0,2,0,0,0,0,0,Inhalation and Dermal,3,111
+3,Waste Developer Solution,1,-1,0,2,0,0,0,0,0,Inhalation and Dermal,4,111
+4,Etching and Stripping,1,-1,0,2,0,0,0,0,0,Inhalation and Dermal,5,111
+5,Change-out of Empty Photoresist Containers,1,0,-1,0,2,0,2,48,96,Dermal,6,111
+6,Change-out of Excess (Spun-off) Photoresist Collection Containers,1,0,0,0,0,0,0,0,0,Inhalation and Dermal,7,111
+7,Change-out of Waste Solvent Collection Containers,1,0,0,0,0,0,0,0,0,Inhalation and Dermal,8,111
+0,Disposal of Spent Dyebath,56,-1,0,1,0,0,0,0,0,Inhalation and Dermal,1,112
+1,"Equipment Cleaning Losses of Liquids from a Single, Large Vessel",28,-1,0,1,0,0,0,0,0,Inhalation and Dermal,2,112
+2,Unloading Liquid Raw Material from Drums,13,0,-1,0,2,0,99,6,594,Dermal,3,112
+3,Cleaning Liquid Residuals from Drums Used to Transport the Raw Material,21,-1,0,2,0,0,0,0,0,Inhalation and Dermal,4,112
+0,Cleaning Solid/ Powder Residuals from Containers Used to Transport the Raw Material,26,-1,0,9,0,1,0,0,0,Inhalation and Dermal,1,113
+1,Unloading Solid Raw Material from Transport Containers,18,-1,-1,9,9,1,66,6,396,Inhalation and Dermal,2,113
+2,Disposal of Spent Dyebath,56,-1,-1,1,1,1,66,6,396,Dermal,3,113
+3,"Equipment Cleaning Losses of Liquids from a Single, Large Vessel",28,-1,0,1,0,1,0,0,0,Inhalation and Dermal,4,113

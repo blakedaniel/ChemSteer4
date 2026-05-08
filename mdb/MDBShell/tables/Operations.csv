@@ -1,0 +1,1 @@
+AssessID,AssOpID,OpID,OpName,PVop,ProcessDesc,PSInto,PSIntoOther,PSOut,PSOutOther,PSIn,PSInOther,NoPrev,OpType,IoE,OpNumWorkers,NumWorkersExpDaysPerYear,MassBalDisc1,MassBalDisc2,Basis,GSS_XmoProd,GSS_Yprod,GSS_NS,WaterRelBasis,InhExpBasis,AddNotesRelSummary,AddNotesExpSummary,DerExpBasis,OpOrder,NWdefault,NWestimated,NWbasis,NWbasisEnabled,OpGssImport

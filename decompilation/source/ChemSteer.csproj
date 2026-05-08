@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <AssemblyName>ChemSteer</AssemblyName>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <OutputType>WinExe</OutputType>
+    <UseWindowsForms>True</UseWindowsForms>
+    <TargetFramework>net40</TargetFramework>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>11.0</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <RootNamespace />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="ChemSteer.FullIRER.rpt" />
+    <None Remove="ChemSteer.IRERcomb.rpt" />
+    <EmbeddedResource Include="ChemSteer.FullIRER.rpt" LogicalName="ChemSteer.FullIRER.rpt" />
+    <EmbeddedResource Include="ChemSteer.IRERcomb.rpt" LogicalName="ChemSteer.IRERcomb.rpt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="AxInterop.MSFlexGridLib" />
+    <Reference Include="CrystalDecisions.Windows.Forms" />
+    <Reference Include="AxInterop.MSComctlLib" />
+    <Reference Include="Microsoft.VisualBasic.Compatibility" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs">
+      <HintPath>extracted/msi-app/Microsoft.VisualBasic.PowerPacks.Vs.dll</HintPath>
+    </Reference>
+    <Reference Include="AxInterop.MSDBGrid" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine" />
+    <Reference Include="CrystalDecisions.ReportSource" />
+    <Reference Include="CrystalDecisions.Shared" />
+    <Reference Include="System.Data">
+      <HintPath>../../../../.dotnet/shared/Microsoft.NETCore.App/8.0.26/System.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.MSComctlLib" />
+  </ItemGroup>
+</Project>

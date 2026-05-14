@@ -8,8 +8,10 @@ CLAUDE.md
 installer/*.exe
 installer/*.zip
 
-# Local scripts (not committed)
-scripts/
+# Throwaway / one-shot scripts (committed scripts live in scripts/ and
+# app/scripts/; ad-hoc repros go under scripts/_oneoff/ and stay local).
+scripts/_oneoff/
+app/scripts/_oneoff/
 
 # Raw extracted installer payload (regenerable from installer)
 extracted/

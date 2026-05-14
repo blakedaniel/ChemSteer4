@@ -21,6 +21,11 @@ frontend/dist/
 *.tsbuildinfo
 .vite/
 
+# Playwright
+frontend/test-results/
+frontend/playwright-report/
+frontend/.playwright-cache/
+
 # Bundled SPA copied during Docker build (regenerable from frontend/)
 src/chemsteer/static/
 

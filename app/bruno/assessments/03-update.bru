@@ -1,0 +1,21 @@
+meta {
+  name: Update assessment
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{baseUrl}}/api/assessments/{{assessmentId}}
+  body: json
+}
+
+body:json {
+  {
+    "notes": "edited via bruno"
+  }
+}
+
+assert {
+  res.status: eq 200
+  res.body.notes: eq edited via bruno
+}

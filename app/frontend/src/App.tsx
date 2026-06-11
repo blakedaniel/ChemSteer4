@@ -6,6 +6,7 @@ import { ActivityDetailPage } from "./features/activities/ActivityDetailPage";
 import { OperationsPage } from "./features/operations/OperationsPage";
 import { ParametersPage } from "./features/parameters/ParametersPage";
 import { ScenariosPage } from "./features/scenarios/ScenariosPage";
+import { ReferencePage } from "./features/reference/ReferencePage";
 import { AssessmentsPage } from "./features/assessments/AssessmentsPage";
 import { AssessmentDetailPage } from "./features/assessments/AssessmentDetailPage";
 
@@ -26,6 +27,7 @@ export function App() {
           <NavLink to="/models">Models</NavLink>
           <NavLink to="/parameters">Parameters</NavLink>
           <NavLink to="/scenarios">Generic Scenarios</NavLink>
+          <NavLink to="/reference">Reference (NAICS · PEL)</NavLink>
         </nav>
         <p className="muted" style={{ marginTop: 24, fontSize: 11 }}>
           Phase 4 — assessment workflow with calc engine.
@@ -43,6 +45,7 @@ export function App() {
           <Route path="/models/:id" element={<ModelDetailPage />} />
           <Route path="/parameters" element={<ParametersPage />} />
           <Route path="/scenarios" element={<ScenariosPage />} />
+          <Route path="/reference" element={<ReferencePage />} />
         </Routes>
       </main>
     </div>

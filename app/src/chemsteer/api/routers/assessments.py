@@ -18,8 +18,11 @@ from chemsteer.api.schemas.assessment import (
     AssessmentUpdate,
     CalcAssessmentResponse,
     CalcRunResult,
+    FromScenarioRequest,
+    FromScenarioResponse,
     ModelRunCreate,
     ModelRunRead,
+    ModelRunUpdate,
     OperationCreate,
     OperationRead,
     RevisionRead,
@@ -33,6 +36,7 @@ from chemsteer.db.user import (
     Revision,
     user_session,
 )
+from chemsteer.importers.scenario import ScenarioNotFoundError, instantiate_scenario
 
 router = APIRouter(prefix="/api/assessments", tags=["assessments"])
 
@@ -173,6 +177,32 @@ def add_operation(assessment_id: int, body: OperationCreate) -> OperationRead:
         return OperationRead.model_validate(op)
 
 
+@router.post(
+    "/{assessment_id}/operations/from-scenario",
+    response_model=FromScenarioResponse,
+    status_code=201,
+)
+def add_operation_from_scenario(
+    assessment_id: int, body: FromScenarioRequest
+) -> FromScenarioResponse:
+    """Instantiate one of the 34 Generic Scenario templates onto the
+    assessment: operation + activities + pre-parameterized model runs."""
+    with user_session() as s:
+        a = _load(s, assessment_id)
+        try:
+            result = instantiate_scenario(s, a.id, body.scenario_id)
+        except ScenarioNotFoundError as e:
+            raise HTTPException(404, str(e)) from e
+        _save_revision(s, a, f"added operation from Generic Scenario #{body.scenario_id}")
+        s.refresh(result.operation)
+        return FromScenarioResponse(
+            operation=OperationRead.model_validate(result.operation),
+            n_activities=result.n_activities,
+            n_runs=result.n_runs,
+            skipped_runs=result.skipped_runs,
+        )
+
+
 @router.delete(
     "/{assessment_id}/operations/{operation_id}",
     status_code=204,
@@ -283,6 +313,38 @@ def list_model_runs(assessment_id: int, activity_id: int) -> list[ModelRunRead]:
             .all()
         )
         return [ModelRunRead.model_validate(r) for r in rows]
+
+
+@router.patch(
+    "/{assessment_id}/runs/{run_id}",
+    response_model=ModelRunRead,
+)
+def update_model_run(assessment_id: int, run_id: int, body: ModelRunUpdate) -> ModelRunRead:
+    """Edit a run's inputs (full replacement) and/or label; clears cached
+    outputs since they no longer reflect the inputs."""
+    with user_session() as s:
+        a = _load(s, assessment_id)
+        run = s.execute(select(ModelRun).where(ModelRun.id == run_id)).scalar_one_or_none()
+        if run is None:
+            raise HTTPException(404, f"run {run_id} not found")
+        owned = any(act.id == run.activity_id for op in a.operations for act in op.activities)
+        if not owned:
+            raise HTTPException(404, f"run {run_id} not found in assessment {assessment_id}")
+        if body.inputs is not None:
+            try:
+                input_cls = get_input_class(run.model_kind, run.model_id)
+                input_cls.model_validate(body.inputs)
+            except Exception as exc:
+                raise HTTPException(422, f"invalid inputs: {exc}") from exc
+            run.inputs_json = json.dumps(body.inputs)
+            run.outputs_json = None
+            run.last_run_at = None
+        if body.label is not None:
+            run.label = body.label
+        s.flush()
+        _save_revision(s, a, f"updated run #{run_id}")
+        s.refresh(run)
+        return ModelRunRead.model_validate(run)
 
 
 @router.delete(

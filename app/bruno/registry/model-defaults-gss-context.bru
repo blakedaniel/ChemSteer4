@@ -1,0 +1,14 @@
+meta {
+  name: Model defaults in GS context (cooling tower)
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/api/models/12/defaults?gss_id=103
+}
+
+assert {
+  res.status: eq 200
+  res.body.defaults.Freq: eq 360
+}

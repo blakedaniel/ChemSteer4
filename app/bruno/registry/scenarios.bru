@@ -1,0 +1,18 @@
+meta {
+  name: List Generic Scenarios
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{baseUrl}}/api/scenarios
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  const rows = res.getBody();
+  if (rows.length !== 34) throw new Error(`expected 34 scenarios, got ${rows.length}`);
+}

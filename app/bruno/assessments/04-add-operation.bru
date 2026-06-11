@@ -1,0 +1,25 @@
+meta {
+  name: Add operation
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/api/assessments/{{assessmentId}}/operations
+  body: json
+}
+
+body:json {
+  {
+    "op_id": 1,
+    "name": "bruno operation"
+  }
+}
+
+assert {
+  res.status: eq 201
+}
+
+vars:post-response {
+  operationId: res.body.id
+}

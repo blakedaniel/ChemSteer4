@@ -1,0 +1,26 @@
+meta {
+  name: Create assessment
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/assessments
+  body: json
+}
+
+body:json {
+  {
+    "name": "bruno-smoke",
+    "chemical_name": "acetone",
+    "cas_number": "67-64-1"
+  }
+}
+
+assert {
+  res.status: eq 201
+}
+
+vars:post-response {
+  assessmentId: res.body.id
+}

@@ -2,6 +2,128 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { ActivityRow, api, ModelRun } from "../../lib/api";
 
+function RunRow({
+  aid,
+  activityId,
+  run,
+}: {
+  aid: number;
+  activityId: number;
+  run: ModelRun;
+}) {
+  const qc = useQueryClient();
+  const [editing, setEditing] = useState(false);
+  const [inputsJson, setInputsJson] = useState("");
+
+  const invalidate = () =>
+    qc.invalidateQueries({ queryKey: ["runs", aid, activityId] });
+
+  const update = useMutation({
+    mutationFn: () =>
+      api.updateRun(aid, run.id, {
+        inputs: JSON.parse(inputsJson) as Record<string, unknown>,
+      }),
+    onSuccess: () => {
+      setEditing(false);
+      invalidate();
+    },
+  });
+
+  const removeRun = useMutation({
+    mutationFn: () => api.deleteRun(aid, run.id),
+    onSuccess: invalidate,
+  });
+
+  return (
+    <li>
+      <span className={`tag tag-${run.model_kind === "release" ? "R" : "I"}`}>
+        #{run.model_id} {run.model_kind}
+      </span>{" "}
+      {run.label && (
+        <em className="muted" style={{ fontSize: 11 }}>
+          {run.label}
+        </em>
+      )}{" "}
+      <code style={{ fontSize: 11 }}>{JSON.stringify(run.inputs)}</code>{" "}
+      {run.outputs && (
+        <span className="muted">
+          → {Object.entries(run.outputs)
+            .map(([k, q]) => `${k}=${q.value.toExponential(3)} ${q.unit}`)
+            .join(", ")}
+        </span>
+      )}
+      <button
+        onClick={() => {
+          setInputsJson(JSON.stringify(run.inputs, null, 2));
+          setEditing((v) => !v);
+        }}
+        style={{
+          background: "transparent",
+          border: 0,
+          color: "#1d4ed8",
+          cursor: "pointer",
+          fontSize: 11,
+          marginLeft: 6,
+        }}
+      >
+        {editing ? "cancel" : "edit"}
+      </button>
+      <button
+        onClick={() => {
+          if (confirm(`Delete run #${run.id}?`)) removeRun.mutate();
+        }}
+        style={{
+          background: "transparent",
+          border: 0,
+          color: "#991b1b",
+          cursor: "pointer",
+          fontSize: 11,
+          marginLeft: 4,
+        }}
+      >
+        ✕
+      </button>
+      {editing && (
+        <div style={{ margin: "6px 0", display: "grid", gap: 4 }}>
+          <textarea
+            rows={5}
+            value={inputsJson}
+            onChange={(e) => setInputsJson(e.target.value)}
+            style={{
+              fontFamily: "ui-monospace, monospace",
+              fontSize: 11,
+              padding: 6,
+              border: "1px solid #d4d4d8",
+              borderRadius: 4,
+            }}
+          />
+          <button
+            onClick={() => update.mutate()}
+            disabled={update.isPending}
+            style={{
+              padding: "3px 10px",
+              background: "#1d4ed8",
+              color: "#fff",
+              border: 0,
+              borderRadius: 4,
+              cursor: "pointer",
+              fontSize: 11,
+              justifySelf: "start",
+            }}
+          >
+            {update.isPending ? "Saving…" : "Save inputs"}
+          </button>
+          {update.error && (
+            <p className="error" style={{ fontSize: 11 }}>
+              {String(update.error)}
+            </p>
+          )}
+        </div>
+      )}
+    </li>
+  );
+}
+
 export function ActivityEditor({
   aid,
   activity,
@@ -20,9 +142,7 @@ export function ActivityEditor({
   });
 
   const [modelId, setModelId] = useState<number | "">("");
-  const [inputsJson, setInputsJson] = useState(
-    `{\n  "Amt": 100,\n  "LF": 0.025,\n  "Freq": 250,\n  "NS": 1\n}`,
-  );
+  const [inputsJson, setInputsJson] = useState("{}");
 
   const selectedModel = allModels?.find((m) => m.model_id === modelId);
   const modelKind: "release" | "exposure" | undefined =
@@ -32,10 +152,34 @@ export function ActivityEditor({
         ? "exposure"
         : undefined;
 
+  // v3.2 pre-fills the model dialog from ParmDefaults; do the same when a
+  // model is picked, resolving defaults in this activity's context.
+  const pickModel = async (id: number | "") => {
+    setModelId(id);
+    if (id === "") {
+      setInputsJson("{}");
+      return;
+    }
+    try {
+      const d = await api.modelDefaults(id, { act_id: activity.act_id });
+      const prefill: Record<string, unknown> = {};
+      for (const f of d.fields) {
+        prefill[f] = f in d.defaults ? d.defaults[f] : null;
+      }
+      setInputsJson(JSON.stringify(prefill, null, 2));
+    } catch {
+      setInputsJson("{}");
+    }
+  };
+
   const addRun = useMutation({
     mutationFn: () => {
       if (modelId === "" || !modelKind) throw new Error("pick a model first");
-      const inputs = JSON.parse(inputsJson) as Record<string, unknown>;
+      const parsed = JSON.parse(inputsJson) as Record<string, unknown>;
+      // Nulls are "still to fill in" placeholders from the prefill.
+      const inputs = Object.fromEntries(
+        Object.entries(parsed).filter(([, v]) => v !== null),
+      );
       return api.addRun(aid, activity.id, {
         activity_id: activity.id,
         model_id: modelId,
@@ -43,12 +187,6 @@ export function ActivityEditor({
         inputs,
       });
     },
-    onSuccess: () =>
-      qc.invalidateQueries({ queryKey: ["runs", aid, activity.id] }),
-  });
-
-  const removeRun = useMutation({
-    mutationFn: (run_id: number) => api.deleteRun(aid, run_id),
     onSuccess: () =>
       qc.invalidateQueries({ queryKey: ["runs", aid, activity.id] }),
   });
@@ -70,36 +208,7 @@ export function ActivityEditor({
       {runs?.length ? (
         <ul style={{ margin: "8px 0", paddingLeft: 18, fontSize: 12 }}>
           {runs.map((r: ModelRun) => (
-            <li key={r.id}>
-              <span className={`tag tag-${r.model_kind === "release" ? "R" : "I"}`}>
-                #{r.model_id} {r.model_kind}
-              </span>{" "}
-              <code style={{ fontSize: 11 }}>
-                {JSON.stringify(r.inputs)}
-              </code>{" "}
-              {r.outputs && (
-                <span className="muted">
-                  → {Object.entries(r.outputs)
-                    .map(([k, q]) => `${k}=${q.value.toExponential(3)} ${q.unit}`)
-                    .join(", ")}
-                </span>
-              )}
-              <button
-                onClick={() => {
-                  if (confirm(`Delete run #${r.id}?`)) removeRun.mutate(r.id);
-                }}
-                style={{
-                  background: "transparent",
-                  border: 0,
-                  color: "#991b1b",
-                  cursor: "pointer",
-                  fontSize: 11,
-                  marginLeft: 6,
-                }}
-              >
-                ✕
-              </button>
-            </li>
+            <RunRow key={r.id} aid={aid} activityId={activity.id} run={r} />
           ))}
         </ul>
       ) : (
@@ -116,7 +225,7 @@ export function ActivityEditor({
           <select
             value={modelId === "" ? "" : String(modelId)}
             onChange={(e) =>
-              setModelId(e.target.value === "" ? "" : Number(e.target.value))
+              void pickModel(e.target.value === "" ? "" : Number(e.target.value))
             }
             style={{ padding: 4, borderRadius: 4, border: "1px solid #d4d4d8" }}
           >
@@ -128,7 +237,7 @@ export function ActivityEditor({
             ))}
           </select>
           <textarea
-            rows={6}
+            rows={8}
             value={inputsJson}
             onChange={(e) => setInputsJson(e.target.value)}
             style={{
@@ -139,6 +248,10 @@ export function ActivityEditor({
               borderRadius: 4,
             }}
           />
+          <p className="muted" style={{ fontSize: 11, margin: 0 }}>
+            Pre-filled from v3.2 parameter defaults; <code>null</code> fields
+            still need a value (they are dropped if left null).
+          </p>
           {selectedModel && (
             <pre className="equation" style={{ fontSize: 11 }}>
               {selectedModel.equation}

@@ -101,6 +101,7 @@ def _run_dict(r: ModelRun) -> dict[str, Any]:
         "id": r.id,
         "model_id": r.model_id,
         "model_kind": r.model_kind,
+        "label": r.label,
         "inputs": json.loads(r.inputs_json) if r.inputs_json else {},
         "outputs": json.loads(r.outputs_json) if r.outputs_json else None,
         "last_run_at": r.last_run_at.isoformat() if r.last_run_at else None,

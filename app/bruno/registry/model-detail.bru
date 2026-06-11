@@ -1,0 +1,15 @@
+meta {
+  name: Model detail (drum residual)
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/models/2
+}
+
+assert {
+  res.status: eq 200
+  res.body.model_id: eq 2
+  res.body.type: eq R
+}

@@ -58,10 +58,12 @@ test.describe("Assessment workflow", () => {
     }).first();
     await runDetails.locator("summary").click();
 
-    // Pick model #2 (drum residual) so the default inputs JSON is valid.
+    // Pick model #2 (drum residual); the form pre-fills from v3.2 defaults
+    // (Freq comes from the operating-days default; the rest are user-input).
     await runDetails.locator("select").selectOption("2");
-
-    // Inputs textarea defaults to a valid residual JSON.
+    const textarea = runDetails.locator("textarea");
+    await expect(textarea).toHaveValue(/"Freq": 170/);
+    await textarea.fill('{ "Amt": 100, "LF": 0.025, "Freq": 250, "NS": 1 }');
     await runDetails.getByRole("button", { name: /Add run/i }).click();
     await expect(page.locator("li").filter({ hasText: /release/ }).first()).toBeVisible();
 

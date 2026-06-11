@@ -151,3 +151,38 @@ class GenericScenarioOut(_Base):
     @classmethod
     def _coerce_scenario_id(cls, v: object) -> int | None:
         return _opt_int(v)
+
+
+class ModelDefaultsOut(BaseModel):
+    """Pre-fill values for a model's input form, from v3.2 ParmDefaults."""
+
+    model_id: int
+    model_kind: Literal["release", "exposure"]
+    fields: list[str]
+    """Every input-field name the model's calc class accepts."""
+    defaults: dict[str, object]
+    """Subset of ``fields`` that have resolvable defaults; values are
+    bare floats or ``{"value", "unit"}`` dicts."""
+
+
+class ScenarioModelOut(BaseModel):
+    """A release/exposure model attached to a Generic Scenario activity."""
+
+    model_id: int
+    model_kind: Literal["release", "exposure"]
+    implemented: bool
+    """Whether this ModelID is in the calc-engine dispatch registry."""
+    output_labels: list[str | None] = Field(default_factory=list)
+    """One entry per enabled output characterization (e.g. 'High End')."""
+
+
+class ScenarioActivityOut(BaseModel):
+    scen_act_id: int
+    act_id: int
+    name: str | None = None
+    models: list[ScenarioModelOut] = Field(default_factory=list)
+
+
+class GenericScenarioDetail(GenericScenarioOut):
+    process_desc: str | None = Field(default=None, validation_alias="ProcessDesc")
+    activities: list[ScenarioActivityOut] = Field(default_factory=list)

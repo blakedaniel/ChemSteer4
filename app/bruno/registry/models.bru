@@ -1,0 +1,18 @@
+meta {
+  name: List models
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/models
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  const rows = res.getBody();
+  if (rows.length < 38) throw new Error(`expected 38 models, got ${rows.length}`);
+}

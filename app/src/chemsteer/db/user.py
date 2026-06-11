@@ -127,6 +127,9 @@ class ModelRun(UserBase):
     """References ListOfModels.ModelID in the seed DB."""
     model_kind: Mapped[str] = mapped_column(String(8))
     """'release' or 'exposure'."""
+    label: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    """Output characterization ('Central Tendency', 'High End', …) when a
+    v3.2 model row carries two enabled outputs and instantiates as two runs."""
     inputs_json: Mapped[str] = mapped_column(Text)
     outputs_json: Mapped[str | None] = mapped_column(Text, nullable=True)
     last_run_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)

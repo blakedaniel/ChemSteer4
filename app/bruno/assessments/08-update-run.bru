@@ -1,0 +1,22 @@
+meta {
+  name: Update run inputs
+  type: http
+  seq: 8
+}
+
+patch {
+  url: {{baseUrl}}/api/assessments/{{assessmentId}}/runs/{{runId}}
+  body: json
+}
+
+body:json {
+  {
+    "inputs": { "Amt": 200, "LF": 0.03, "Freq": 250, "NS": 2 },
+    "label": "High End"
+  }
+}
+
+assert {
+  res.status: eq 200
+  res.body.label: eq High End
+}

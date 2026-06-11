@@ -1,0 +1,20 @@
+meta {
+  name: List operations
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/operations
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  const rows = res.getBody();
+  if (!Array.isArray(rows) || rows.length === 0) {
+    throw new Error("expected non-empty operations list");
+  }
+}

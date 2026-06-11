@@ -1,0 +1,13 @@
+meta {
+  name: Delete assessment
+  type: http
+  seq: 14
+}
+
+delete {
+  url: {{baseUrl}}/api/assessments/{{assessmentId}}
+}
+
+assert {
+  res.status: eq 204
+}

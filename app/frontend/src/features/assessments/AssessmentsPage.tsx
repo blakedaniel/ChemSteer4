@@ -1,11 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { api } from "../../lib/api";
 
 export function AssessmentsPage() {
   const [name, setName] = useState("");
   const [chemical, setChemical] = useState("");
+  const fileRef = useRef<HTMLInputElement>(null);
   const qc = useQueryClient();
   const nav = useNavigate();
 
@@ -25,6 +26,14 @@ export function AssessmentsPage() {
       setChemical("");
       qc.invalidateQueries({ queryKey: ["assessments"] });
       nav(`/assessments/${a.id}`);
+    },
+  });
+
+  const importCs2 = useMutation({
+    mutationFn: (file: File) => api.importCs2(file),
+    onSuccess: (res) => {
+      qc.invalidateQueries({ queryKey: ["assessments"] });
+      nav(`/assessments/${res.assessment_id}`);
     },
   });
 
@@ -88,6 +97,43 @@ export function AssessmentsPage() {
           >
             {create.isPending ? "Creating…" : "Create"}
           </button>
+        </div>
+        <div
+          style={{
+            marginTop: 12,
+            paddingTop: 12,
+            borderTop: "1px solid #f4f4f5",
+            display: "flex",
+            gap: 8,
+            alignItems: "center",
+          }}
+        >
+          <span className="muted" style={{ fontSize: 13 }}>
+            Or import a ChemSTEER v3.2 file:
+          </span>
+          <input ref={fileRef} type="file" accept=".cs2" style={{ fontSize: 12 }} />
+          <button
+            onClick={() => {
+              const f = fileRef.current?.files?.[0];
+              if (f) importCs2.mutate(f);
+            }}
+            disabled={importCs2.isPending}
+            style={{
+              padding: "6px 12px",
+              background: "#1d4ed8",
+              color: "#fff",
+              border: 0,
+              borderRadius: 4,
+              cursor: "pointer",
+            }}
+          >
+            {importCs2.isPending ? "Importing…" : "Import .cs2"}
+          </button>
+          {importCs2.error && (
+            <span className="error" style={{ fontSize: 12 }}>
+              {String(importCs2.error)}
+            </span>
+          )}
         </div>
       </div>
 

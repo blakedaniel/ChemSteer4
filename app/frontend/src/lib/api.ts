@@ -45,6 +45,57 @@ export type Scenario = {
   pdf: string | null;
 };
 
+export type ScenarioModel = {
+  model_id: number;
+  model_kind: "release" | "exposure";
+  implemented: boolean;
+  output_labels: (string | null)[];
+};
+
+export type ScenarioActivity = {
+  scen_act_id: number;
+  act_id: number;
+  name: string | null;
+  models: ScenarioModel[];
+};
+
+export type ScenarioDetail = Scenario & {
+  process_desc: string | null;
+  activities: ScenarioActivity[];
+};
+
+export type ModelDefaults = {
+  model_id: number;
+  model_kind: "release" | "exposure";
+  fields: string[];
+  defaults: Record<string, unknown>;
+};
+
+export type NaicsEntry = {
+  code: string | null;
+  description: string | null;
+};
+
+export type ExposureLimit = {
+  cas_number: string | null;
+  chemical_name: string | null;
+  mw: number | null;
+  pel_twa_ppm: number | null;
+  pel_twa_mgm3: number | null;
+  pel_stel_ppm: number | null;
+  pel_stel_mgm3: number | null;
+  pel_ceiling_ppm: number | null;
+  pel_ceiling_mgm3: number | null;
+  pel_comments: string | null;
+  rel_twa_ppm: number | null;
+  rel_twa_mgm3: number | null;
+  rel_stel_ppm: number | null;
+  rel_stel_mgm3: number | null;
+  rel_ceiling_ppm: number | null;
+  rel_ceiling_mgm3: number | null;
+  rel_comments: string | null;
+};
+
 async function get<T>(path: string): Promise<T> {
   const r = await fetch(path);
   if (!r.ok) throw new Error(`${path}: HTTP ${r.status}`);
@@ -89,9 +140,26 @@ export type ModelRun = {
   activity_id: number;
   model_id: number;
   model_kind: "release" | "exposure";
+  label: string | null;
   inputs: Record<string, unknown>;
   outputs: Record<string, Quantity> | null;
   last_run_at: string | null;
+};
+
+export type FromScenarioResponse = {
+  operation: OperationRow;
+  n_activities: number;
+  n_runs: number;
+  skipped_runs: string[];
+};
+
+export type ImportResponse = {
+  assessment_id: number;
+  name: string;
+  n_operations: number;
+  n_activities: number;
+  n_runs: number;
+  skipped_runs: string[];
 };
 
 export type CalcRunResult = {
@@ -142,6 +210,20 @@ export const api = {
   parameters: () => get<Parameter[]>("/api/parameters"),
   parameter: (id: number) => get<Parameter>(`/api/parameters/${id}`),
   scenarios: () => get<Scenario[]>("/api/scenarios"),
+  scenario: (scenarioId: number) => get<ScenarioDetail>(`/api/scenarios/${scenarioId}`),
+  modelDefaults: (id: number, opts?: { act_id?: number; gss_id?: number }) => {
+    const qs = new URLSearchParams();
+    if (opts?.act_id) qs.set("act_id", String(opts.act_id));
+    if (opts?.gss_id) qs.set("gss_id", String(opts.gss_id));
+    const suffix = qs.toString() ? `?${qs}` : "";
+    return get<ModelDefaults>(`/api/models/${id}/defaults${suffix}`);
+  },
+
+  // --- reference lookups ---
+  naics: (q: string) =>
+    get<NaicsEntry[]>(`/api/reference/naics?q=${encodeURIComponent(q)}`),
+  exposureLimits: (q: string) =>
+    get<ExposureLimit[]>(`/api/reference/exposure-limits?q=${encodeURIComponent(q)}`),
 
   // --- assessments (Phase 4) ---
   assessments: () => get<AssessmentSummary[]>("/api/assessments"),
@@ -205,10 +287,33 @@ export const api = {
       method: "POST",
       body: JSON.stringify(body),
     }),
+  updateRun: (
+    aid: number,
+    runId: number,
+    body: { inputs?: Record<string, unknown>; label?: string },
+  ) =>
+    jsonFetch<ModelRun>(`/api/assessments/${aid}/runs/${runId}`, {
+      method: "PATCH",
+      body: JSON.stringify(body),
+    }),
   deleteRun: (aid: number, runId: number) =>
     jsonFetch<void>(`/api/assessments/${aid}/runs/${runId}`, {
       method: "DELETE",
     }),
+
+  addOperationFromScenario: (aid: number, scenarioId: number) =>
+    jsonFetch<FromScenarioResponse>(
+      `/api/assessments/${aid}/operations/from-scenario`,
+      { method: "POST", body: JSON.stringify({ scenario_id: scenarioId }) },
+    ),
+
+  importCs2: async (file: File): Promise<ImportResponse> => {
+    const form = new FormData();
+    form.append("file", file);
+    const r = await fetch("/api/imports/cs2", { method: "POST", body: form });
+    if (!r.ok) throw new Error(`import failed: HTTP ${r.status} — ${await r.text()}`);
+    return r.json();
+  },
 
   calcAssessment: (aid: number) =>
     jsonFetch<CalcAssessmentResponse>(`/api/assessments/${aid}/calc`, {

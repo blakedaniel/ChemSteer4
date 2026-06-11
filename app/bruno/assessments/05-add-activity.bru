@@ -1,0 +1,25 @@
+meta {
+  name: Add activity
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/api/assessments/{{assessmentId}}/operations/{{operationId}}/activities
+  body: json
+}
+
+body:json {
+  {
+    "act_id": 1,
+    "name": "bruno activity"
+  }
+}
+
+assert {
+  res.status: eq 201
+}
+
+vars:post-response {
+  activityId: res.body.id
+}

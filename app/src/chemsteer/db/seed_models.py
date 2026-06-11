@@ -97,6 +97,41 @@ class ListOfValidModels(ChmSteerBase):
     ModelID: Mapped[str] = mapped_column(primary_key=True)
 
 
+class Naics(ChmSteerBase):
+    """chmsteer.db::NAICS — 1814 industry classification codes."""
+
+    __tablename__ = "NAICS"
+
+    naicsid: Mapped[str] = mapped_column(primary_key=True)
+    naics: Mapped[str | None] = mapped_column()
+    naicsdesc: Mapped[str | None] = mapped_column()
+
+
+class PelRelTwa(ChmSteerBase):
+    """chmsteer.db::pel_rel_twa — OSHA PEL / NIOSH REL chemical limits."""
+
+    __tablename__ = "pel_rel_twa"
+
+    NumericCas: Mapped[str] = mapped_column(primary_key=True)
+    CASNumber: Mapped[str | None] = mapped_column()
+    ChemicalName: Mapped[str | None] = mapped_column()
+    MW: Mapped[str | None] = mapped_column()
+    pel_twa: Mapped[str | None] = mapped_column("PEL-TWA")
+    pel_twa_mgm3: Mapped[str | None] = mapped_column("PEL-TWAmgm3")
+    pel_stel: Mapped[str | None] = mapped_column("PEL-STEL")
+    pel_stel_mgm3: Mapped[str | None] = mapped_column("PEL-STELmgm3")
+    pel_cl: Mapped[str | None] = mapped_column("PEL-CL")
+    pel_cl_mgm3: Mapped[str | None] = mapped_column("PEL-CLmgm3")
+    pel_comments: Mapped[str | None] = mapped_column("PEL-COMMENTS")
+    rel_twa: Mapped[str | None] = mapped_column("REL-TWA")
+    rel_twa_mgm3: Mapped[str | None] = mapped_column("REL-TWAmgm3")
+    rel_stel: Mapped[str | None] = mapped_column("REL-STEL")
+    rel_stel_mgm3: Mapped[str | None] = mapped_column("REL-STELmgm3")
+    rel_cl: Mapped[str | None] = mapped_column("REL-CL")
+    rel_cl_mgm3: Mapped[str | None] = mapped_column("REL-CLmgm3")
+    rel_comments: Mapped[str | None] = mapped_column("REL-COMMENTS")
+
+
 class ScenariosBase(DeclarativeBase):
     """Tables that live in `scenarios.db` (Generic Scenarios)."""
 
@@ -110,3 +145,91 @@ class GenericScenario(ScenariosBase):
     OpType: Mapped[str | None] = mapped_column()
     GSS_PDF: Mapped[str | None] = mapped_column()
     ProcessDesc: Mapped[str | None] = mapped_column()
+    OpOrder: Mapped[str | None] = mapped_column()
+
+
+class ScenarioActivity(ScenariosBase):
+    """scenarios.db::Activities — activities attached to a Generic Scenario.
+
+    ``ScenActID`` restarts per scenario; (ScenarioID, ScenActID) is the
+    real key.
+    """
+
+    __tablename__ = "Activities"
+
+    ScenarioID: Mapped[str] = mapped_column(primary_key=True)
+    ScenActID: Mapped[str] = mapped_column(primary_key=True)
+    ActID: Mapped[str | None] = mapped_column()
+    ActName: Mapped[str | None] = mapped_column()
+    ActOrder: Mapped[str | None] = mapped_column()
+    DoRel: Mapped[str | None] = mapped_column()
+    DoExp: Mapped[str | None] = mapped_column()
+
+
+class ScenActRelModel(ScenariosBase):
+    """scenarios.db::ActRelModels — release models on scenario activities."""
+
+    __tablename__ = "ActRelModels"
+
+    RelParmsAN: Mapped[str] = mapped_column(primary_key=True)
+    ScenarioID: Mapped[str | None] = mapped_column()
+    ScenActID: Mapped[str | None] = mapped_column()
+    ModelID: Mapped[str | None] = mapped_column()
+    RelDays: Mapped[str | None] = mapped_column()
+    RelDays2: Mapped[str | None] = mapped_column()
+    OutputOn1: Mapped[str | None] = mapped_column()
+    OutputOn2: Mapped[str | None] = mapped_column()
+    Char1: Mapped[str | None] = mapped_column()
+    Char2: Mapped[str | None] = mapped_column()
+    Basis: Mapped[str | None] = mapped_column()
+
+
+class ScenActRelModParm(ScenariosBase):
+    """scenarios.db::ActRelModParms — per-(model, output) parameter rows."""
+
+    __tablename__ = "ActRelModParms"
+
+    RelParmsAN: Mapped[str] = mapped_column(primary_key=True)
+    OutputID: Mapped[str] = mapped_column(primary_key=True)
+    ParmID: Mapped[str] = mapped_column(primary_key=True)
+    ParmValue: Mapped[str | None] = mapped_column()
+
+
+class ScenActExpModel(ScenariosBase):
+    """scenarios.db::ActExpModels — exposure models on scenario activities."""
+
+    __tablename__ = "ActExpModels"
+
+    ExpParmsAN: Mapped[str] = mapped_column(primary_key=True)
+    ScenarioID: Mapped[str | None] = mapped_column()
+    ScenActID: Mapped[str | None] = mapped_column()
+    ModelID: Mapped[str | None] = mapped_column()
+    OutputOn1: Mapped[str | None] = mapped_column()
+    OutputOn2: Mapped[str | None] = mapped_column()
+    Char1: Mapped[str | None] = mapped_column()
+    Char2: Mapped[str | None] = mapped_column()
+    Basis: Mapped[str | None] = mapped_column()
+
+
+class ScenOpParm(ScenariosBase):
+    """scenarios.db::OpParms — operation-level parameter values a GS ships.
+
+    No real PK; (ScenarioID, ParmID) is unique in practice.
+    """
+
+    __tablename__ = "OpParms"
+
+    ScenarioID: Mapped[str] = mapped_column(primary_key=True)
+    ParmID: Mapped[str] = mapped_column(primary_key=True)
+    ParmValue: Mapped[str | None] = mapped_column()
+
+
+class ScenActExpModParm(ScenariosBase):
+    """scenarios.db::ActExpModParms — per-(model, output) parameter rows."""
+
+    __tablename__ = "ActExpModParms"
+
+    ExpParmsAN: Mapped[str] = mapped_column(primary_key=True)
+    OutputID: Mapped[str] = mapped_column(primary_key=True)
+    ParmID: Mapped[str] = mapped_column(primary_key=True)
+    ParmValue: Mapped[str | None] = mapped_column()

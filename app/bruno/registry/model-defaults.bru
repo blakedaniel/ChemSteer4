@@ -1,0 +1,16 @@
+meta {
+  name: Model defaults (2-hand dermal)
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/api/models/26/defaults
+}
+
+assert {
+  res.status: eq 200
+  res.body.model_kind: eq exposure
+  res.body.defaults.S: eq 1070
+  res.body.defaults.BW: eq 70
+}

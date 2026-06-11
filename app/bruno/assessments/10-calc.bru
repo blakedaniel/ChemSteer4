@@ -1,0 +1,19 @@
+meta {
+  name: Calc assessment
+  type: http
+  seq: 10
+}
+
+post {
+  url: {{baseUrl}}/api/assessments/{{assessmentId}}/calc
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  const runs = res.getBody().runs;
+  const ok = runs.filter(r => r.ok);
+  if (ok.length === 0) throw new Error("expected at least one successful run");
+}

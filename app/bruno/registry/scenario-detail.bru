@@ -1,0 +1,20 @@
+meta {
+  name: Scenario detail (cooling tower)
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{baseUrl}}/api/scenarios/43
+}
+
+assert {
+  res.status: eq 200
+  res.body.scenario_id: eq 43
+  res.body.op_id: eq 103
+}
+
+script:post-response {
+  const body = res.getBody();
+  if (!body.activities.length) throw new Error("expected scenario activities");
+}

@@ -1,0 +1,15 @@
+meta {
+  name: Exposure limits search (LINDANE)
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/reference/exposure-limits?q=LINDANE
+}
+
+assert {
+  res.status: eq 200
+  res.body[0].cas_number: eq 58-89-9
+  res.body[0].pel_twa_mgm3: eq 0.5
+}

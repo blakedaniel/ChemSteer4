@@ -1,0 +1,22 @@
+meta {
+  name: Add operation from Generic Scenario
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{baseUrl}}/api/assessments/{{assessmentId}}/operations/from-scenario
+  body: json
+}
+
+body:json {
+  {
+    "scenario_id": 43
+  }
+}
+
+assert {
+  res.status: eq 201
+  res.body.n_activities: eq 1
+  res.body.n_runs: eq 2
+}

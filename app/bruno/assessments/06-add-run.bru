@@ -1,0 +1,33 @@
+meta {
+  name: Add model run (drum residual)
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/api/assessments/{{assessmentId}}/activities/{{activityId}}/runs
+  body: json
+}
+
+body:json {
+  {
+    "activity_id": 0,
+    "model_id": 2,
+    "model_kind": "release",
+    "inputs": { "Amt": 100, "LF": 0.025, "Freq": 250, "NS": 1 }
+  }
+}
+
+assert {
+  res.status: eq 201
+}
+
+vars:post-response {
+  runId: res.body.id
+}
+
+script:pre-request {
+  const body = req.getBody();
+  body.activity_id = Number(bru.getVar("activityId"));
+  req.setBody(body);
+}

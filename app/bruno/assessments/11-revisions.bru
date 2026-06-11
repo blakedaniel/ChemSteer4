@@ -1,0 +1,13 @@
+meta {
+  name: List revisions
+  type: http
+  seq: 11
+}
+
+get {
+  url: {{baseUrl}}/api/assessments/{{assessmentId}}/revisions
+}
+
+assert {
+  res.status: eq 200
+}

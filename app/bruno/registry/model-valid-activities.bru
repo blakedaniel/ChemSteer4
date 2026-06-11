@@ -1,0 +1,13 @@
+meta {
+  name: Model valid activities
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/api/models/2/valid-activities
+}
+
+assert {
+  res.status: eq 200
+}

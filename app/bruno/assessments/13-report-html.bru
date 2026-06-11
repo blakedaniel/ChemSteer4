@@ -1,0 +1,13 @@
+meta {
+  name: HTML report
+  type: http
+  seq: 13
+}
+
+get {
+  url: {{baseUrl}}/api/assessments/{{assessmentId}}/report.html
+}
+
+assert {
+  res.status: eq 200
+}

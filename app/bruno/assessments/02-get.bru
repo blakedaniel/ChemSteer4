@@ -1,0 +1,14 @@
+meta {
+  name: Get assessment
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/assessments/{{assessmentId}}
+}
+
+assert {
+  res.status: eq 200
+  res.body.name: eq bruno-smoke
+}

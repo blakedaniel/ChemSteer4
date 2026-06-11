@@ -1,0 +1,13 @@
+meta {
+  name: List parameters
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{baseUrl}}/api/parameters
+}
+
+assert {
+  res.status: eq 200
+}

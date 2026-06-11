@@ -88,11 +88,19 @@ class ModelRunCreate(BaseModel):
     inputs: dict[str, object]
 
 
+class ModelRunUpdate(BaseModel):
+    """Partial update of a run; ``inputs`` replaces the whole input dict."""
+
+    inputs: dict[str, object] | None = None
+    label: str | None = None
+
+
 class ModelRunRead(_Base):
     id: int
     activity_id: int
     model_id: int
     model_kind: str
+    label: str | None = None
     inputs: dict[str, Any] = Field(validation_alias="inputs_json")
     outputs: dict[str, Any] | None = Field(default=None, validation_alias="outputs_json")
     last_run_at: datetime | None
@@ -121,6 +129,20 @@ class CalcRunResult(BaseModel):
 class CalcAssessmentResponse(BaseModel):
     assessment_id: int
     runs: list[CalcRunResult]
+
+
+# --- Generic Scenario instantiation ---------------------------------------
+
+
+class FromScenarioRequest(BaseModel):
+    scenario_id: int = Field(description="scenarios.db Operations.ScenarioID (1 of the 34 GSs)")
+
+
+class FromScenarioResponse(BaseModel):
+    operation: OperationRead
+    n_activities: int
+    n_runs: int
+    skipped_runs: list[str] = Field(default_factory=list)
 
 
 # --- Revisions -----------------------------------------------------------

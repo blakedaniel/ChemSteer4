@@ -1,0 +1,13 @@
+meta {
+  name: List runs
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/api/assessments/{{assessmentId}}/activities/{{activityId}}/runs
+}
+
+assert {
+  res.status: eq 200
+}

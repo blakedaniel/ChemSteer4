@@ -23,6 +23,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from chemsteer.calc.dispatch import EXPOSURE_MODELS, RELEASE_MODELS
+from chemsteer.calc.parm_map import map_parms
 from chemsteer.db.user import (
     Assessment,
     AssessmentActivity,
@@ -142,17 +143,25 @@ def import_cs2(cs2_path: Path | str, *, name_override: str | None = None) -> Imp
 
         # Build ModelRun rows from rel + exp model tables, joining their
         # parameter rows on the per-table primary key (RelParmsAN /
-        # ExpParmsAN) into a {ParmAbbr: value} dict per run.
+        # ExpParmsAN) into a {ParmID: value} dict per run, then through
+        # the ParmID→field translation so inputs validate against the
+        # model's input class.
         n_runs = 0
 
-        def _params_for(parm_an_value: str, src_parms: list[dict[str, str]]) -> dict[str, float]:
+        def _params_for(parm_an_value: str, src_parms: list[dict[str, str]]) -> dict[int, float]:
             """Collect parameter rows for a (Rel|Exp)ParmsAN into a dict."""
-            return {
-                row["ParmID"]: float(row.get("ParmValue", "0") or 0.0)
-                for row in src_parms
-                if row.get("RelParmsAN", "") == parm_an_value
-                or row.get("ExpParmsAN", "") == parm_an_value
-            }
+            out: dict[int, float] = {}
+            for row in src_parms:
+                if (
+                    row.get("RelParmsAN", "") != parm_an_value
+                    and row.get("ExpParmsAN", "") != parm_an_value
+                ):
+                    continue
+                try:
+                    out[int(float(row["ParmID"]))] = float(row.get("ParmValue", "0") or 0.0)
+                except (KeyError, ValueError):
+                    continue
+            return out
 
         for src_rel in src_rel_models:
             scen_act = src_rel.get("ScenActID", "").strip()
@@ -167,7 +176,7 @@ def import_cs2(cs2_path: Path | str, *, name_override: str | None = None) -> Imp
             if model_id not in RELEASE_MODELS:
                 skipped.append(f"release model {model_id} not implemented")
                 continue
-            inputs = _params_for(parm_an, src_rel_parms)
+            inputs, _unmapped = map_parms("release", model_id, _params_for(parm_an, src_rel_parms))
             run = ModelRun(
                 activity_id=act_lookup[scen_act].id,
                 model_id=model_id,
@@ -190,7 +199,7 @@ def import_cs2(cs2_path: Path | str, *, name_override: str | None = None) -> Imp
             if model_id not in EXPOSURE_MODELS:
                 skipped.append(f"exposure model {model_id} not implemented")
                 continue
-            inputs = _params_for(parm_an, src_exp_parms)
+            inputs, _unmapped = map_parms("exposure", model_id, _params_for(parm_an, src_exp_parms))
             run = ModelRun(
                 activity_id=act_lookup[scen_act].id,
                 model_id=model_id,

@@ -224,6 +224,22 @@ CubicMetersPerHour = Annotated[
     BeforeValidator(_make_coercer("meter ** 3 / hour")),
     _ToJson,
 ]
+FeetPerMinute = Annotated[
+    # ChemSTEER air speed vz (ParmID 69) is specified in ft/min; the
+    # 8.24e-8 / 1.93e-7 constants in the Penetration and Mass Transfer
+    # models are derived for these units (RelModels.cs lines 572, 662).
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("foot / minute")),
+    _ToJson,
+]
+CubicFeetPerMinute = Annotated[
+    # ChemSTEER ventilation rate Q (ParmID 53) is specified in ft³/min;
+    # the 1.7e5 constant in the Mass Balance model is derived for these
+    # units, so bare floats must mean ft³/min to match v3.2.
+    PintQuantity[float],
+    BeforeValidator(_make_coercer("foot ** 3 / minute")),
+    _ToJson,
+]
 HoursPerDay = Annotated[
     PintQuantity[float],
     BeforeValidator(_make_coercer("hour / day")),

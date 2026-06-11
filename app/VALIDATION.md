@@ -49,6 +49,24 @@ must hold across the full input domain:
 These do NOT validate against v3.2; they ensure the rebuild is internally
 consistent with the equations as published.
 
+### 2b. Unit conventions verified against the decompiled binary (1.1.0)
+
+Two silent unit mismatches survived the published-equation checks above,
+because the constants embed the unit conventions:
+
+- Mass Balance (#22): the 1.7×10⁵ constant requires **Q in ft³/min**
+  (`decompilation/source/ChemSteer/ExpModels.cs:388` indexes the global
+  parm array at 53, whose std unit is ft³/min). Found and fixed in 1.1.0;
+  the m³/hr coercion understated Cv by 1.699×.
+- Penetration (#9) / Mass Transfer (#8): the 8.24e-8 / 1.93e-7 constants
+  require **vz in ft/min** (`RelModels.cs:572` / `:662`, ParmID 69).
+
+Lesson applied: every canonical input unit is now cross-checked against
+`ListOfParms.StdUnits` (the binary reads raw stored values into its
+formulas, so the stored unit IS the formula unit). The ParmID → field
+translation layer (`calc/parm_map.py`) documents the remaining
+deliberate conversions (NF/FF G in mg/hr, velocityNF in m/hr).
+
 ## 3. Coverage assertions (live)
 
 `tests/unit/test_remaining_release_models.py` and

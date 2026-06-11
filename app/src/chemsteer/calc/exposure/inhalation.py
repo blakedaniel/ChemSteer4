@@ -44,6 +44,7 @@ from __future__ import annotations
 
 from chemsteer.calc.base import (
     CalcInput,
+    CubicFeetPerMinute,
     CubicMetersPerHour,
     DaysPerSiteYear,
     Dimensionless,
@@ -275,8 +276,10 @@ class MassBalanceInput(CalcInput):
     I  = Cm × b × h
 
     The min() over the two Cv expressions caps concentration at saturation.
-    Note: the constant 170,000 already embeds unit conversions; we treat
-    each value as a bare float once coerced to its canonical unit.
+    Note: the constant 170,000 embeds unit conversions and is valid only
+    for T in K, G in g/s, MW in g/mol, and Q in ft³/min (verified against
+    ``ExpModels.cs`` line 388, which indexes arParmValues by ParmID — 53
+    is Q, std units ft³/min).
     """
 
     G: GramsPerSecond
@@ -284,8 +287,9 @@ class MassBalanceInput(CalcInput):
 
     MW: GramsPerMole
     T: Kelvin
-    Q: CubicMetersPerHour
-    """Ventilation rate (Pint accepts ft³/min and converts)."""
+    Q: CubicFeetPerMinute
+    """Ventilation rate in ft³/min, as in v3.2 (ParmID 53); the 1.7e5
+    constant is derived for these units. Pint converts other flow units."""
 
     k: Dimensionless
     """Mixing factor."""
@@ -319,7 +323,7 @@ def mass_balance(inp: MassBalanceInput) -> ExposureOutput:
     G_v = float(inp.G.to("gram / second").magnitude)
     MW_v = float(inp.MW.to("gram / mole").magnitude)
     T_v = float(inp.T.to("kelvin").magnitude)
-    Q_v = float(inp.Q.to("meter ** 3 / hour").magnitude)
+    Q_v = float(inp.Q.to("foot ** 3 / minute").magnitude)
     k_v = float(inp.k.to("dimensionless").magnitude)
     X_v = float(inp.X.to("dimensionless").magnitude)
     VP_v = float(inp.VP.to("torr").magnitude)

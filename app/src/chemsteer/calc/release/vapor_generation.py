@@ -29,10 +29,10 @@ from chemsteer.calc.base import (
     Atm,
     CalcInput,
     Centimeter,
-    CmPerSecond,
     ContainerPerHour,
     DaysPerYear,
     Dimensionless,
+    FeetPerMinute,
     GallonPerContainer,
     GasConstant,
     GramsPerMole,
@@ -150,7 +150,7 @@ class MassTransferInput(CalcInput):
     MW: GramsPerMole
     X: Dimensionless
     VP: Torr
-    vz: CmPerSecond
+    vz: FeetPerMinute
     """Air velocity over the open surface."""
     A: SquareCentimeter
     """Open surface area."""
@@ -171,7 +171,7 @@ def mass_transfer_coefficient(inp: MassTransferInput) -> ReleaseOutput:
     MW_v = float(inp.MW.to("gram / mole").magnitude)
     X_v = float(inp.X.to("dimensionless").magnitude)
     VP_v = float(inp.VP.to("torr").magnitude)
-    vz_v = float(inp.vz.to("centimeter / second").magnitude)
+    vz_v = float(inp.vz.to("foot / minute").magnitude)
     A_v = float(inp.A.to("centimeter ** 2").magnitude)
     T_v = float(inp.T.to("kelvin").magnitude)
     d_v = float(inp.d.to("centimeter").magnitude)
@@ -205,7 +205,7 @@ class PenetrationInput(CalcInput):
     MW: GramsPerMole
     X: Dimensionless
     VP: Torr
-    vz: CmPerSecond
+    vz: FeetPerMinute
     A: SquareCentimeter
     T: Kelvin
     d: Centimeter
@@ -257,7 +257,7 @@ def penetration(inp: PenetrationInput) -> ReleaseOutput:
     MW_v = float(inp.MW.to("gram / mole").magnitude)
     X_v = float(inp.X.to("dimensionless").magnitude)
     VP_v = float(inp.VP.to("torr").magnitude)
-    vz_v = float(inp.vz.to("centimeter / second").magnitude)
+    vz_v = float(inp.vz.to("foot / minute").magnitude)
     A_v = float(inp.A.to("centimeter ** 2").magnitude)
     T_v = float(inp.T.to("kelvin").magnitude)
     d_v = float(inp.d.to("centimeter").magnitude)

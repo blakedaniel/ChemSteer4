@@ -148,10 +148,10 @@ def test_osha_pel_particulates_includes_ypel_division() -> None:
 def test_mass_balance_takes_lesser_of_two_Cv() -> None:
     """Mass Balance: Cv = min(generation-limited, saturation-limited).
 
-    Generation-limited: Cv1 = (170000 × T × G) / (MW × Q × k)
+    Generation-limited: Cv1 = (170000 × T × G) / (MW × Q × k), Q in ft³/min
     Saturation-limited: Cv2 = 1e6 × X × VP / 760
 
-    With G=0.001, T=298, MW=100, Q=10, k=0.5, X=0.5, VP=10, Vm=24.45:
+    With G=0.001, T=298, MW=100, Q=10 ft³/min, k=0.5, X=0.5, VP=10, Vm=24.45:
       Cv1 = (170000 × 298 × 0.001) / (100 × 10 × 0.5) = 50660 / 500 = 101.32
       Cv2 = 1e6 × 0.5 × 10 / 760 = 6578.95
       Cv  = min(101.32, 6578.95) = 101.32 (generation-limited)
@@ -220,6 +220,41 @@ def test_mass_balance_saturation_limited_branch() -> None:
     I_expected = Cm_expected * 1.25 * 8.0
     assert out.I is not None
     assert math.isclose(_mg_per_day(out.I), I_expected, rel_tol=1e-9)
+
+
+def test_mass_balance_Q_unit_is_cfm() -> None:
+    """Bare-float Q means ft³/min (v3.2 ParmID 53); explicit units convert.
+
+    Passing Q as 1.699011 m³/hr (= 1 ft³/min) must equal passing Q=1.0.
+    """
+    kwargs = dict(
+        G=0.001,
+        MW=100.0,
+        T=298.0,
+        k=0.5,
+        X=0.5,
+        VP=10.0,
+        Vm=24.45,
+        b=1.25,
+        h=8.0,
+        ED=250.0,
+        Y=40.0,
+        BW=80.0,
+        AT=40.0,
+        ATc=78.0,
+        NWexp=1.0,
+        NS=1.0,
+    )
+    bare = mass_balance(MassBalanceInput(Q=1.0, **kwargs))
+    explicit = mass_balance(
+        MassBalanceInput(Q={"value": 1.0, "unit": "foot ** 3 / minute"}, **kwargs)
+    )
+    metric = mass_balance(
+        MassBalanceInput(Q={"value": 1.699011, "unit": "meter ** 3 / hour"}, **kwargs)
+    )
+    assert bare.I is not None and explicit.I is not None and metric.I is not None
+    assert math.isclose(_mg_per_day(bare.I), _mg_per_day(explicit.I), rel_tol=1e-9)
+    assert math.isclose(_mg_per_day(bare.I), _mg_per_day(metric.I), rel_tol=1e-4)
 
 
 # --- User-defined Cv ------------------------------------------------------

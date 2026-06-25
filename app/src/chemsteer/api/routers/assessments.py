@@ -18,6 +18,8 @@ from chemsteer.api.schemas.assessment import (
     AssessmentUpdate,
     CalcAssessmentResponse,
     CalcRunResult,
+    ChemicalRecordRead,
+    ChemicalRecordUpdate,
     FromScenarioRequest,
     FromScenarioResponse,
     ModelRunCreate,
@@ -27,16 +29,20 @@ from chemsteer.api.schemas.assessment import (
     OperationRead,
     RevisionRead,
 )
+from chemsteer.calc.defaults import ChemicalProps
 from chemsteer.calc.dispatch import get_input_class, get_model_fn
 from chemsteer.db.user import (
     Assessment,
     AssessmentActivity,
     AssessmentOperation,
+    ChemicalRecord,
     ModelRun,
     Revision,
     user_session,
 )
 from chemsteer.importers.scenario import ScenarioNotFoundError, instantiate_scenario
+
+N_MEDIA = 18  # MediaID 0–17 in chmsteer.db ListOfMedia
 
 router = APIRouter(prefix="/api/assessments", tags=["assessments"])
 
@@ -143,6 +149,54 @@ def delete_assessment(assessment_id: int) -> None:
         s.delete(a)
 
 
+# --- Chemical record -------------------------------------------------------
+
+
+@router.get("/{assessment_id}/chemical", response_model=ChemicalRecordRead | None)
+def get_chemical(assessment_id: int) -> ChemicalRecordRead | None:
+    with user_session() as s:
+        _load(s, assessment_id)
+        rec = s.execute(
+            select(ChemicalRecord).where(ChemicalRecord.assessment_id == assessment_id)
+        ).scalar_one_or_none()
+        return ChemicalRecordRead.model_validate(rec) if rec else None
+
+
+@router.put("/{assessment_id}/chemical", response_model=ChemicalRecordRead)
+def put_chemical(assessment_id: int, body: ChemicalRecordUpdate) -> ChemicalRecordRead:
+    """Upsert the assessment's chemical-properties record (v3.2's
+    Chemicals table). Model-defaults resolution pulls VP/MW/solubility
+    from it, mirroring the original's chemical-record sentinels."""
+    with user_session() as s:
+        a = _load(s, assessment_id)
+        rec = s.execute(
+            select(ChemicalRecord).where(ChemicalRecord.assessment_id == assessment_id)
+        ).scalar_one_or_none()
+        if rec is None:
+            rec = ChemicalRecord(assessment_id=a.id)
+            s.add(rec)
+        for k, v in body.model_dump(exclude_unset=True).items():
+            setattr(rec, k, v)
+        s.flush()
+        _save_revision(s, a, "updated chemical record")
+        s.refresh(rec)
+        return ChemicalRecordRead.model_validate(rec)
+
+
+def _chemical_props(s, assessment_id: int) -> ChemicalProps | None:  # type: ignore[no-untyped-def]
+    rec = s.execute(
+        select(ChemicalRecord).where(ChemicalRecord.assessment_id == assessment_id)
+    ).scalar_one_or_none()
+    if rec is None:
+        return None
+    return ChemicalProps(
+        mw=rec.mw,
+        vp_torr=rec.vp_torr,
+        density_kg_l=rec.density_kg_l,
+        solubility_g_l=rec.solubility_g_l,
+    )
+
+
 # --- Nested: operations ---------------------------------------------------
 
 
@@ -190,7 +244,9 @@ def add_operation_from_scenario(
     with user_session() as s:
         a = _load(s, assessment_id)
         try:
-            result = instantiate_scenario(s, a.id, body.scenario_id)
+            result = instantiate_scenario(
+                s, a.id, body.scenario_id, chemical=_chemical_props(s, a.id)
+            )
         except ScenarioNotFoundError as e:
             raise HTTPException(404, str(e)) from e
         _save_revision(s, a, f"added operation from Generic Scenario #{body.scenario_id}")
@@ -320,8 +376,8 @@ def list_model_runs(assessment_id: int, activity_id: int) -> list[ModelRunRead]:
     response_model=ModelRunRead,
 )
 def update_model_run(assessment_id: int, run_id: int, body: ModelRunUpdate) -> ModelRunRead:
-    """Edit a run's inputs (full replacement) and/or label; clears cached
-    outputs since they no longer reflect the inputs."""
+    """Edit a run's inputs (full replacement), label, and/or media split;
+    input edits clear cached outputs since they no longer reflect them."""
     with user_session() as s:
         a = _load(s, assessment_id)
         run = s.execute(select(ModelRun).where(ModelRun.id == run_id)).scalar_one_or_none()
@@ -341,6 +397,20 @@ def update_model_run(assessment_id: int, run_id: int, body: ModelRunUpdate) -> M
             run.last_run_at = None
         if body.label is not None:
             run.label = body.label
+        if body.media is not None:
+            if run.model_kind != "release":
+                raise HTTPException(422, "media splits apply to release runs only")
+            split = {mid: pct for mid, pct in body.media.items() if pct != 0.0}
+            for mid, pct in split.items():
+                if not 0 <= mid < N_MEDIA:
+                    raise HTTPException(422, f"unknown MediaID {mid}")
+                if not 0.0 < pct <= 100.0:
+                    raise HTTPException(422, f"media percentage {pct} out of range (0, 100]")
+            # frmMDUpdRelMed requires the split to total exactly 100 %.
+            total = sum(split.values())
+            if split and abs(total - 100.0) > 0.01:
+                raise HTTPException(422, f"media percentages must total 100 (got {total:g})")
+            run.media_json = json.dumps({str(m): p for m, p in split.items()}) if split else None
         s.flush()
         _save_revision(s, a, f"updated run #{run_id}")
         s.refresh(run)

@@ -1,0 +1,25 @@
+meta {
+  name: Upsert chemical record
+  type: http
+  seq: 15
+}
+
+put {
+  url: {{baseUrl}}/api/assessments/{{assessmentId}}/chemical
+  body: json
+}
+
+body:json {
+  {
+    "mw": 72.1,
+    "vp_torr": 10.0,
+    "solubility_g_l": 2.5,
+    "mol_formula": "C4H8O"
+  }
+}
+
+assert {
+  res.status: eq 200
+  res.body.mw: eq 72.1
+  res.body.vp_torr: eq 10
+}

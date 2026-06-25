@@ -12,10 +12,23 @@ from fastapi import APIRouter, Query
 from sqlalchemy import or_, select
 
 from chemsteer.api.schemas.reference import ExposureLimitOut, NaicsOut
+from chemsteer.api.schemas.registry import MediaOut
 from chemsteer.db.seed import session
-from chemsteer.db.seed_models import Naics, PelRelTwa
+from chemsteer.db.seed_models import ListOfMedia, Naics, PelRelTwa
 
 router = APIRouter(prefix="/api/reference", tags=["reference"])
+
+
+@router.get("/media", response_model=list[MediaOut])
+def list_media() -> list[MediaOut]:
+    """The 18 release-media categories, in v3.2 display order."""
+    with session("chmsteer") as s:
+        rows = s.execute(select(ListOfMedia)).scalars().all()
+    out = [
+        MediaOut(media_id=int(r.MediaID), name=r.Media or "", sort_id=int(r.SortID or 0))
+        for r in rows
+    ]
+    return sorted(out, key=lambda m: m.sort_id)
 
 
 @router.get("/naics", response_model=list[NaicsOut])

@@ -78,6 +78,49 @@ class AssessmentRead(AssessmentSummary):
     operations: list[OperationRead] = Field(default_factory=list)
 
 
+# --- Chemical record -------------------------------------------------------
+
+
+class ChemicalRecordUpdate(BaseModel):
+    """Upsert payload for the per-assessment chemical record. All fields
+    optional; numeric values are v3.2 standard units (torr, g/mol, kg/L,
+    g/L, °C, kg/yr)."""
+
+    mol_formula: str | None = None
+    trade_names: str | None = None
+    category: str | None = None
+    mw: float | None = Field(default=None, gt=0)
+    vp_torr: float | None = Field(default=None, ge=0)
+    vp_temp_c: float | None = None
+    density_kg_l: float | None = Field(default=None, gt=0)
+    density_temp_c: float | None = None
+    solubility_g_l: float | None = Field(default=None, ge=0)
+    sol_temp_c: float | None = None
+    melting_point_c: float | None = None
+    boiling_point_c: float | None = None
+    production_volume_kg_yr: float | None = Field(default=None, gt=0)
+    physical_state: str | None = None
+
+
+class ChemicalRecordRead(_Base):
+    id: int
+    assessment_id: int
+    mol_formula: str | None
+    trade_names: str | None
+    category: str | None
+    mw: float | None
+    vp_torr: float | None
+    vp_temp_c: float | None
+    density_kg_l: float | None
+    density_temp_c: float | None
+    solubility_g_l: float | None
+    sol_temp_c: float | None
+    melting_point_c: float | None
+    boiling_point_c: float | None
+    production_volume_kg_yr: float | None
+    physical_state: str | None
+
+
 # --- Model runs ----------------------------------------------------------
 
 
@@ -89,10 +132,13 @@ class ModelRunCreate(BaseModel):
 
 
 class ModelRunUpdate(BaseModel):
-    """Partial update of a run; ``inputs`` replaces the whole input dict."""
+    """Partial update of a run; ``inputs`` replaces the whole input dict,
+    ``media`` replaces the whole media split (``{MediaID: pct}``,
+    percentages must total 100)."""
 
     inputs: dict[str, object] | None = None
     label: str | None = None
+    media: dict[int, float] | None = None
 
 
 class ModelRunRead(_Base):
@@ -103,9 +149,10 @@ class ModelRunRead(_Base):
     label: str | None = None
     inputs: dict[str, Any] = Field(validation_alias="inputs_json")
     outputs: dict[str, Any] | None = Field(default=None, validation_alias="outputs_json")
+    media: dict[str, float] | None = Field(default=None, validation_alias="media_json")
     last_run_at: datetime | None
 
-    @field_validator("inputs", "outputs", mode="before")
+    @field_validator("inputs", "outputs", "media", mode="before")
     @classmethod
     def _parse_json(cls, v: Any) -> Any:
         if v is None or isinstance(v, dict):

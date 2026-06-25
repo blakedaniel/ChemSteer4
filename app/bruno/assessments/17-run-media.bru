@@ -1,0 +1,27 @@
+meta {
+  name: Set run media split
+  type: http
+  seq: 17
+}
+
+patch {
+  url: {{baseUrl}}/api/assessments/{{assessmentId}}/runs/{{runId}}
+  body: json
+}
+
+body:json {
+  {
+    "media": { "13": 60.0, "11": 40.0 }
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  const m = res.getBody().media;
+  if (m["13"] !== 60 || m["11"] !== 40) {
+    throw new Error("media split not persisted: " + JSON.stringify(m));
+  }
+}

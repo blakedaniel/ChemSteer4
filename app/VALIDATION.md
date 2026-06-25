@@ -67,6 +67,29 @@ formulas, so the stored unit IS the formula unit). The ParmID → field
 translation layer (`calc/parm_map.py`) documents the remaining
 deliberate conversions (NF/FF G in mg/hr, velocityNF in m/hr).
 
+### 2c. Parameter-resolution + mass balance ported from source (1.2.0)
+
+Two more v3.2 behaviours are now reproduced and pinned by hand-checked
+tests:
+
+- **Second-level `ParmDefaults` sentinels.** Negative `DefaultValue`
+  entries dispatch to `GetParmDefaults.GetParmDefaultXXXX`
+  (`ChemStrX.cs:2236-2420`). `calc/defaults.py` ports the
+  per-output-characterization constants (e.g. -3111 drum-residue LF =
+  0.025 CT / 0.03 HE, `GetParmDefault3111`) and the chemical-record
+  pulls (-3108/-3109 → vapor pressure; MW/WSchem via the direct
+  -1102/-1104 branch at `ChemStrX.cs:2127/2135`). Op-parameter
+  references (-1101, -1107, …) that need a live operation context stay
+  user-input. `tests/unit/test_defaults_sentinels.py` asserts each
+  family against the decompiled constants.
+- **Operation mass balance.** `calc/mass_balance.py` ports
+  `frmMDUpdOpIP.CalcRest` (`:6471-6623`) and its rounding helpers —
+  `MyRoundIt` (`:7074`, round(x+0.1) floor-1 + ≥5 % discrepancy
+  warning) and `MassBalanceRoundUp` (`:7034`, ceiling). The OD > 365
+  and Yprod ∉ (0,1] guards match lines 6533 / 6615.
+  `tests/unit/test_mass_balance.py` checks each branch and the rounding
+  edge cases.
+
 ## 3. Coverage assertions (live)
 
 `tests/unit/test_remaining_release_models.py` and

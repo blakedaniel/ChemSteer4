@@ -10,7 +10,10 @@ in ``chemsteer.api.routers.assessments``.
 
 from __future__ import annotations
 
+from typing import Literal
+
 from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel, Field
 
 from chemsteer.calc.base import ExposureOutput, ReleaseOutput
 from chemsteer.calc.dispatch import (
@@ -19,8 +22,64 @@ from chemsteer.calc.dispatch import (
     get_input_class,
     get_model_fn,
 )
+from chemsteer.calc.mass_balance import MassBalanceError, solve_mass_balance
 
 router = APIRouter(prefix="/api/calc", tags=["calc"])
+
+
+class MassBalanceRequest(BaseModel):
+    """Knowns for the operation mass balance (frmMDUpdOpIP). Supply
+    ``pv_kg_yr`` plus v3.2's three knowns out of {NS, T, DMOchem, Yprod,
+    DMOprod}; ``T`` is OD (continuous) or Nby (batch)."""
+
+    pv_kg_yr: float = Field(gt=0, description="Annual production volume (kg/yr)")
+    mode: Literal["continuous", "batch"] = "continuous"
+    NS: float | None = Field(default=None, description="Number of sites")
+    T: float | None = Field(default=None, description="OD (days/site-yr) or Nby (btc/site-yr)")
+    DMOchem: float | None = Field(default=None, description="Daily mass of chemical (kg/site-day)")
+    Yprod: float | None = Field(default=None, description="Weight fraction of chemical in product")
+    DMOprod: float | None = Field(default=None, description="Daily mass of product (kg/site-day)")
+    round_up_ns: bool = Field(
+        default=False, description="Ceil NS instead of v3.2's nearest-int rounding"
+    )
+
+
+class MassBalanceResponse(BaseModel):
+    NS: float
+    T: float
+    DMOchem: float
+    Yprod: float | None
+    DMOprod: float | None
+    derived: list[str]
+    warnings: list[str]
+
+
+@router.post("/mass-balance", response_model=MassBalanceResponse)
+def mass_balance(body: MassBalanceRequest) -> MassBalanceResponse:
+    """Solve PV = NS × T × DMOchem (with DMOchem = Yprod × DMOprod) for
+    the unknowns, with v3.2's rounding and validity rules."""
+    try:
+        r = solve_mass_balance(
+            body.pv_kg_yr,
+            mode=body.mode,
+            NS=body.NS,
+            T=body.T,
+            DMOchem=body.DMOchem,
+            Yprod=body.Yprod,
+            DMOprod=body.DMOprod,
+            round_up_ns=body.round_up_ns,
+        )
+    except MassBalanceError as exc:
+        raise HTTPException(422, str(exc)) from exc
+    return MassBalanceResponse(
+        NS=r.NS,
+        T=r.T,
+        DMOchem=r.DMOchem,
+        Yprod=r.Yprod,
+        DMOprod=r.DMOprod,
+        derived=r.derived,
+        warnings=r.warnings,
+    )
 
 
 def _run(model_kind: str, model_id: int, body: dict[str, object]) -> object:

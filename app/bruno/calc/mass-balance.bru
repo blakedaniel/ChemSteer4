@@ -1,0 +1,26 @@
+meta {
+  name: Solve operation mass balance
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/calc/mass-balance
+  body: json
+}
+
+body:json {
+  {
+    "pv_kg_yr": 500000,
+    "mode": "continuous",
+    "NS": 2,
+    "T": 250,
+    "Yprod": 0.5
+  }
+}
+
+assert {
+  res.status: eq 200
+  res.body.DMOchem: eq 1000
+  res.body.DMOprod: eq 2000
+}

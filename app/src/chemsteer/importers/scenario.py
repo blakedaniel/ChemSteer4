@@ -38,7 +38,7 @@ from dataclasses import dataclass, field
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from chemsteer.calc.defaults import defaults_for
+from chemsteer.calc.defaults import ChemicalProps, defaults_for, media_defaults_for
 from chemsteer.calc.dispatch import EXPOSURE_MODELS, RELEASE_MODELS
 from chemsteer.calc.parm_map import map_parms
 from chemsteer.db.seed import session as seed_session
@@ -48,6 +48,7 @@ from chemsteer.db.seed_models import (
     ScenActExpModel,
     ScenActExpModParm,
     ScenActRelModel,
+    ScenActRelModMedia,
     ScenActRelModParm,
     ScenarioActivity,
     ScenOpParm,
@@ -101,9 +102,13 @@ def _merge_parms(
     gss_op_id: int,
     op_parms: dict[int, float],
     row_parms: dict[int, float],
+    output: int = 0,
+    chemical: ChemicalProps | None = None,
 ) -> dict[int, float]:
     """Defaults < op-level parms < per-model rows; zeros never override."""
-    merged = dict(defaults_for(model_id, act_id=act_id, gss_id=gss_op_id))
+    merged = dict(
+        defaults_for(model_id, act_id=act_id, gss_id=gss_op_id, output=output, chemical=chemical)
+    )
     for src in (op_parms, row_parms):
         for pid, value in src.items():
             if value != 0.0:
@@ -137,11 +142,17 @@ def _default_model_ids(act_row: ListOfActivities | None, kind: str) -> list[int]
     return [int(v) for v in (_f(r) for r in raw) if v > 0]
 
 
-def instantiate_scenario(s: Session, assessment_id: int, scenario_id: int) -> InstantiateResult:
+def instantiate_scenario(
+    s: Session,
+    assessment_id: int,
+    scenario_id: int,
+    chemical: ChemicalProps | None = None,
+) -> InstantiateResult:
     """Attach the Generic Scenario's operation tree to an assessment.
 
     ``s`` is an open user-DB session (the caller owns the transaction so
-    it can wrap this in its revision bookkeeping).
+    it can wrap this in its revision bookkeeping). ``chemical`` is the
+    assessment's chemical record, feeding the VP/MW/solubility defaults.
     """
     sid = str(scenario_id)
     skipped: list[str] = []
@@ -191,6 +202,18 @@ def instantiate_scenario(s: Session, assessment_id: int, scenario_id: int) -> In
         op_parm_rows = (
             seed.execute(select(ScenOpParm).where(ScenOpParm.ScenarioID == sid)).scalars().all()
         )
+        media_rows = (
+            seed.execute(select(ScenActRelModMedia).where(ScenActRelModMedia.ScenarioID == sid))
+            .scalars()
+            .all()
+        )
+
+    # GS-shipped media splits, keyed by (ScenActID, RelModID).
+    media_by_key: dict[tuple[str, str], dict[int, float]] = {}
+    for mr in media_rows:
+        pct = _f(mr.Pct)
+        if pct != 0.0:
+            media_by_key.setdefault((mr.ScenActID, mr.RelModID), {})[int(_f(mr.MediaID))] = pct
 
     # Operation-level parms the GS ships (zeros = user-to-fill, dropped).
     op_parms: dict[int, float] = {}
@@ -256,14 +279,31 @@ def instantiate_scenario(s: Session, assessment_id: int, scenario_id: int) -> In
         label: str | None,
         row_parms: dict[int, float],
         rel_days: float = 0.0,
+        output: int = 0,
+        media: dict[int, float] | None = None,
     ) -> None:
         nonlocal n_runs
-        merged = _merge_parms(kind, model_id, activity.act_id, gss_op_id, op_parms, row_parms)
+        merged = _merge_parms(
+            kind,
+            model_id,
+            activity.act_id,
+            gss_op_id,
+            op_parms,
+            row_parms,
+            output=output,
+            chemical=chemical,
+        )
         inputs, _unmapped = map_parms(kind, model_id, merged)
         # v3.2 also stores release frequency on the model row (RelDays /
         # RelDays2); it wins over op-level fallbacks when filled in.
         if kind == "release" and rel_days:
             inputs["Freq"] = rel_days
+        # Media split: scenario rows win, else the model's MediaDefaults.
+        media_json: str | None = None
+        if kind == "release":
+            split = media or media_defaults_for(model_id)
+            if split:
+                media_json = json.dumps({str(m): p for m, p in split.items()})
         s.add(
             ModelRun(
                 activity_id=activity.id,
@@ -271,6 +311,7 @@ def instantiate_scenario(s: Session, assessment_id: int, scenario_id: int) -> In
                 model_kind=kind,
                 label=label,
                 inputs_json=json.dumps(inputs),
+                media_json=media_json,
             )
         )
         n_runs += 1
@@ -290,7 +331,16 @@ def instantiate_scenario(s: Session, assessment_id: int, scenario_id: int) -> In
         for output_id, label in _enabled_outputs(rel):
             row_parms = rel_parms_by_key.get((rel.RelParmsAN, output_id), {})
             rel_days = _f(rel.RelDays if output_id == "0" else rel.RelDays2)
-            _add_run(rel_act, "release", model_id, label, row_parms, rel_days)
+            _add_run(
+                rel_act,
+                "release",
+                model_id,
+                label,
+                row_parms,
+                rel_days,
+                output=int(output_id),
+                media=media_by_key.get((rel.ScenActID or "", rel.RelModID or "")),
+            )
 
     for exp in exp_models:
         exp_act = act_by_scen_act.get(exp.ScenActID or "")
@@ -303,7 +353,7 @@ def instantiate_scenario(s: Session, assessment_id: int, scenario_id: int) -> In
             continue
         for output_id, label in _enabled_outputs(exp):
             row_parms = exp_parms_by_key.get((exp.ExpParmsAN, output_id), {})
-            _add_run(exp_act, "exposure", model_id, label, row_parms)
+            _add_run(exp_act, "exposure", model_id, label, row_parms, output=int(output_id))
 
     # Default-model fallback for activities with no explicit model rows.
     for src in activities:

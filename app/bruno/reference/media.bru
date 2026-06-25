@@ -1,0 +1,19 @@
+meta {
+  name: List release media
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/reference/media
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  const rows = res.getBody();
+  if (rows.length !== 18) throw new Error("expected 18 media, got " + rows.length);
+  if (rows[0].name !== "Water") throw new Error("expected Water first (SortID 0)");
+}

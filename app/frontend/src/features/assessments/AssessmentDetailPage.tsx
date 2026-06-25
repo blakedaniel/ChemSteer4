@@ -4,6 +4,8 @@ import { api } from "../../lib/api";
 import { OperationEditor } from "./OperationEditor";
 import { AddOperationForm } from "./AddOperationForm";
 import { CalcResults } from "./CalcResults";
+import { ChemicalForm } from "./ChemicalForm";
+import { MassBalancePanel } from "./MassBalancePanel";
 import { RevisionSidebar } from "./RevisionSidebar";
 
 export function AssessmentDetailPage() {
@@ -40,6 +42,9 @@ export function AssessmentDetailPage() {
           {data.chemical_name ?? "(no chemical)"}{" "}
           {data.cas_number ? `· CAS ${data.cas_number}` : ""}
         </p>
+
+        <ChemicalForm aid={aid} />
+        <MassBalancePanel />
 
         <div style={{ margin: "16px 0" }}>
           <button

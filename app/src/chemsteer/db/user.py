@@ -21,6 +21,7 @@ from functools import cache
 from sqlalchemy import (
     DateTime,
     Engine,
+    Float,
     ForeignKey,
     Integer,
     String,
@@ -65,6 +66,48 @@ class Assessment(UserBase):
         cascade="all, delete-orphan",
         order_by="Revision.created_at.desc()",
     )
+    chemical: Mapped[ChemicalRecord | None] = relationship(
+        back_populates="assessment", cascade="all, delete-orphan", uselist=False
+    )
+
+
+class ChemicalRecord(UserBase):
+    """Per-assessment chemical properties (v3.2's ``Chemicals`` table).
+
+    Numeric fields are stored in v3.2's standard units (the binary reads
+    them raw into model formulas): vapor pressure in torr, MW in g/mol,
+    density in kg/L, water solubility in g/L, temperatures in °C,
+    production volume in kg/yr. ``None`` means "not provided" — the
+    original leaves blanks and the defaults resolver simply skips the
+    chemical-record sentinels for missing values.
+    """
+
+    __tablename__ = "chemical_records"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    assessment_id: Mapped[int] = mapped_column(
+        ForeignKey("assessments.id", ondelete="CASCADE"), unique=True
+    )
+    mol_formula: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    trade_names: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    category: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    mw: Mapped[float | None] = mapped_column(Float, nullable=True)
+    """Molecular weight (g/mol) — ParmID 5."""
+    vp_torr: Mapped[float | None] = mapped_column(Float, nullable=True)
+    """Vapor pressure (torr) — ParmID 4."""
+    vp_temp_c: Mapped[float | None] = mapped_column(Float, nullable=True)
+    density_kg_l: Mapped[float | None] = mapped_column(Float, nullable=True)
+    """Density of the chemical (kg/L)."""
+    density_temp_c: Mapped[float | None] = mapped_column(Float, nullable=True)
+    solubility_g_l: Mapped[float | None] = mapped_column(Float, nullable=True)
+    """Water solubility (g/L) — ParmID 80 (WSchem)."""
+    sol_temp_c: Mapped[float | None] = mapped_column(Float, nullable=True)
+    melting_point_c: Mapped[float | None] = mapped_column(Float, nullable=True)
+    boiling_point_c: Mapped[float | None] = mapped_column(Float, nullable=True)
+    production_volume_kg_yr: Mapped[float | None] = mapped_column(Float, nullable=True)
+    physical_state: Mapped[str | None] = mapped_column(String(64), nullable=True)
+
+    assessment: Mapped[Assessment] = relationship(back_populates="chemical")
 
 
 class AssessmentOperation(UserBase):
@@ -132,6 +175,10 @@ class ModelRun(UserBase):
     v3.2 model row carries two enabled outputs and instantiates as two runs."""
     inputs_json: Mapped[str] = mapped_column(Text)
     outputs_json: Mapped[str | None] = mapped_column(Text, nullable=True)
+    media_json: Mapped[str | None] = mapped_column(Text, nullable=True)
+    """Release-media split as JSON ``{MediaID: pct}`` (percentages sum to
+    100, v3.2 ``ActRelModMedia``). Only meaningful for release runs;
+    ``None`` falls back to ``MediaDefaults`` at report time."""
     last_run_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
 
     activity: Mapped[AssessmentActivity] = relationship(back_populates="model_runs")

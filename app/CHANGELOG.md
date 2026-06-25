@@ -1,5 +1,52 @@
 # Changelog
 
+## 1.2.0 — 2026-06-25
+
+Closes the largest remaining parity gaps against v3.2: the per-assessment
+chemical record (and the defaults sentinels that read it), the
+operation-level mass-balance solver, release-media partitioning, and an
+IRER-shaped report.
+
+### Added
+- **Per-assessment chemical record** — `GET`/`PUT
+  /api/assessments/{id}/chemical` stores MW, vapor pressure (torr),
+  density (kg/L), water solubility (g/L), measurement temperatures,
+  melting/boiling points, production volume, and physical state, in
+  v3.2's standard units (the binary reads them raw into formulas).
+  Mirrors v3.2's `Chemicals` table + `frmMDUpdChem`.
+- **Chemical-record defaults sentinels.** `defaults_for` now resolves
+  v3.2's *second-level* negative `ParmDefaults` sentinels
+  (`GetParmDefaults.cs`): the chemical-record pulls (-3108/-3109 → VP,
+  plus MW/WSchem via `ListOfParms.DefaultSource` -1102/-1104) and the
+  per-output-characterization loss-fraction / mixing-factor constants
+  (-3106, -3110…-3115, -3128). `GET /api/models/{id}/defaults` gained
+  `output=` (Central Tendency / High End) and `assessment_id=` (pull the
+  chemical record) parameters.
+- **Operation mass-balance solver** — `POST /api/calc/mass-balance`
+  ports `frmMDUpdOpIP.CalcRest`: solves `PV = NS · T · DMOchem` (with
+  `DMOchem = Yprod · DMOprod`) for the unknowns from any three knowns,
+  with the original's rounding (`MyRoundIt` round(x+0.1)/floor-1,
+  `MassBalanceRoundUp` ceiling), the ≥5 % discrepancy warnings, and the
+  OD > 365 / Yprod ∉ (0,1] validity checks. New collapsible panel on the
+  assessment page.
+- **Release-media partitioning** — model runs carry a `{MediaID: pct}`
+  split (`ActRelModMedia`); Generic-Scenario instantiation seeds it from
+  the scenario's media rows or the model's `MediaDefaults`. `PATCH
+  …/runs/{id}` accepts a `media` map (must total 100 %, release runs
+  only); `GET /api/reference/media` lists the 18 categories. Per-run
+  media editor in the UI.
+- **IRER-shaped report** — the report payload (and HTML/PDF) gained a
+  **Chemical properties** section and an **Environmental release
+  summary** that partitions each run's daily/annual release across media
+  (`DRR_media = DR × pct/100`) and sums across an operation's activities
+  per (medium, characterization), like the v3.2 `IrerRels` build. Release
+  rates render in v3.2's two-significant-figure scientific notation
+  (`ShowInSciNot1digit`).
+- **Alembic migration `9f4b6a02c7d1`** — `chemical_records` table +
+  `model_runs.media_json` (run `alembic upgrade head`).
+- 8 new Bruno requests (32 total), 3 new Playwright specs (12 E2E
+  total), 28 new pytest cases (160 total).
+
 ## 1.1.0 — 2026-06-11
 
 Fidelity fixes verified against the decompiled v3.2 binary, plus the

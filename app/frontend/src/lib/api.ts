@@ -69,6 +69,55 @@ export type ModelDefaults = {
   model_kind: "release" | "exposure";
   fields: string[];
   defaults: Record<string, unknown>;
+  media: Record<string, number>;
+};
+
+export type MediaEntry = {
+  media_id: number;
+  name: string;
+  sort_id: number;
+};
+
+export type ChemicalRecord = {
+  id: number;
+  assessment_id: number;
+  mol_formula: string | null;
+  trade_names: string | null;
+  category: string | null;
+  mw: number | null;
+  vp_torr: number | null;
+  vp_temp_c: number | null;
+  density_kg_l: number | null;
+  density_temp_c: number | null;
+  solubility_g_l: number | null;
+  sol_temp_c: number | null;
+  melting_point_c: number | null;
+  boiling_point_c: number | null;
+  production_volume_kg_yr: number | null;
+  physical_state: string | null;
+};
+
+export type ChemicalRecordUpdate = Partial<Omit<ChemicalRecord, "id" | "assessment_id">>;
+
+export type MassBalanceRequest = {
+  pv_kg_yr: number;
+  mode: "continuous" | "batch";
+  NS?: number | null;
+  T?: number | null;
+  DMOchem?: number | null;
+  Yprod?: number | null;
+  DMOprod?: number | null;
+  round_up_ns?: boolean;
+};
+
+export type MassBalanceResponse = {
+  NS: number;
+  T: number;
+  DMOchem: number;
+  Yprod: number | null;
+  DMOprod: number | null;
+  derived: string[];
+  warnings: string[];
 };
 
 export type NaicsEntry = {
@@ -143,6 +192,7 @@ export type ModelRun = {
   label: string | null;
   inputs: Record<string, unknown>;
   outputs: Record<string, Quantity> | null;
+  media: Record<string, number> | null;
   last_run_at: string | null;
 };
 
@@ -211,10 +261,15 @@ export const api = {
   parameter: (id: number) => get<Parameter>(`/api/parameters/${id}`),
   scenarios: () => get<Scenario[]>("/api/scenarios"),
   scenario: (scenarioId: number) => get<ScenarioDetail>(`/api/scenarios/${scenarioId}`),
-  modelDefaults: (id: number, opts?: { act_id?: number; gss_id?: number }) => {
+  modelDefaults: (
+    id: number,
+    opts?: { act_id?: number; gss_id?: number; output?: number; assessment_id?: number },
+  ) => {
     const qs = new URLSearchParams();
     if (opts?.act_id) qs.set("act_id", String(opts.act_id));
     if (opts?.gss_id) qs.set("gss_id", String(opts.gss_id));
+    if (opts?.output) qs.set("output", String(opts.output));
+    if (opts?.assessment_id) qs.set("assessment_id", String(opts.assessment_id));
     const suffix = qs.toString() ? `?${qs}` : "";
     return get<ModelDefaults>(`/api/models/${id}/defaults${suffix}`);
   },
@@ -224,6 +279,7 @@ export const api = {
     get<NaicsEntry[]>(`/api/reference/naics?q=${encodeURIComponent(q)}`),
   exposureLimits: (q: string) =>
     get<ExposureLimit[]>(`/api/reference/exposure-limits?q=${encodeURIComponent(q)}`),
+  media: () => get<MediaEntry[]>("/api/reference/media"),
 
   // --- assessments (Phase 4) ---
   assessments: () => get<AssessmentSummary[]>("/api/assessments"),
@@ -290,10 +346,28 @@ export const api = {
   updateRun: (
     aid: number,
     runId: number,
-    body: { inputs?: Record<string, unknown>; label?: string },
+    body: {
+      inputs?: Record<string, unknown>;
+      label?: string;
+      media?: Record<string, number>;
+    },
   ) =>
     jsonFetch<ModelRun>(`/api/assessments/${aid}/runs/${runId}`, {
       method: "PATCH",
+      body: JSON.stringify(body),
+    }),
+
+  chemical: (aid: number) =>
+    get<ChemicalRecord | null>(`/api/assessments/${aid}/chemical`),
+  putChemical: (aid: number, body: ChemicalRecordUpdate) =>
+    jsonFetch<ChemicalRecord>(`/api/assessments/${aid}/chemical`, {
+      method: "PUT",
+      body: JSON.stringify(body),
+    }),
+
+  massBalance: (body: MassBalanceRequest) =>
+    jsonFetch<MassBalanceResponse>("/api/calc/mass-balance", {
+      method: "POST",
       body: JSON.stringify(body),
     }),
   deleteRun: (aid: number, runId: number) =>

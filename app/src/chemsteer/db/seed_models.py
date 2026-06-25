@@ -97,6 +97,26 @@ class ListOfValidModels(ChmSteerBase):
     ModelID: Mapped[str] = mapped_column(primary_key=True)
 
 
+class ListOfMedia(ChmSteerBase):
+    """chmsteer.db::ListOfMedia — the 18 release-media categories."""
+
+    __tablename__ = "ListOfMedia"
+
+    MediaID: Mapped[str] = mapped_column(primary_key=True)
+    Media: Mapped[str | None] = mapped_column()
+    SortID: Mapped[str | None] = mapped_column()
+
+
+class MediaDefaults(ChmSteerBase):
+    """chmsteer.db::MediaDefaults — default media % split per release model."""
+
+    __tablename__ = "MediaDefaults"
+
+    ModelID: Mapped[str] = mapped_column(primary_key=True)
+    MediaID: Mapped[str] = mapped_column(primary_key=True)
+    Pct: Mapped[str | None] = mapped_column()
+
+
 class Naics(ChmSteerBase):
     """chmsteer.db::NAICS — 1814 industry classification codes."""
 
@@ -174,6 +194,9 @@ class ScenActRelModel(ScenariosBase):
     RelParmsAN: Mapped[str] = mapped_column(primary_key=True)
     ScenarioID: Mapped[str | None] = mapped_column()
     ScenActID: Mapped[str | None] = mapped_column()
+    RelModID: Mapped[str | None] = mapped_column()
+    """Index of this model row within its activity — the join key for
+    ``ActRelModMedia``."""
     ModelID: Mapped[str | None] = mapped_column()
     RelDays: Mapped[str | None] = mapped_column()
     RelDays2: Mapped[str | None] = mapped_column()
@@ -222,6 +245,19 @@ class ScenOpParm(ScenariosBase):
     ScenarioID: Mapped[str] = mapped_column(primary_key=True)
     ParmID: Mapped[str] = mapped_column(primary_key=True)
     ParmValue: Mapped[str | None] = mapped_column()
+
+
+class ScenActRelModMedia(ScenariosBase):
+    """scenarios.db::ActRelModMedia — media % splits a GS ships per
+    (activity, release-model-row)."""
+
+    __tablename__ = "ActRelModMedia"
+
+    ScenarioID: Mapped[str] = mapped_column(primary_key=True)
+    ScenActID: Mapped[str] = mapped_column(primary_key=True)
+    RelModID: Mapped[str] = mapped_column(primary_key=True)
+    MediaID: Mapped[str] = mapped_column(primary_key=True)
+    Pct: Mapped[str | None] = mapped_column()
 
 
 class ScenActExpModParm(ScenariosBase):

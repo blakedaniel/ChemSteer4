@@ -1,0 +1,14 @@
+meta {
+  name: Get chemical record
+  type: http
+  seq: 16
+}
+
+get {
+  url: {{baseUrl}}/api/assessments/{{assessmentId}}/chemical
+}
+
+assert {
+  res.status: eq 200
+  res.body.mol_formula: eq C4H8O
+}

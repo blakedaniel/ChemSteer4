@@ -2,6 +2,125 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { ActivityRow, api, ModelRun } from "../../lib/api";
 
+function MediaEditor({
+  aid,
+  run,
+  onDone,
+}: {
+  aid: number;
+  run: ModelRun;
+  onDone: () => void;
+}) {
+  const { data: allMedia } = useQuery({ queryKey: ["media"], queryFn: api.media });
+  const [split, setSplit] = useState<Record<string, string>>(() =>
+    Object.fromEntries(
+      Object.entries(run.media ?? {}).map(([m, p]) => [m, String(p)]),
+    ),
+  );
+  const [addId, setAddId] = useState("");
+
+  const total = Object.values(split).reduce((s, v) => s + (Number(v) || 0), 0);
+  const nameOf = (mid: string) =>
+    allMedia?.find((m) => m.media_id === Number(mid))?.name ?? `Media ${mid}`;
+
+  const save = useMutation({
+    mutationFn: () =>
+      api.updateRun(aid, run.id, {
+        media: Object.fromEntries(
+          Object.entries(split)
+            .map(([m, v]) => [m, Number(v) || 0])
+            .filter(([, v]) => (v as number) > 0),
+        ) as Record<string, number>,
+      }),
+    onSuccess: onDone,
+  });
+
+  return (
+    <div
+      data-testid="media-editor"
+      style={{ margin: "6px 0", display: "grid", gap: 4, fontSize: 11 }}
+    >
+      {Object.keys(split).map((mid) => (
+        <label key={mid} style={{ display: "flex", gap: 6, alignItems: "center" }}>
+          <span style={{ minWidth: 180 }}>{nameOf(mid)}</span>
+          <input
+            type="number"
+            step="any"
+            min={0}
+            max={100}
+            value={split[mid]}
+            onChange={(e) => setSplit((s) => ({ ...s, [mid]: e.target.value }))}
+            style={{ width: 70, padding: 2, border: "1px solid #d4d4d8", borderRadius: 4 }}
+          />
+          %
+          <button
+            onClick={() =>
+              setSplit((s) => {
+                const next = { ...s };
+                delete next[mid];
+                return next;
+              })
+            }
+            style={{ background: "transparent", border: 0, color: "#991b1b", cursor: "pointer" }}
+          >
+            ✕
+          </button>
+        </label>
+      ))}
+      <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+        <select
+          value={addId}
+          onChange={(e) => setAddId(e.target.value)}
+          style={{ padding: 2, border: "1px solid #d4d4d8", borderRadius: 4 }}
+        >
+          <option value="">— add medium —</option>
+          {allMedia
+            ?.filter((m) => !(String(m.media_id) in split))
+            .map((m) => (
+              <option key={m.media_id} value={m.media_id}>
+                {m.name}
+              </option>
+            ))}
+        </select>
+        <button
+          onClick={() => {
+            if (addId !== "") {
+              setSplit((s) => ({ ...s, [addId]: "0" }));
+              setAddId("");
+            }
+          }}
+          disabled={addId === ""}
+          style={{ padding: "2px 8px", border: "1px solid #d4d4d8", borderRadius: 4, cursor: "pointer" }}
+        >
+          add
+        </button>
+        <span style={{ color: Math.abs(total - 100) < 0.01 ? "#15803d" : "#b45309" }}>
+          total {total.toFixed(1)} %
+        </span>
+        <button
+          onClick={() => save.mutate()}
+          disabled={save.isPending || Math.abs(total - 100) > 0.01}
+          style={{
+            padding: "2px 10px",
+            background: "#1d4ed8",
+            color: "#fff",
+            border: 0,
+            borderRadius: 4,
+            cursor: "pointer",
+          }}
+        >
+          {save.isPending ? "Saving…" : "Save media"}
+        </button>
+      </div>
+      {save.error && (
+        <p className="error" style={{ fontSize: 11, margin: 0 }}>
+          {String(save.error)}
+        </p>
+      )}
+    </div>
+  );
+}
+
 function RunRow({
   aid,
   activityId,
@@ -13,6 +132,7 @@ function RunRow({
 }) {
   const qc = useQueryClient();
   const [editing, setEditing] = useState(false);
+  const [editingMedia, setEditingMedia] = useState(false);
   const [inputsJson, setInputsJson] = useState("");
 
   const invalidate = () =>
@@ -34,6 +154,20 @@ function RunRow({
     onSuccess: invalidate,
   });
 
+  const { data: allMedia } = useQuery({
+    queryKey: ["media"],
+    queryFn: api.media,
+    enabled: run.model_kind === "release" && run.media != null,
+  });
+  const mediaSummary =
+    run.media &&
+    Object.entries(run.media)
+      .map(([m, p]) => {
+        const name = allMedia?.find((e) => e.media_id === Number(m))?.name ?? `#${m}`;
+        return `${name} ${p}%`;
+      })
+      .join(", ");
+
   return (
     <li>
       <span className={`tag tag-${run.model_kind === "release" ? "R" : "I"}`}>
@@ -52,6 +186,12 @@ function RunRow({
             .join(", ")}
         </span>
       )}
+      {mediaSummary && (
+        <span className="muted" style={{ fontSize: 11 }}>
+          {" "}
+          ⤷ {mediaSummary}
+        </span>
+      )}
       <button
         onClick={() => {
           setInputsJson(JSON.stringify(run.inputs, null, 2));
@@ -68,6 +208,21 @@ function RunRow({
       >
         {editing ? "cancel" : "edit"}
       </button>
+      {run.model_kind === "release" && (
+        <button
+          onClick={() => setEditingMedia((v) => !v)}
+          style={{
+            background: "transparent",
+            border: 0,
+            color: "#1d4ed8",
+            cursor: "pointer",
+            fontSize: 11,
+            marginLeft: 4,
+          }}
+        >
+          {editingMedia ? "cancel media" : "media"}
+        </button>
+      )}
       <button
         onClick={() => {
           if (confirm(`Delete run #${run.id}?`)) removeRun.mutate();
@@ -120,6 +275,16 @@ function RunRow({
           )}
         </div>
       )}
+      {editingMedia && (
+        <MediaEditor
+          aid={aid}
+          run={run}
+          onDone={() => {
+            setEditingMedia(false);
+            invalidate();
+          }}
+        />
+      )}
     </li>
   );
 }
@@ -161,7 +326,10 @@ export function ActivityEditor({
       return;
     }
     try {
-      const d = await api.modelDefaults(id, { act_id: activity.act_id });
+      const d = await api.modelDefaults(id, {
+        act_id: activity.act_id,
+        assessment_id: aid,
+      });
       const prefill: Record<string, unknown> = {};
       for (const f of d.fields) {
         prefill[f] = f in d.defaults ? d.defaults[f] : null;

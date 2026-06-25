@@ -163,6 +163,17 @@ class ModelDefaultsOut(BaseModel):
     defaults: dict[str, object]
     """Subset of ``fields`` that have resolvable defaults; values are
     bare floats or ``{"value", "unit"}`` dicts."""
+    media: dict[str, float] = Field(default_factory=dict)
+    """Default release-media split ``{MediaID: pct}`` (v3.2
+    MediaDefaults); empty for exposure models or models without one."""
+
+
+class MediaOut(BaseModel):
+    """One of the 18 release-media categories (chmsteer.db ListOfMedia)."""
+
+    media_id: int
+    name: str
+    sort_id: int
 
 
 class ScenarioModelOut(BaseModel):

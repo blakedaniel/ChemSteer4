@@ -65,22 +65,27 @@ GET    /api/models/{id}/valid-activities
 GET    /api/parameters
 GET    /api/scenarios                    34 Generic Scenarios
 GET    /api/scenarios/{id}               GS template tree (activities + models)
+GET    /api/models/{id}/defaults?output=&assessment_id=   per-characterization + chemical-record defaults
 GET    /api/reference/naics?q=           NAICS industry-code search (1,814 codes)
 GET    /api/reference/exposure-limits?q= OSHA PEL / NIOSH REL limits (652 chemicals)
+GET    /api/reference/media              18 release-media categories
 
 POST   /api/calc/release/{model_id}      direct calc
 POST   /api/calc/exposure/{model_id}     direct calc
+POST   /api/calc/mass-balance            operation mass-balance solver (PV = NS·OD·DMOchem)
 
 POST   /api/assessments
 GET    /api/assessments
 GET    /api/assessments/{id}
 PATCH  /api/assessments/{id}
 DELETE /api/assessments/{id}
+GET    /api/assessments/{id}/chemical    per-assessment chemical properties (MW/VP/solubility/…)
+PUT    /api/assessments/{id}/chemical    upsert the chemical record
 POST   /api/assessments/{id}/operations
 POST   /api/assessments/{id}/operations/from-scenario   instantiate a Generic Scenario
 POST   /api/assessments/{id}/operations/{oid}/activities
 POST   /api/assessments/{id}/activities/{aid}/runs
-PATCH  /api/assessments/{id}/runs/{rid}  edit inputs / label
+PATCH  /api/assessments/{id}/runs/{rid}  edit inputs / label / media split
 POST   /api/assessments/{id}/calc        run all attached models, persist outputs
 GET    /api/assessments/{id}/revisions   audit trail
 GET    /api/assessments/{id}/report.{html,pdf,csv,json}
@@ -93,7 +98,7 @@ OpenAPI schema is at `/openapi.json`; interactive docs at `/docs`.
 ## Development
 
 ```bash
-uv run pytest -q              # 132 tests (unit + property + api)
+uv run pytest -q              # 160 tests (unit + property + api)
 uv run ruff check .           # lint
 uv run ruff format            # format
 uv run mypy src               # strict type-check
@@ -101,7 +106,7 @@ uv run mkdocs serve           # docs preview at http://127.0.0.1:8000
 ```
 
 API smoke tests live in `bruno/` (a [Bruno](https://www.usebruno.com/)
-collection, 27 requests): start the server, then
+collection, 32 requests): start the server, then
 `cd bruno && npx @usebruno/cli run --env local -r`. Playwright E2E tests
 live in `frontend/e2e/` (`npm run e2e` with the dev stack up).
 

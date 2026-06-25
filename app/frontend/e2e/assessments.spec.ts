@@ -78,10 +78,13 @@ test.describe("Assessment workflow", () => {
     const name = `E2E-Revisions-${stamp()}`;
     await createAssessment(page, name);
 
-    // Add an operation.
-    const opSelect = page.locator("select").first();
-    await opSelect.selectOption({ index: 1 });
-    await page.getByRole("button", { name: "Add", exact: true }).click();
+    // Add an operation (scoped: the page now also has the chemical /
+    // mass-balance panels with their own selects).
+    const addOpRow = page.locator("div").filter({
+      has: page.locator("text=Add operation:"),
+    }).last();
+    await addOpRow.locator("select").selectOption({ index: 1 });
+    await addOpRow.getByRole("button", { name: "Add", exact: true }).click();
     await expect(page.locator("text=/Op #\\d+/").first()).toBeVisible();
 
     // Sidebar reveals revisions.
